@@ -1,0 +1,85 @@
+  [1m[36m (80.0ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (56.7ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateWidgets (20140510023211)
+  [1m[35m (0.4ms)[0m  begin transaction
+  [1m[36m (1.0ms)[0m  [1mCREATE TABLE "widgets" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.8ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140510023211"]]
+  [1m[36m (46.8ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateBitcoinPayments (20140510025632)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (1.2ms)[0m  [1mCREATE TABLE "bitcoin_payments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "payable_type" varchar(255), "payable_id" integer, "currency" varchar(255), "reason" varchar(255), "amount_due" integer, "address" varchar(255), "state" varchar(255), "created_at" datetime, "updated_at" datetime, "amount_paid" integer DEFAULT 0) [0m
+  [1m[35m (0.4ms)[0m  CREATE INDEX "index_versions_on_payable_type_and_payable_id" ON "versions" ("payable_type", "payable_id")
+SQLite3::SQLException: no such table: main.versions: CREATE  INDEX "index_versions_on_payable_type_and_payable_id" ON "versions" ("payable_type", "payable_id")
+  [1m[36m (0.4ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateBitcoinPayments (20140510025739)
+  [1m[35m (0.3ms)[0m  begin transaction
+  [1m[36m (1.3ms)[0m  [1mCREATE TABLE "bitcoin_payments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "payable_type" varchar(255), "payable_id" integer, "currency" varchar(255), "reason" varchar(255), "amount_due" integer, "address" varchar(255), "state" varchar(255), "created_at" datetime, "updated_at" datetime, "amount_paid" integer DEFAULT 0) [0m
+  [1m[35m (1.4ms)[0m  CREATE INDEX "index_bitcoin_payments_on_payable_type_and_payable_id" ON "bitcoin_payments" ("payable_type", "payable_id")
+  [1m[36mSQL (1.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140510025739"]]
+  [1m[35m (80.5ms)[0m  commit transaction
+Migrating to CreateBitcoinPaymentTransactions (20140510025740)
+  [1m[36m (0.4ms)[0m  [1mbegin transaction[0m
+  [1m[35m (1.2ms)[0m  CREATE TABLE "bitcoin_payment_transactions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "hash" varchar(255), "block_hash" varchar(255), "block_time" datetime, "estimated_time" datetime) 
+  [1m[36mSQL (0.9ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20140510025740"]]
+  [1m[35m (48.9ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36m (63.0ms)[0m  [1mCREATE TABLE "bitcoin_payment_transactions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "hash" varchar(255), "block_hash" varchar(255), "block_time" datetime, "estimated_time" datetime) [0m
+  [1m[35m (47.6ms)[0m  CREATE TABLE "bitcoin_payments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "payable_type" varchar(255), "payable_id" integer, "currency" varchar(255), "reason" varchar(255), "amount_due" integer, "address" varchar(255), "state" varchar(255), "created_at" datetime, "updated_at" datetime, "amount_paid" integer DEFAULT 0) 
+  [1m[36m (50.1ms)[0m  [1mCREATE INDEX "index_bitcoin_payments_on_payable_type_and_payable_id" ON "bitcoin_payments" ("payable_type", "payable_id")[0m
+  [1m[35m (54.1ms)[0m  CREATE TABLE "widgets" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (65.2ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (55.2ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.5ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (60.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140510025740')
+  [1m[36m (61.5ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140510023211')[0m
+  [1m[35m (60.1ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140510025739')
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateCurrencyConversions (20140510124424)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (1.4ms)[0m  [1mCREATE TABLE "currency_conversions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "usd" float, "btc" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.8ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140510124424"]]
+  [1m[36m (69.5ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (66.3ms)[0m  [1mCREATE TABLE "bitcoin_payment_transactions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "hash" varchar(255), "block_hash" varchar(255), "block_time" datetime, "estimated_time" datetime) [0m
+  [1m[35m (49.5ms)[0m  CREATE TABLE "bitcoin_payments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "payable_type" varchar(255), "payable_id" integer, "currency" varchar(255), "reason" varchar(255), "amount_due" integer, "address" varchar(255), "state" varchar(255), "created_at" datetime, "updated_at" datetime, "amount_paid" integer DEFAULT 0) 
+  [1m[36m (47.7ms)[0m  [1mCREATE INDEX "index_bitcoin_payments_on_payable_type_and_payable_id" ON "bitcoin_payments" ("payable_type", "payable_id")[0m
+  [1m[35m (50.6ms)[0m  CREATE TABLE "currency_conversions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "usd" float, "btc" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (65.6ms)[0m  [1mCREATE TABLE "widgets" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (58.7ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (48.8ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.6ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (42.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140510124424')[0m
+  [1m[35m (69.8ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140510023211')
+  [1m[36m (48.2ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140510025740')[0m
+  [1m[35m (55.6ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140510025739')
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to CreateCurrencyConversions (20140510124424)
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (1.0ms)[0m  DROP TABLE "currency_conversions"
+  [1m[36mSQL (0.6ms)[0m  [1mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20140510124424'[0m
+  [1m[35m (65.8ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateCurrencyConversions (20140511021326)
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (1.8ms)[0m  [1mCREATE TABLE "currency_conversions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "currency" float, "btc" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.7ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140511021326"]]
+  [1m[36m (66.5ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (65.2ms)[0m  [1mCREATE TABLE "bitcoin_payment_transactions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "hash" varchar(255), "block_hash" varchar(255), "block_time" datetime, "estimated_time" datetime) [0m
+  [1m[35m (54.7ms)[0m  CREATE TABLE "bitcoin_payments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "payable_type" varchar(255), "payable_id" integer, "currency" varchar(255), "reason" varchar(255), "amount_due" integer, "address" varchar(255), "state" varchar(255), "created_at" datetime, "updated_at" datetime, "amount_paid" integer DEFAULT 0) 
+  [1m[36m (47.2ms)[0m  [1mCREATE INDEX "index_bitcoin_payments_on_payable_type_and_payable_id" ON "bitcoin_payments" ("payable_type", "payable_id")[0m
+  [1m[35m (50.5ms)[0m  CREATE TABLE "currency_conversions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "currency" float, "btc" integer, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (51.5ms)[0m  [1mCREATE TABLE "widgets" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (53.3ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (42.4ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (0.6ms)[0m  SELECT version FROM "schema_migrations"
+  [1m[36m (44.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140511021326')[0m
+  [1m[35m (43.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140510023211')
+  [1m[36m (45.1ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140510025740')[0m
+  [1m[35m (60.0ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140510025739')
