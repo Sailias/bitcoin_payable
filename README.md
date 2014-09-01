@@ -33,18 +33,27 @@ Or install it yourself as:
 config/initializers/bitcoin_payable.rb
 
     BitcoinPayable.config.currency = :cad
+    BitcoinPayable.config.node_path = "m/0/"
     BitcoinPayable.config.master_seed = ENV["MASTER_SEED"]              # Use master_seed OR master_public_key
     BitcoinPayable.config.master_public_key = ENV["MASTER_PUBLIC_KEY"]
-    BitcoinPayable.config.testnet = true
+    BitcoinPayable.config.testnet = false
+
+#### Node Path
+
+The derivation path for the node that will be creating your addresses
 
 #### Master Seed
 
 The 32 Hex master seed.
 Reference: https://github.com/wink/money-tree#create-a-master-node-seed
 
+Testnet only supports generating addresses using the master_seed
+
 #### Master Public Key
 
 A BIP32 MPK in "Extended Key" format.
+
+Not compatible with testnet.
 
 ### Adding it to your model
 
