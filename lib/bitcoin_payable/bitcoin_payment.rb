@@ -51,14 +51,7 @@ module BitcoinPayable
     end
 
     def populate_address
-      #BitcoinAddrgen.generate_public_address(BitcoinPayable.config.master_public_key, self.id)
-      config = {
-        seed_hex: BitcoinPayable.config.master_seed
-      }
-      config.merge!(network: :bitcoin_testnet) if BitcoinPayable.config.testnet
-      master = MoneyTree::Master.new config
-      node = master.node_for_path "m/0/#{self.id}"
-      self.update(address: node.to_address)
+      self.update(address: Address.create(self.id))
     end
 
     def notify_payable

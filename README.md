@@ -2,7 +2,7 @@
 
 A rails gem that enables any model to have bitcoin payments.
 The polymorhpic table bitcoin_payments creates payments with unique addresses based on a BIP32 deterministic seed
-and uses the HelloBlock.io API to check for payments.
+and uses the https://helloblock.io API to check for payments.
 
 Payments have 3 states:  `pending`, `partial_payment`, `paid_in_full`
 
@@ -33,8 +33,14 @@ Or install it yourself as:
 config/initializers/bitcoin_payable.rb
 
     BitcoinPayable.config.currency = :cad
-    BitcoinPayable.config.master_seed = ENV["MASTER_SEED"]
+    BitcoinPayable.config.master_seed = ENV["MASTER_PUBLIC_KEY"]
     BitcoinPayable.config.testnet = true
+
+#### Master Public Key
+
+A BIP32 MPK in "Extended Key" format.
+
+
 
 ### Adding it to your model
 

@@ -13,6 +13,7 @@ module BitcoinPayable
 end
 
 require 'bitcoin_payable/bitcoin_payment_transaction'
+require "bitcoin_payable/address"
 require 'bitcoin_payable/bitcoin_payment'
 
 require 'bitcoin_payable/currency_conversion'
