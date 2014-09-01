@@ -2,15 +2,7 @@ module BitcoinPayable
   class Address
 
     def self.create(id)
-     if BitcoinPayable.config.master_seed
-        config = {
-          seed_hex: BitcoinPayable.config.master_seed
-        }
-        config.merge!(network: :bitcoin_testnet) if BitcoinPayable.config.testnet
-        master = MoneyTree::Master.new config
-        node = master.node_for_path BitcoinPayable.config.node_path + id.to_s
-
-      elsif BitcoinPayable.config.master_public_key
+      if BitcoinPayable.config.master_public_key
         master = MoneyTree::Node.from_serialized_address BitcoinPayable.config.master_public_key
         node = master.node_for_path BitcoinPayable.config.node_path + id.to_s
       else
