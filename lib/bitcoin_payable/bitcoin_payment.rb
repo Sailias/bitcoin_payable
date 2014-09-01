@@ -31,7 +31,7 @@ module BitcoinPayable
     end
 
     def currency_amount_paid
-      self.transactions.inject(0) { |sum, tx| sum + (BitcoinPayable::BitcoinCalculator.convert_satoshis_to_bitcoin(tx.estimated_value) * tx.btc_conversion) }.round(2)
+      (self.transactions.inject(0) { |sum, tx| sum + (BitcoinPayable::BitcoinCalculator.convert_satoshis_to_bitcoin(tx.estimated_value) * tx.btc_conversion) } / 100).round(2)
     end
 
     def currency_amount_due
