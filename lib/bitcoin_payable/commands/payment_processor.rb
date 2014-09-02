@@ -27,7 +27,7 @@ module BitcoinPayable
           end
         end
 
-        if payment.currency_amount_paid >= (payment.price / 100.0)
+        if payment.currency_amount_paid >= payment.price
           payment.paid
         elsif payment.currency_amount_paid > 0
            payment.partially_paid

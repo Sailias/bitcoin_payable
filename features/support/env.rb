@@ -4,7 +4,7 @@ require File.expand_path("../../../spec/dummy/config/environment.rb",  __FILE__)
 ENV["RAILS_ROOT"] ||= File.dirname(__FILE__) + "../../../spec/dummy"
 
 require 'cucumber/rails'
-require 'cucumber/rspec/doubles'
+#require 'cucumber/rspec/doubles'
 
 # Remove/comment out the lines below if your app doesn't have a database.
 # For some databases (like MongoDB and CouchDB) you may need to use :truncation instead.

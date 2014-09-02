@@ -1,1 +1,2 @@
-BitcoinPayable.config.master_public_key = "675b7041a347223984750fe3ab229df0c9f960e7ec98226b7182a2cb1990e39901feecf5a670f1d788ab29f626e20de424f049d216fc6f4c6ec42506763fa28e"
+BitcoinPayable.config.master_public_key = "tpubD6NzVbkrYhZ4X3cxCktWVsVvMDd35JbNdhzZxb1aeDCG7LfN6KbcDQsqiyJHMEQGJURRgdxGbFBBF32Brwb2LsfpE2jQfCZKwzNBBMosjfm"
+BitcoinPayable.config.node_path = "m/0/"
