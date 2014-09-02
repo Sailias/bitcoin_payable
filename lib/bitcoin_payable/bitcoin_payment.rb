@@ -35,7 +35,7 @@ module BitcoinPayable
     end
 
     def currency_amount_due
-      self.price - currency_amount_paid
+      (self.price / 100.0) - currency_amount_paid
     end
 
     def calculate_btc_amount_due
