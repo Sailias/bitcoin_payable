@@ -8,6 +8,8 @@ module BitcoinPayable
     end
 
     def perform
+      HelloBlock.network = :mainnet unless BitcoinPayable.config.testnet
+
       BitcoinPayable::BitcoinPayment.where(state: [:pending, :partial_payment]).each do |payment|
         transactions = HelloBlock::Transaction.where(addresses: [payment.address]).to_hash
         if transactions["data"]
