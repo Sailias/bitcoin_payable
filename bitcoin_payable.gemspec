@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.name          = "bitcoin_payable"
   spec.version       = BitcoinPayable::VERSION
   spec.authors       = ["Jonathan Salis"]
-  spec.email         = ["jon.salis@bitcoinsultants.ca"]
+  spec.email         = ["jsalis@bitcoinsultants.ca"]
   spec.description   = %q{A Bitcoin payment processor}
   spec.summary       = %q{A Bitcoin payment processor}
   spec.homepage      = ""
