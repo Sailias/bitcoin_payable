@@ -18,6 +18,7 @@ module BitcoinPayable
       state :pending
       state :partial_payment
       state :paid_in_full
+      state :comped
 
       event :paid do
         transition [:pending, :partial_payment] => :paid_in_full
@@ -28,6 +29,12 @@ module BitcoinPayable
       event :partially_paid do
         transition :pending => :partial_payment
       end
+
+      event :comp do
+        transition :pending => :comped
+      end
+
+      after_transition :on => :comp, :do => :notify_payable
     end
 
     def currency_amount_paid
