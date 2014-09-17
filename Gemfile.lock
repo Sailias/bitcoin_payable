@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    bitcoin_payable (0.2.0)
+    bitcoin_payable (0.4.2)
       cucumber-rails
       database_cleaner
       helloblock

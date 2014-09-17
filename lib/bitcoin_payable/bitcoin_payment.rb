@@ -46,8 +46,8 @@ module BitcoinPayable
       self.price - currency_amount_paid
     end
 
-    def calculate_btc_amount_due
-      btc_rate = BitcoinPayable::CurrencyConversion.last.btc
+    def calculate_btc_amount_due(btc_rate = nil)
+      btc_rate ||= BitcoinPayable::CurrencyConversion.last.btc
       BitcoinPayable::BitcoinCalculator.exchange_price currency_amount_due, btc_rate
     end
 
@@ -56,6 +56,7 @@ module BitcoinPayable
     def populate_currency_and_amount_due
       self.currency ||= BitcoinPayable.config.currency
       self.btc_amount_due = calculate_btc_amount_due
+      self.btc_conversion = CurrencyConversion.last.btc
     end
 
     def populate_address

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140902213338) do
+ActiveRecord::Schema.define(version: 20140917144413) do
 
   create_table "bitcoin_payment_transactions", force: true do |t|
     t.integer  "estimated_value"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20140902213338) do
     t.string   "state"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "btc_conversion"
   end
 
   add_index "bitcoin_payments", ["payable_type", "payable_id"], name: "index_bitcoin_payments_on_payable_type_and_payable_id"

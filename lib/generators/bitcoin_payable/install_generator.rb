@@ -13,6 +13,7 @@ module BitcoinPayable
       migration_template 'create_bitcoin_payments.rb', 'db/migrate/create_bitcoin_payments.rb'
       migration_template 'create_bitcoin_payment_transactions.rb', 'db/migrate/create_bitcoin_payment_transactions.rb'
       migration_template 'create_currency_conversions.rb', 'db/migrate/create_currency_conversions.rb'
+      migration_template 'add_btc_conversion_to_bitcoin_payments.rb', 'db/migrate/add_btc_conversion_to_bitcoin_payments.rb'
     end
 
     def self.next_migration_number(dirname)

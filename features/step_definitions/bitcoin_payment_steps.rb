@@ -20,13 +20,17 @@ Given /^the btc_amount_due is set$/ do
 end
 
 Given /^a payment is made for (\d+) percent$/ do |percentage|
-  @bitcoin_payment.transactions.create!(estimated_value: BitcoinPayable::BitcoinCalculator.convert_bitcoins_to_satoshis(@btc_amount_due * (percentage.to_f / 100)), btc_conversion: @currency_conversions.last.btc)
+  @bitcoin_payment.transactions.create!(estimated_value: BitcoinPayable::BitcoinCalculator.convert_bitcoins_to_satoshis(@btc_amount_due * (percentage.to_f / 100.0)), btc_conversion: @bitcoin_payment.btc_conversion)
 end
 
 Given(/^the amount paid percentage should be greater than (\d+)%$/) do |percentage|
-  expect(@bitcoin_payment.currency_amount_paid / @bitcoin_payment.price).to be >= (percentage.to_f / 100)
+  expect(@bitcoin_payment.currency_amount_paid / @bitcoin_payment.price.to_f).to be >= (percentage.to_f / 100)
 end
 
 Given(/^the amount paid percentage should be less than (\d+)%$/) do |percentage|
   expect(@bitcoin_payment.currency_amount_paid / @bitcoin_payment.price).to be < (percentage.to_f / 100)
+end
+
+Given(/^the amount paid percentage should be (\d+)%$/) do |percentage|
+  expect(@bitcoin_payment.currency_amount_paid / @bitcoin_payment.price.to_f).to  eq(percentage.to_f / 100)
 end

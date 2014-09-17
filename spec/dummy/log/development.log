@@ -135,3 +135,24 @@ Migrating to CreateBitcoinPaymentTransactions (20140902213338)
   [1m[36m (48.0ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140902213337')[0m
   [1m[35m (50.5ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140510023211')
   [1m[36m (48.6ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140511021326')[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to AddBtcConversionToBitcoinPayments (20140917144413)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (1.0ms)[0m  [1mALTER TABLE "bitcoin_payments" ADD "btc_conversion" integer[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20140917144413"]]
+  [1m[36m (66.5ms)[0m  [1mcommit transaction[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (71.3ms)[0m  [1mCREATE TABLE "bitcoin_payment_transactions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "estimated_value" integer, "transaction_hash" varchar(255), "block_hash" varchar(255), "block_time" datetime, "estimated_time" datetime, "bitcoin_payment_id" integer, "btc_conversion" integer) [0m
+  [1m[35m (50.8ms)[0m  CREATE INDEX "index_bitcoin_payment_transactions_on_bitcoin_payment_id" ON "bitcoin_payment_transactions" ("bitcoin_payment_id")
+  [1m[36m (53.6ms)[0m  [1mCREATE TABLE "bitcoin_payments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "payable_type" varchar(255), "payable_id" integer, "currency" varchar(255), "reason" varchar(255), "price" integer, "btc_amount_due" float DEFAULT 0.0, "address" varchar(255), "state" varchar(255), "created_at" datetime, "updated_at" datetime, "btc_conversion" integer) [0m
+  [1m[35m (70.4ms)[0m  CREATE INDEX "index_bitcoin_payments_on_payable_type_and_payable_id" ON "bitcoin_payments" ("payable_type", "payable_id")
+  [1m[36m (42.6ms)[0m  [1mCREATE TABLE "currency_conversions" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "currency" float, "btc" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (66.5ms)[0m  CREATE TABLE "widgets" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "created_at" datetime, "updated_at" datetime) 
+  [1m[36m (62.5ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35m (58.3ms)[0m  CREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")
+  [1m[36m (0.2ms)[0m  [1mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (48.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140917144413')
+  [1m[36m (57.8ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140902213337')[0m
+  [1m[35m (39.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140510023211')
+  [1m[36m (36.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140902213338')[0m
+  [1m[35m (56.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140511021326')

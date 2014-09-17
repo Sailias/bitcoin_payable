@@ -7,7 +7,6 @@ Background:
     And the bitcoin_payment field reason is set to New
   When the bitcoin_payment is saved
 
-
 Scenario: A saved widget can create a payment
 Then the bitcoin_payment should have an address
   And the bitcoin_payment should have the state pending
@@ -21,12 +20,31 @@ When the btc_amount_due is set
   And a payment is made for 50 percent
 When the payment_processor is run
 Then the bitcoin_payment should have the state partial_payment
-  And the amount paid percentage should be greater than 49%
-  And the amount paid percentage should be less than 51%
+  And the amount paid percentage should be 50%
 
 Scenario: When a payment is made for 1/2 the amount, the status should be partial payment
 When the btc_amount_due is set
-  And a payment is made for 101 percent
+  And a payment is made for 100 percent
 When the payment_processor is run
 Then the bitcoin_payment should have the state paid_in_full
-  And the amount paid percentage should be greater than 99%
+  And the amount paid percentage should be 100%
+
+Scenario: When the price bombs the payment is still honoured at the conversion rate
+When the btc_amount_due is set
+  And the currency_conversion is 1
+  And a payment is made for 50 percent
+When the payment_processor is run
+Then the bitcoin_payment should have the state partial_payment
+  And the amount paid percentage should be 50%
+
+Scenario: When a partial payment is made and another payment made it should complete
+Scenario: When a payment is made for 1/2 the amount, the status should be partial payment
+When the btc_amount_due is set
+  And a payment is made for 50 percent
+When the payment_processor is run
+Then the bitcoin_payment should have the state partial_payment
+  And the amount paid percentage should be 50%
+Then a payment is made for 50 percent
+When the payment_processor is run
+Then the bitcoin_payment should have the state paid_in_full
+  And the amount paid percentage should be 100%

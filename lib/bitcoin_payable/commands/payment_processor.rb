@@ -21,7 +21,7 @@ module BitcoinPayable
                 block_hash: tx["blockHash"],
                 block_time: (Time.at(tx["blockTime"]) if tx["blockTime"]),
                 estimated_time: (Time.at(tx["estimatedTxTime"]) if tx["estimatedTxTime"]),
-                btc_conversion: BitcoinPayable::CurrencyConversion.last.btc
+                btc_conversion: payment.btc_conversion
               )
 
               payment.update(btc_amount_due: payment.calculate_btc_amount_due)
