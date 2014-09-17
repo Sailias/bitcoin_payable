@@ -4,7 +4,7 @@ A rails gem that enables any model to have bitcoin payments.
 The polymorphic table bitcoin_payments creates payments with unique addresses based on a BIP32 deterministic seed using https://github.com/wink/money-tree
 and uses the https://helloblock.io API to check for payments.
 
-Payments have 3 states:  `pending`, `partial_payment`, `paid_in_full`
+Payments have 4 states:  `pending`, `partial_payment`, `paid_in_full`, `comped`
 
 No private keys needed, No bitcoind blockchain indexing on new servers, just address and payments.
 
@@ -102,6 +102,12 @@ Use the `bitcoin_payment_paid` method
         self.ship!
       end
     end
+
+### Comp a payment
+
+This will bypass the payment, set the state to comped and call back to your app that they payment has been processed.
+
+`@bitcoin_payment.comp`
 
 ### View all the transactions in the payment
 
