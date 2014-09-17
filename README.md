@@ -105,7 +105,7 @@ Use the `bitcoin_payment_paid` method
 
 ### Comp a payment
 
-This will bypass the payment, set the state to comped and call back to your app that they payment has been processed.
+This will bypass the payment, set the state to comped and call back to your app that the payment has been processed.
 
 `@bitcoin_payment.comp`
 
