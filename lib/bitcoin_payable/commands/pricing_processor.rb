@@ -17,7 +17,7 @@ module BitcoinPayable
         # => Loop through all unpaid payments and update them with the new price
         # => If it has been 20 mins since they have been updated
         BitcoinPayable::BitcoinPayment.where(state: ['pending', 'partial_payment']).where("updated_at < ? OR btc_amount_due = 0", 30.minutes.ago).each do |bp|
-          bp.update!(btc_amount_due: bp.calculate_btc_amount_due, btc_conversion: rate)
+          bp.update!(btc_amount_due: bp.calculate_btc_amount_due, btc_conversion: rate.btc)
         end
       end
 
