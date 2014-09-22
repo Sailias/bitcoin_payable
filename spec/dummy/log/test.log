@@ -8453,3 +8453,768 @@
   [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
   [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "currency_conversions"
   [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[36m (1.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (8.4ms)[0m  [1mINSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)[0m  [["btc", 93300], ["created_at", Sun, 21 Sep 2014 23:57:39 UTC +00:00], ["currency", 0.938690279397401], ["updated_at", Sun, 21 Sep 2014 23:57:39 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)  [["btc", 56700], ["created_at", Sun, 21 Sep 2014 23:57:39 UTC +00:00], ["currency", 0.8594506113696574], ["updated_at", Sun, 21 Sep 2014 23:57:39 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)[0m  [["btc", 86400], ["created_at", Sun, 21 Sep 2014 23:57:39 UTC +00:00], ["currency", 0.8616109983292751], ["updated_at", Sun, 21 Sep 2014 23:57:39 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "widgets" ("created_at", "updated_at") VALUES (?, ?)  [["created_at", Sun, 21 Sep 2014 23:57:39 UTC +00:00], ["updated_at", Sun, 21 Sep 2014 23:57:39 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mBitcoinPayable::CurrencyConversion Load (0.2ms)[0m  [1mSELECT "currency_conversions".* FROM "currency_conversions" ORDER BY "currency_conversions"."id" DESC LIMIT 1[0m
+  [1m[35mBitcoinPayable::CurrencyConversion Load (0.1ms)[0m  SELECT "currency_conversions".* FROM "currency_conversions" ORDER BY "currency_conversions"."id" DESC LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "bitcoin_payments" ("btc_amount_due", "btc_conversion", "created_at", "currency", "payable_id", "payable_type", "price", "reason", "state", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["btc_amount_due", 0.11574074], ["btc_conversion", 86400], ["created_at", Sun, 21 Sep 2014 23:57:39 UTC +00:00], ["currency", :cad], ["payable_id", 1], ["payable_type", "Widget"], ["price", 10000], ["reason", "New"], ["state", "pending"], ["updated_at", Sun, 21 Sep 2014 23:57:39 UTC +00:00]]
+  [1m[35mSQL (0.5ms)[0m  UPDATE "bitcoin_payments" SET "state" = ?, "payable_id" = ?, "payable_type" = ?, "price" = ?, "reason" = ?, "created_at" = ?, "updated_at" = ?, "currency" = ?, "btc_amount_due" = ?, "btc_conversion" = ?, "id" = ?, "address" = ? WHERE "bitcoin_payments"."id" = 1  [["state", "pending"], ["payable_id", 1], ["payable_type", "Widget"], ["price", 10000], ["reason", "New"], ["created_at", Sun, 21 Sep 2014 23:57:39 UTC +00:00], ["updated_at", Sun, 21 Sep 2014 23:57:39 UTC +00:00], ["currency", :cad], ["btc_amount_due", 0.11574074], ["btc_conversion", 86400], ["id", 1], ["address", "n3Y9hm8hzsrE8bzy83zHQEpLmxMLup967N"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mBitcoinPayable::BitcoinPayment Load (0.2ms)[0m  SELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mBitcoinPayable::BitcoinPayment Load (0.2ms)[0m  [1mSELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)[0m  [["btc", 87800], ["created_at", Sun, 21 Sep 2014 23:57:39 UTC +00:00], ["currency", 0.8725823756486707], ["updated_at", Sun, 21 Sep 2014 23:57:39 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)  [["btc", 89100], ["created_at", Sun, 21 Sep 2014 23:57:39 UTC +00:00], ["currency", 0.879819940612946], ["updated_at", Sun, 21 Sep 2014 23:57:39 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)[0m  [["btc", 53200], ["created_at", Sun, 21 Sep 2014 23:57:39 UTC +00:00], ["currency", 0.8856456657047355], ["updated_at", Sun, 21 Sep 2014 23:57:39 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "widgets" ("created_at", "updated_at") VALUES (?, ?)  [["created_at", Sun, 21 Sep 2014 23:57:39 UTC +00:00], ["updated_at", Sun, 21 Sep 2014 23:57:39 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mBitcoinPayable::CurrencyConversion Load (0.2ms)[0m  [1mSELECT "currency_conversions".* FROM "currency_conversions" ORDER BY "currency_conversions"."id" DESC LIMIT 1[0m
+  [1m[35mBitcoinPayable::CurrencyConversion Load (0.1ms)[0m  SELECT "currency_conversions".* FROM "currency_conversions" ORDER BY "currency_conversions"."id" DESC LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "bitcoin_payments" ("btc_amount_due", "btc_conversion", "created_at", "currency", "payable_id", "payable_type", "price", "reason", "state", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["btc_amount_due", 0.18796992], ["btc_conversion", 53200], ["created_at", Sun, 21 Sep 2014 23:57:39 UTC +00:00], ["currency", :cad], ["payable_id", 1], ["payable_type", "Widget"], ["price", 10000], ["reason", "New"], ["state", "pending"], ["updated_at", Sun, 21 Sep 2014 23:57:39 UTC +00:00]]
+  [1m[35mSQL (0.2ms)[0m  UPDATE "bitcoin_payments" SET "state" = ?, "payable_id" = ?, "payable_type" = ?, "price" = ?, "reason" = ?, "created_at" = ?, "updated_at" = ?, "currency" = ?, "btc_amount_due" = ?, "btc_conversion" = ?, "id" = ?, "address" = ? WHERE "bitcoin_payments"."id" = 1  [["state", "pending"], ["payable_id", 1], ["payable_type", "Widget"], ["price", 10000], ["reason", "New"], ["created_at", Sun, 21 Sep 2014 23:57:39 UTC +00:00], ["updated_at", Sun, 21 Sep 2014 23:57:39 UTC +00:00], ["currency", :cad], ["btc_amount_due", 0.18796992], ["btc_conversion", 53200], ["id", 1], ["address", "n3Y9hm8hzsrE8bzy83zHQEpLmxMLup967N"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mBitcoinPayable::BitcoinPayment Load (0.1ms)[0m  SELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mBitcoinPayable::BitcoinPayment Load (0.3ms)[0m  [1mSELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."state" IN ('pending', 'partial_payment')[0m
+  [1m[35mBitcoinPayable::BitcoinPaymentTransaction Load (0.5ms)[0m  SELECT "bitcoin_payment_transactions".* FROM "bitcoin_payment_transactions" WHERE "bitcoin_payment_transactions"."bitcoin_payment_id" = ?  [["bitcoin_payment_id", 1]]
+  [1m[36mBitcoinPayable::BitcoinPayment Load (0.2ms)[0m  [1mSELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.4ms)[0m  rollback transaction
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)[0m  [["btc", 98800], ["created_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00], ["currency", 0.9542988839584807], ["updated_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)  [["btc", 62200], ["created_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00], ["currency", 0.981185903391368], ["updated_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)[0m  [["btc", 73600], ["created_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00], ["currency", 0.8724897773581703], ["updated_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "widgets" ("created_at", "updated_at") VALUES (?, ?)  [["created_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00], ["updated_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mBitcoinPayable::CurrencyConversion Load (0.2ms)[0m  [1mSELECT "currency_conversions".* FROM "currency_conversions" ORDER BY "currency_conversions"."id" DESC LIMIT 1[0m
+  [1m[35mBitcoinPayable::CurrencyConversion Load (0.1ms)[0m  SELECT "currency_conversions".* FROM "currency_conversions" ORDER BY "currency_conversions"."id" DESC LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "bitcoin_payments" ("btc_amount_due", "btc_conversion", "created_at", "currency", "payable_id", "payable_type", "price", "reason", "state", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["btc_amount_due", 0.13586957], ["btc_conversion", 73600], ["created_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00], ["currency", :cad], ["payable_id", 1], ["payable_type", "Widget"], ["price", 10000], ["reason", "New"], ["state", "pending"], ["updated_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00]]
+  [1m[35mSQL (0.3ms)[0m  UPDATE "bitcoin_payments" SET "state" = ?, "payable_id" = ?, "payable_type" = ?, "price" = ?, "reason" = ?, "created_at" = ?, "updated_at" = ?, "currency" = ?, "btc_amount_due" = ?, "btc_conversion" = ?, "id" = ?, "address" = ? WHERE "bitcoin_payments"."id" = 1  [["state", "pending"], ["payable_id", 1], ["payable_type", "Widget"], ["price", 10000], ["reason", "New"], ["created_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00], ["updated_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00], ["currency", :cad], ["btc_amount_due", 0.13586957], ["btc_conversion", 73600], ["id", 1], ["address", "n3Y9hm8hzsrE8bzy83zHQEpLmxMLup967N"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mBitcoinPayable::BitcoinPayment Load (0.1ms)[0m  SELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mBitcoinPayable::CurrencyConversion Load (0.1ms)[0m  [1mSELECT "currency_conversions".* FROM "currency_conversions" ORDER BY "currency_conversions"."id" DESC LIMIT 1[0m
+  [1m[35mBitcoinPayable::BitcoinPaymentTransaction Load (0.1ms)[0m  SELECT "bitcoin_payment_transactions".* FROM "bitcoin_payment_transactions" WHERE "bitcoin_payment_transactions"."bitcoin_payment_id" = ?  [["bitcoin_payment_id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "bitcoin_payment_transactions" ("bitcoin_payment_id", "btc_conversion", "estimated_value") VALUES (?, ?, ?)  [["bitcoin_payment_id", 1], ["btc_conversion", 73600], ["estimated_value", 6793478]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mBitcoinPayable::BitcoinPayment Load (0.4ms)[0m  SELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."state" IN ('pending', 'partial_payment')
+  [1m[36mBitcoinPayable::BitcoinPaymentTransaction Load (0.2ms)[0m  [1mSELECT "bitcoin_payment_transactions".* FROM "bitcoin_payment_transactions" WHERE "bitcoin_payment_transactions"."bitcoin_payment_id" = ?[0m  [["bitcoin_payment_id", 1]]
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "bitcoin_payments" SET "state" = ?, "updated_at" = ? WHERE "bitcoin_payments"."id" = 1[0m  [["state", "partial_payment"], ["updated_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mBitcoinPayable::BitcoinPayment Load (0.1ms)[0m  [1mSELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mBitcoinPayable::BitcoinPaymentTransaction Load (0.1ms)[0m  SELECT "bitcoin_payment_transactions".* FROM "bitcoin_payment_transactions" WHERE "bitcoin_payment_transactions"."bitcoin_payment_id" = ?  [["bitcoin_payment_id", 1]]
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)  [["btc", 89100], ["created_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00], ["currency", 0.9127803921969331], ["updated_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)[0m  [["btc", 92800], ["created_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00], ["currency", 0.875626891520336], ["updated_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)  [["btc", 65300], ["created_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00], ["currency", 0.9513419906345139], ["updated_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "widgets" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00], ["updated_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mBitcoinPayable::CurrencyConversion Load (0.1ms)[0m  SELECT "currency_conversions".* FROM "currency_conversions" ORDER BY "currency_conversions"."id" DESC LIMIT 1
+  [1m[36mBitcoinPayable::CurrencyConversion Load (0.1ms)[0m  [1mSELECT "currency_conversions".* FROM "currency_conversions" ORDER BY "currency_conversions"."id" DESC LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "bitcoin_payments" ("btc_amount_due", "btc_conversion", "created_at", "currency", "payable_id", "payable_type", "price", "reason", "state", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["btc_amount_due", 0.15313936], ["btc_conversion", 65300], ["created_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00], ["currency", :cad], ["payable_id", 1], ["payable_type", "Widget"], ["price", 10000], ["reason", "New"], ["state", "pending"], ["updated_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00]]
+  [1m[36mSQL (0.2ms)[0m  [1mUPDATE "bitcoin_payments" SET "state" = ?, "payable_id" = ?, "payable_type" = ?, "price" = ?, "reason" = ?, "created_at" = ?, "updated_at" = ?, "currency" = ?, "btc_amount_due" = ?, "btc_conversion" = ?, "id" = ?, "address" = ? WHERE "bitcoin_payments"."id" = 1[0m  [["state", "pending"], ["payable_id", 1], ["payable_type", "Widget"], ["price", 10000], ["reason", "New"], ["created_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00], ["updated_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00], ["currency", :cad], ["btc_amount_due", 0.15313936], ["btc_conversion", 65300], ["id", 1], ["address", "n3Y9hm8hzsrE8bzy83zHQEpLmxMLup967N"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mBitcoinPayable::BitcoinPayment Load (0.1ms)[0m  [1mSELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mBitcoinPayable::CurrencyConversion Load (0.2ms)[0m  SELECT "currency_conversions".* FROM "currency_conversions" ORDER BY "currency_conversions"."id" DESC LIMIT 1
+  [1m[36mBitcoinPayable::BitcoinPaymentTransaction Load (0.1ms)[0m  [1mSELECT "bitcoin_payment_transactions".* FROM "bitcoin_payment_transactions" WHERE "bitcoin_payment_transactions"."bitcoin_payment_id" = ?[0m  [["bitcoin_payment_id", 1]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "bitcoin_payment_transactions" ("bitcoin_payment_id", "btc_conversion", "estimated_value") VALUES (?, ?, ?)[0m  [["bitcoin_payment_id", 1], ["btc_conversion", 65300], ["estimated_value", 15313936]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mBitcoinPayable::BitcoinPayment Load (0.2ms)[0m  [1mSELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."state" IN ('pending', 'partial_payment')[0m
+  [1m[35mBitcoinPayable::BitcoinPaymentTransaction Load (0.2ms)[0m  SELECT "bitcoin_payment_transactions".* FROM "bitcoin_payment_transactions" WHERE "bitcoin_payment_transactions"."bitcoin_payment_id" = ?  [["bitcoin_payment_id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  UPDATE "bitcoin_payments" SET "state" = ?, "updated_at" = ? WHERE "bitcoin_payments"."id" = 1  [["state", "paid_in_full"], ["updated_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00]]
+  [1m[36mWidget Load (0.4ms)[0m  [1mSELECT "widgets".* FROM "widgets" WHERE "widgets"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mBitcoinPayable::BitcoinPayment Load (0.2ms)[0m  [1mSELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mBitcoinPayable::BitcoinPaymentTransaction Load (0.1ms)[0m  SELECT "bitcoin_payment_transactions".* FROM "bitcoin_payment_transactions" WHERE "bitcoin_payment_transactions"."bitcoin_payment_id" = ?  [["bitcoin_payment_id", 1]]
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)  [["btc", 95100], ["created_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00], ["currency", 0.9695899127933576], ["updated_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)[0m  [["btc", 86200], ["created_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00], ["currency", 0.9427678445884333], ["updated_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)  [["btc", 93200], ["created_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00], ["currency", 0.9197220230212558], ["updated_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "widgets" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00], ["updated_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mBitcoinPayable::CurrencyConversion Load (0.1ms)[0m  SELECT "currency_conversions".* FROM "currency_conversions" ORDER BY "currency_conversions"."id" DESC LIMIT 1
+  [1m[36mBitcoinPayable::CurrencyConversion Load (0.1ms)[0m  [1mSELECT "currency_conversions".* FROM "currency_conversions" ORDER BY "currency_conversions"."id" DESC LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "bitcoin_payments" ("btc_amount_due", "btc_conversion", "created_at", "currency", "payable_id", "payable_type", "price", "reason", "state", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["btc_amount_due", 0.10729614], ["btc_conversion", 93200], ["created_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00], ["currency", :cad], ["payable_id", 1], ["payable_type", "Widget"], ["price", 10000], ["reason", "New"], ["state", "pending"], ["updated_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00]]
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "bitcoin_payments" SET "state" = ?, "payable_id" = ?, "payable_type" = ?, "price" = ?, "reason" = ?, "created_at" = ?, "updated_at" = ?, "currency" = ?, "btc_amount_due" = ?, "btc_conversion" = ?, "id" = ?, "address" = ? WHERE "bitcoin_payments"."id" = 1[0m  [["state", "pending"], ["payable_id", 1], ["payable_type", "Widget"], ["price", 10000], ["reason", "New"], ["created_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00], ["updated_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00], ["currency", :cad], ["btc_amount_due", 0.10729614], ["btc_conversion", 93200], ["id", 1], ["address", "n3Y9hm8hzsrE8bzy83zHQEpLmxMLup967N"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mBitcoinPayable::BitcoinPayment Load (0.1ms)[0m  [1mSELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mBitcoinPayable::CurrencyConversion Load (0.2ms)[0m  SELECT "currency_conversions".* FROM "currency_conversions" ORDER BY "currency_conversions"."id" DESC LIMIT 1
+  [1m[36mBitcoinPayable::BitcoinPaymentTransaction Load (0.1ms)[0m  [1mSELECT "bitcoin_payment_transactions".* FROM "bitcoin_payment_transactions" WHERE "bitcoin_payment_transactions"."bitcoin_payment_id" = ?[0m  [["bitcoin_payment_id", 1]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)[0m  [["btc", 1], ["created_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00], ["currency", 1.0], ["updated_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "bitcoin_payment_transactions" ("bitcoin_payment_id", "btc_conversion", "estimated_value") VALUES (?, ?, ?)  [["bitcoin_payment_id", 1], ["btc_conversion", 93200], ["estimated_value", 5364807]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mBitcoinPayable::BitcoinPayment Load (0.2ms)[0m  SELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."state" IN ('pending', 'partial_payment')
+  [1m[36mBitcoinPayable::BitcoinPaymentTransaction Load (0.2ms)[0m  [1mSELECT "bitcoin_payment_transactions".* FROM "bitcoin_payment_transactions" WHERE "bitcoin_payment_transactions"."bitcoin_payment_id" = ?[0m  [["bitcoin_payment_id", 1]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mUPDATE "bitcoin_payments" SET "state" = ?, "updated_at" = ? WHERE "bitcoin_payments"."id" = 1[0m  [["state", "partial_payment"], ["updated_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mBitcoinPayable::BitcoinPayment Load (0.2ms)[0m  [1mSELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mBitcoinPayable::BitcoinPaymentTransaction Load (0.2ms)[0m  SELECT "bitcoin_payment_transactions".* FROM "bitcoin_payment_transactions" WHERE "bitcoin_payment_transactions"."bitcoin_payment_id" = ?  [["bitcoin_payment_id", 1]]
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)  [["btc", 90000], ["created_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00], ["currency", 0.8969108653415819], ["updated_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)[0m  [["btc", 62400], ["created_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00], ["currency", 0.9436501102217938], ["updated_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)  [["btc", 77500], ["created_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00], ["currency", 0.8881578663618269], ["updated_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "widgets" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00], ["updated_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mBitcoinPayable::CurrencyConversion Load (0.2ms)[0m  SELECT "currency_conversions".* FROM "currency_conversions" ORDER BY "currency_conversions"."id" DESC LIMIT 1
+  [1m[36mBitcoinPayable::CurrencyConversion Load (0.1ms)[0m  [1mSELECT "currency_conversions".* FROM "currency_conversions" ORDER BY "currency_conversions"."id" DESC LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "bitcoin_payments" ("btc_amount_due", "btc_conversion", "created_at", "currency", "payable_id", "payable_type", "price", "reason", "state", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["btc_amount_due", 0.12903226], ["btc_conversion", 77500], ["created_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00], ["currency", :cad], ["payable_id", 1], ["payable_type", "Widget"], ["price", 10000], ["reason", "New"], ["state", "pending"], ["updated_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00]]
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "bitcoin_payments" SET "state" = ?, "payable_id" = ?, "payable_type" = ?, "price" = ?, "reason" = ?, "created_at" = ?, "updated_at" = ?, "currency" = ?, "btc_amount_due" = ?, "btc_conversion" = ?, "id" = ?, "address" = ? WHERE "bitcoin_payments"."id" = 1[0m  [["state", "pending"], ["payable_id", 1], ["payable_type", "Widget"], ["price", 10000], ["reason", "New"], ["created_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00], ["updated_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00], ["currency", :cad], ["btc_amount_due", 0.12903226], ["btc_conversion", 77500], ["id", 1], ["address", "n3Y9hm8hzsrE8bzy83zHQEpLmxMLup967N"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mBitcoinPayable::BitcoinPayment Load (0.1ms)[0m  [1mSELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)[0m  [["btc", 50200], ["created_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00], ["currency", 0.8858662544392836], ["updated_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)  [["btc", 85900], ["created_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00], ["currency", 0.8890197019679372], ["updated_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)[0m  [["btc", 70500], ["created_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00], ["currency", 0.9080088766184388], ["updated_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "widgets" ("created_at", "updated_at") VALUES (?, ?)  [["created_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00], ["updated_at", Sun, 21 Sep 2014 23:57:40 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (1.5ms)[0m  SAVEPOINT active_record_1
+  [1m[36mBitcoinPayable::CurrencyConversion Load (0.6ms)[0m  [1mSELECT "currency_conversions".* FROM "currency_conversions" ORDER BY "currency_conversions"."id" DESC LIMIT 1[0m
+  [1m[35mBitcoinPayable::CurrencyConversion Load (0.1ms)[0m  SELECT "currency_conversions".* FROM "currency_conversions" ORDER BY "currency_conversions"."id" DESC LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "bitcoin_payments" ("btc_amount_due", "btc_conversion", "created_at", "currency", "payable_id", "payable_type", "price", "reason", "state", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["btc_amount_due", 0.14184397], ["btc_conversion", 70500], ["created_at", Sun, 21 Sep 2014 23:57:41 UTC +00:00], ["currency", :cad], ["payable_id", 1], ["payable_type", "Widget"], ["price", 10000], ["reason", "New"], ["state", "pending"], ["updated_at", Sun, 21 Sep 2014 23:57:41 UTC +00:00]]
+  [1m[35mSQL (0.2ms)[0m  UPDATE "bitcoin_payments" SET "state" = ?, "payable_id" = ?, "payable_type" = ?, "price" = ?, "reason" = ?, "created_at" = ?, "updated_at" = ?, "currency" = ?, "btc_amount_due" = ?, "btc_conversion" = ?, "id" = ?, "address" = ? WHERE "bitcoin_payments"."id" = 1  [["state", "pending"], ["payable_id", 1], ["payable_type", "Widget"], ["price", 10000], ["reason", "New"], ["created_at", Sun, 21 Sep 2014 23:57:41 UTC +00:00], ["updated_at", Sun, 21 Sep 2014 23:57:41 UTC +00:00], ["currency", :cad], ["btc_amount_due", 0.14184397], ["btc_conversion", 70500], ["id", 1], ["address", "n3Y9hm8hzsrE8bzy83zHQEpLmxMLup967N"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mBitcoinPayable::BitcoinPayment Load (0.1ms)[0m  SELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mBitcoinPayable::CurrencyConversion Load (0.2ms)[0m  [1mSELECT "currency_conversions".* FROM "currency_conversions" ORDER BY "currency_conversions"."id" DESC LIMIT 1[0m
+  [1m[35mBitcoinPayable::BitcoinPaymentTransaction Load (0.1ms)[0m  SELECT "bitcoin_payment_transactions".* FROM "bitcoin_payment_transactions" WHERE "bitcoin_payment_transactions"."bitcoin_payment_id" = ?  [["bitcoin_payment_id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "bitcoin_payment_transactions" ("bitcoin_payment_id", "btc_conversion", "estimated_value") VALUES (?, ?, ?)  [["bitcoin_payment_id", 1], ["btc_conversion", 70500], ["estimated_value", 7092198]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mBitcoinPayable::BitcoinPayment Load (0.2ms)[0m  SELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."state" IN ('pending', 'partial_payment')
+  [1m[36mBitcoinPayable::BitcoinPaymentTransaction Load (0.2ms)[0m  [1mSELECT "bitcoin_payment_transactions".* FROM "bitcoin_payment_transactions" WHERE "bitcoin_payment_transactions"."bitcoin_payment_id" = ?[0m  [["bitcoin_payment_id", 1]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "bitcoin_payments" SET "state" = ?, "updated_at" = ? WHERE "bitcoin_payments"."id" = 1[0m  [["state", "partial_payment"], ["updated_at", Sun, 21 Sep 2014 23:57:41 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mBitcoinPayable::BitcoinPayment Load (0.1ms)[0m  [1mSELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mBitcoinPayable::BitcoinPaymentTransaction Load (0.1ms)[0m  SELECT "bitcoin_payment_transactions".* FROM "bitcoin_payment_transactions" WHERE "bitcoin_payment_transactions"."bitcoin_payment_id" = ?  [["bitcoin_payment_id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "bitcoin_payment_transactions" ("bitcoin_payment_id", "btc_conversion", "estimated_value") VALUES (?, ?, ?)  [["bitcoin_payment_id", 1], ["btc_conversion", 70500], ["estimated_value", 7092198]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mBitcoinPayable::BitcoinPayment Load (0.2ms)[0m  SELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."state" IN ('pending', 'partial_payment')
+  [1m[36mBitcoinPayable::BitcoinPaymentTransaction Load (0.2ms)[0m  [1mSELECT "bitcoin_payment_transactions".* FROM "bitcoin_payment_transactions" WHERE "bitcoin_payment_transactions"."bitcoin_payment_id" = ?[0m  [["bitcoin_payment_id", 1]]
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "bitcoin_payments" SET "state" = ?, "updated_at" = ? WHERE "bitcoin_payments"."id" = 1[0m  [["state", "paid_in_full"], ["updated_at", Sun, 21 Sep 2014 23:57:41 UTC +00:00]]
+  [1m[35mWidget Load (0.2ms)[0m  SELECT "widgets".* FROM "widgets" WHERE "widgets"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mBitcoinPayable::BitcoinPayment Load (0.2ms)[0m  SELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mBitcoinPayable::BitcoinPaymentTransaction Load (0.2ms)[0m  [1mSELECT "bitcoin_payment_transactions".* FROM "bitcoin_payment_transactions" WHERE "bitcoin_payment_transactions"."bitcoin_payment_id" = ?[0m  [["bitcoin_payment_id", 1]]
+  [1m[35m (0.3ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)[0m  [["btc", 57900], ["created_at", Sun, 21 Sep 2014 23:57:41 UTC +00:00], ["currency", 0.9497880481174686], ["updated_at", Sun, 21 Sep 2014 23:57:41 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)  [["btc", 85500], ["created_at", Sun, 21 Sep 2014 23:57:41 UTC +00:00], ["currency", 0.9420409151052977], ["updated_at", Sun, 21 Sep 2014 23:57:41 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)[0m  [["btc", 84600], ["created_at", Sun, 21 Sep 2014 23:57:41 UTC +00:00], ["currency", 0.9498420187299125], ["updated_at", Sun, 21 Sep 2014 23:57:41 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.4ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.8ms)[0m  INSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)  [["btc", 89200], ["created_at", Sun, 21 Sep 2014 23:57:41 UTC +00:00], ["currency", 0.9198831699788137], ["updated_at", Sun, 21 Sep 2014 23:57:41 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)[0m  [["btc", 94700], ["created_at", Sun, 21 Sep 2014 23:57:41 UTC +00:00], ["currency", 0.8662187622100647], ["updated_at", Sun, 21 Sep 2014 23:57:41 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)  [["btc", 77600], ["created_at", Sun, 21 Sep 2014 23:57:41 UTC +00:00], ["currency", 0.9755886523951509], ["updated_at", Sun, 21 Sep 2014 23:57:41 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "currency_conversions"
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[36m (0.5ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (3.2ms)[0m  [1mINSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)[0m  [["btc", 60500], ["created_at", Sun, 21 Sep 2014 23:58:38 UTC +00:00], ["currency", 0.9041729307506672], ["updated_at", Sun, 21 Sep 2014 23:58:38 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)  [["btc", 97700], ["created_at", Sun, 21 Sep 2014 23:58:38 UTC +00:00], ["currency", 0.9789325186728656], ["updated_at", Sun, 21 Sep 2014 23:58:38 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)[0m  [["btc", 53400], ["created_at", Sun, 21 Sep 2014 23:58:38 UTC +00:00], ["currency", 0.8558062422805038], ["updated_at", Sun, 21 Sep 2014 23:58:38 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "widgets" ("created_at", "updated_at") VALUES (?, ?)  [["created_at", Sun, 21 Sep 2014 23:58:38 UTC +00:00], ["updated_at", Sun, 21 Sep 2014 23:58:38 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mBitcoinPayable::CurrencyConversion Load (0.2ms)[0m  [1mSELECT "currency_conversions".* FROM "currency_conversions" ORDER BY "currency_conversions"."id" DESC LIMIT 1[0m
+  [1m[35mBitcoinPayable::CurrencyConversion Load (0.1ms)[0m  SELECT "currency_conversions".* FROM "currency_conversions" ORDER BY "currency_conversions"."id" DESC LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "bitcoin_payments" ("btc_amount_due", "btc_conversion", "created_at", "currency", "payable_id", "payable_type", "price", "reason", "state", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["btc_amount_due", 0.18726592], ["btc_conversion", 53400], ["created_at", Sun, 21 Sep 2014 23:58:38 UTC +00:00], ["currency", :cad], ["payable_id", 1], ["payable_type", "Widget"], ["price", 10000], ["reason", "New"], ["state", "pending"], ["updated_at", Sun, 21 Sep 2014 23:58:38 UTC +00:00]]
+  [1m[35mSQL (0.5ms)[0m  UPDATE "bitcoin_payments" SET "state" = ?, "payable_id" = ?, "payable_type" = ?, "price" = ?, "reason" = ?, "created_at" = ?, "updated_at" = ?, "currency" = ?, "btc_amount_due" = ?, "btc_conversion" = ?, "id" = ?, "address" = ? WHERE "bitcoin_payments"."id" = 1  [["state", "pending"], ["payable_id", 1], ["payable_type", "Widget"], ["price", 10000], ["reason", "New"], ["created_at", Sun, 21 Sep 2014 23:58:38 UTC +00:00], ["updated_at", Sun, 21 Sep 2014 23:58:38 UTC +00:00], ["currency", :cad], ["btc_amount_due", 0.18726592], ["btc_conversion", 53400], ["id", 1], ["address", "n3Y9hm8hzsrE8bzy83zHQEpLmxMLup967N"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mBitcoinPayable::BitcoinPayment Load (0.2ms)[0m  SELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mBitcoinPayable::BitcoinPayment Load (0.1ms)[0m  [1mSELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.3ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)[0m  [["btc", 88100], ["created_at", Sun, 21 Sep 2014 23:58:38 UTC +00:00], ["currency", 0.9468636391227168], ["updated_at", Sun, 21 Sep 2014 23:58:38 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)  [["btc", 66000], ["created_at", Sun, 21 Sep 2014 23:58:38 UTC +00:00], ["currency", 0.9736783133369789], ["updated_at", Sun, 21 Sep 2014 23:58:38 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)[0m  [["btc", 64900], ["created_at", Sun, 21 Sep 2014 23:58:38 UTC +00:00], ["currency", 0.8641817643190208], ["updated_at", Sun, 21 Sep 2014 23:58:38 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "widgets" ("created_at", "updated_at") VALUES (?, ?)  [["created_at", Sun, 21 Sep 2014 23:58:38 UTC +00:00], ["updated_at", Sun, 21 Sep 2014 23:58:38 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mBitcoinPayable::CurrencyConversion Load (0.2ms)[0m  [1mSELECT "currency_conversions".* FROM "currency_conversions" ORDER BY "currency_conversions"."id" DESC LIMIT 1[0m
+  [1m[35mBitcoinPayable::CurrencyConversion Load (0.1ms)[0m  SELECT "currency_conversions".* FROM "currency_conversions" ORDER BY "currency_conversions"."id" DESC LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "bitcoin_payments" ("btc_amount_due", "btc_conversion", "created_at", "currency", "payable_id", "payable_type", "price", "reason", "state", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["btc_amount_due", 0.1540832], ["btc_conversion", 64900], ["created_at", Sun, 21 Sep 2014 23:58:38 UTC +00:00], ["currency", :cad], ["payable_id", 1], ["payable_type", "Widget"], ["price", 10000], ["reason", "New"], ["state", "pending"], ["updated_at", Sun, 21 Sep 2014 23:58:38 UTC +00:00]]
+  [1m[35mSQL (0.3ms)[0m  UPDATE "bitcoin_payments" SET "state" = ?, "payable_id" = ?, "payable_type" = ?, "price" = ?, "reason" = ?, "created_at" = ?, "updated_at" = ?, "currency" = ?, "btc_amount_due" = ?, "btc_conversion" = ?, "id" = ?, "address" = ? WHERE "bitcoin_payments"."id" = 1  [["state", "pending"], ["payable_id", 1], ["payable_type", "Widget"], ["price", 10000], ["reason", "New"], ["created_at", Sun, 21 Sep 2014 23:58:38 UTC +00:00], ["updated_at", Sun, 21 Sep 2014 23:58:38 UTC +00:00], ["currency", :cad], ["btc_amount_due", 0.1540832], ["btc_conversion", 64900], ["id", 1], ["address", "n3Y9hm8hzsrE8bzy83zHQEpLmxMLup967N"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mBitcoinPayable::BitcoinPayment Load (0.1ms)[0m  SELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mBitcoinPayable::BitcoinPayment Load (0.3ms)[0m  [1mSELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."state" IN ('pending', 'partial_payment')[0m
+  [1m[35mBitcoinPayable::BitcoinPaymentTransaction Load (0.5ms)[0m  SELECT "bitcoin_payment_transactions".* FROM "bitcoin_payment_transactions" WHERE "bitcoin_payment_transactions"."bitcoin_payment_id" = ?  [["bitcoin_payment_id", 1]]
+  [1m[36mBitcoinPayable::BitcoinPayment Load (0.2ms)[0m  [1mSELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.4ms)[0m  rollback transaction
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)[0m  [["btc", 59400], ["created_at", Sun, 21 Sep 2014 23:58:38 UTC +00:00], ["currency", 0.9134096358506476], ["updated_at", Sun, 21 Sep 2014 23:58:38 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)  [["btc", 97000], ["created_at", Sun, 21 Sep 2014 23:58:38 UTC +00:00], ["currency", 0.8885687948824631], ["updated_at", Sun, 21 Sep 2014 23:58:38 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)[0m  [["btc", 60000], ["created_at", Sun, 21 Sep 2014 23:58:38 UTC +00:00], ["currency", 0.9509105665162322], ["updated_at", Sun, 21 Sep 2014 23:58:38 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "widgets" ("created_at", "updated_at") VALUES (?, ?)  [["created_at", Sun, 21 Sep 2014 23:58:38 UTC +00:00], ["updated_at", Sun, 21 Sep 2014 23:58:38 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mBitcoinPayable::CurrencyConversion Load (0.2ms)[0m  [1mSELECT "currency_conversions".* FROM "currency_conversions" ORDER BY "currency_conversions"."id" DESC LIMIT 1[0m
+  [1m[35mBitcoinPayable::CurrencyConversion Load (0.1ms)[0m  SELECT "currency_conversions".* FROM "currency_conversions" ORDER BY "currency_conversions"."id" DESC LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "bitcoin_payments" ("btc_amount_due", "btc_conversion", "created_at", "currency", "payable_id", "payable_type", "price", "reason", "state", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["btc_amount_due", 0.16666667], ["btc_conversion", 60000], ["created_at", Sun, 21 Sep 2014 23:58:38 UTC +00:00], ["currency", :cad], ["payable_id", 1], ["payable_type", "Widget"], ["price", 10000], ["reason", "New"], ["state", "pending"], ["updated_at", Sun, 21 Sep 2014 23:58:38 UTC +00:00]]
+  [1m[35mSQL (0.2ms)[0m  UPDATE "bitcoin_payments" SET "state" = ?, "payable_id" = ?, "payable_type" = ?, "price" = ?, "reason" = ?, "created_at" = ?, "updated_at" = ?, "currency" = ?, "btc_amount_due" = ?, "btc_conversion" = ?, "id" = ?, "address" = ? WHERE "bitcoin_payments"."id" = 1  [["state", "pending"], ["payable_id", 1], ["payable_type", "Widget"], ["price", 10000], ["reason", "New"], ["created_at", Sun, 21 Sep 2014 23:58:38 UTC +00:00], ["updated_at", Sun, 21 Sep 2014 23:58:38 UTC +00:00], ["currency", :cad], ["btc_amount_due", 0.16666667], ["btc_conversion", 60000], ["id", 1], ["address", "n3Y9hm8hzsrE8bzy83zHQEpLmxMLup967N"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mBitcoinPayable::BitcoinPayment Load (0.1ms)[0m  SELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mBitcoinPayable::CurrencyConversion Load (0.2ms)[0m  [1mSELECT "currency_conversions".* FROM "currency_conversions" ORDER BY "currency_conversions"."id" DESC LIMIT 1[0m
+  [1m[35mBitcoinPayable::BitcoinPaymentTransaction Load (0.1ms)[0m  SELECT "bitcoin_payment_transactions".* FROM "bitcoin_payment_transactions" WHERE "bitcoin_payment_transactions"."bitcoin_payment_id" = ?  [["bitcoin_payment_id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "bitcoin_payment_transactions" ("bitcoin_payment_id", "btc_conversion", "estimated_value") VALUES (?, ?, ?)  [["bitcoin_payment_id", 1], ["btc_conversion", 60000], ["estimated_value", 8333333]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mBitcoinPayable::BitcoinPayment Load (0.2ms)[0m  SELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."state" IN ('pending', 'partial_payment')
+  [1m[36mBitcoinPayable::BitcoinPaymentTransaction Load (0.2ms)[0m  [1mSELECT "bitcoin_payment_transactions".* FROM "bitcoin_payment_transactions" WHERE "bitcoin_payment_transactions"."bitcoin_payment_id" = ?[0m  [["bitcoin_payment_id", 1]]
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "bitcoin_payments" SET "state" = ?, "updated_at" = ? WHERE "bitcoin_payments"."id" = 1[0m  [["state", "partial_payment"], ["updated_at", Sun, 21 Sep 2014 23:58:38 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mBitcoinPayable::BitcoinPayment Load (0.1ms)[0m  [1mSELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mBitcoinPayable::BitcoinPaymentTransaction Load (0.1ms)[0m  SELECT "bitcoin_payment_transactions".* FROM "bitcoin_payment_transactions" WHERE "bitcoin_payment_transactions"."bitcoin_payment_id" = ?  [["bitcoin_payment_id", 1]]
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)  [["btc", 57900], ["created_at", Sun, 21 Sep 2014 23:58:38 UTC +00:00], ["currency", 0.8821562550663071], ["updated_at", Sun, 21 Sep 2014 23:58:38 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)[0m  [["btc", 94200], ["created_at", Sun, 21 Sep 2014 23:58:38 UTC +00:00], ["currency", 0.8621579386490792], ["updated_at", Sun, 21 Sep 2014 23:58:38 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)  [["btc", 75000], ["created_at", Sun, 21 Sep 2014 23:58:38 UTC +00:00], ["currency", 0.9268061901845828], ["updated_at", Sun, 21 Sep 2014 23:58:38 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "widgets" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", Sun, 21 Sep 2014 23:58:38 UTC +00:00], ["updated_at", Sun, 21 Sep 2014 23:58:38 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mBitcoinPayable::CurrencyConversion Load (0.2ms)[0m  SELECT "currency_conversions".* FROM "currency_conversions" ORDER BY "currency_conversions"."id" DESC LIMIT 1
+  [1m[36mBitcoinPayable::CurrencyConversion Load (0.1ms)[0m  [1mSELECT "currency_conversions".* FROM "currency_conversions" ORDER BY "currency_conversions"."id" DESC LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "bitcoin_payments" ("btc_amount_due", "btc_conversion", "created_at", "currency", "payable_id", "payable_type", "price", "reason", "state", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["btc_amount_due", 0.13333333], ["btc_conversion", 75000], ["created_at", Sun, 21 Sep 2014 23:58:38 UTC +00:00], ["currency", :cad], ["payable_id", 1], ["payable_type", "Widget"], ["price", 10000], ["reason", "New"], ["state", "pending"], ["updated_at", Sun, 21 Sep 2014 23:58:38 UTC +00:00]]
+  [1m[36mSQL (0.2ms)[0m  [1mUPDATE "bitcoin_payments" SET "state" = ?, "payable_id" = ?, "payable_type" = ?, "price" = ?, "reason" = ?, "created_at" = ?, "updated_at" = ?, "currency" = ?, "btc_amount_due" = ?, "btc_conversion" = ?, "id" = ?, "address" = ? WHERE "bitcoin_payments"."id" = 1[0m  [["state", "pending"], ["payable_id", 1], ["payable_type", "Widget"], ["price", 10000], ["reason", "New"], ["created_at", Sun, 21 Sep 2014 23:58:38 UTC +00:00], ["updated_at", Sun, 21 Sep 2014 23:58:38 UTC +00:00], ["currency", :cad], ["btc_amount_due", 0.13333333], ["btc_conversion", 75000], ["id", 1], ["address", "n3Y9hm8hzsrE8bzy83zHQEpLmxMLup967N"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mBitcoinPayable::BitcoinPayment Load (0.1ms)[0m  [1mSELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mBitcoinPayable::CurrencyConversion Load (0.1ms)[0m  SELECT "currency_conversions".* FROM "currency_conversions" ORDER BY "currency_conversions"."id" DESC LIMIT 1
+  [1m[36mBitcoinPayable::BitcoinPaymentTransaction Load (0.1ms)[0m  [1mSELECT "bitcoin_payment_transactions".* FROM "bitcoin_payment_transactions" WHERE "bitcoin_payment_transactions"."bitcoin_payment_id" = ?[0m  [["bitcoin_payment_id", 1]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "bitcoin_payment_transactions" ("bitcoin_payment_id", "btc_conversion", "estimated_value") VALUES (?, ?, ?)[0m  [["bitcoin_payment_id", 1], ["btc_conversion", 75000], ["estimated_value", 13333333]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mBitcoinPayable::BitcoinPayment Load (0.2ms)[0m  [1mSELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."state" IN ('pending', 'partial_payment')[0m
+  [1m[35mBitcoinPayable::BitcoinPaymentTransaction Load (0.2ms)[0m  SELECT "bitcoin_payment_transactions".* FROM "bitcoin_payment_transactions" WHERE "bitcoin_payment_transactions"."bitcoin_payment_id" = ?  [["bitcoin_payment_id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  UPDATE "bitcoin_payments" SET "state" = ?, "updated_at" = ? WHERE "bitcoin_payments"."id" = 1  [["state", "paid_in_full"], ["updated_at", Sun, 21 Sep 2014 23:58:39 UTC +00:00]]
+  [1m[36mWidget Load (0.4ms)[0m  [1mSELECT "widgets".* FROM "widgets" WHERE "widgets"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mBitcoinPayable::BitcoinPayment Load (0.1ms)[0m  [1mSELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mBitcoinPayable::BitcoinPaymentTransaction Load (0.1ms)[0m  SELECT "bitcoin_payment_transactions".* FROM "bitcoin_payment_transactions" WHERE "bitcoin_payment_transactions"."bitcoin_payment_id" = ?  [["bitcoin_payment_id", 1]]
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)  [["btc", 97900], ["created_at", Sun, 21 Sep 2014 23:58:39 UTC +00:00], ["currency", 0.8638290960326688], ["updated_at", Sun, 21 Sep 2014 23:58:39 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)[0m  [["btc", 68000], ["created_at", Sun, 21 Sep 2014 23:58:39 UTC +00:00], ["currency", 0.9437642646061478], ["updated_at", Sun, 21 Sep 2014 23:58:39 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)  [["btc", 85200], ["created_at", Sun, 21 Sep 2014 23:58:39 UTC +00:00], ["currency", 0.9169528816047717], ["updated_at", Sun, 21 Sep 2014 23:58:39 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "widgets" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", Sun, 21 Sep 2014 23:58:39 UTC +00:00], ["updated_at", Sun, 21 Sep 2014 23:58:39 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mBitcoinPayable::CurrencyConversion Load (0.2ms)[0m  SELECT "currency_conversions".* FROM "currency_conversions" ORDER BY "currency_conversions"."id" DESC LIMIT 1
+  [1m[36mBitcoinPayable::CurrencyConversion Load (0.1ms)[0m  [1mSELECT "currency_conversions".* FROM "currency_conversions" ORDER BY "currency_conversions"."id" DESC LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "bitcoin_payments" ("btc_amount_due", "btc_conversion", "created_at", "currency", "payable_id", "payable_type", "price", "reason", "state", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["btc_amount_due", 0.11737089], ["btc_conversion", 85200], ["created_at", Sun, 21 Sep 2014 23:58:39 UTC +00:00], ["currency", :cad], ["payable_id", 1], ["payable_type", "Widget"], ["price", 10000], ["reason", "New"], ["state", "pending"], ["updated_at", Sun, 21 Sep 2014 23:58:39 UTC +00:00]]
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "bitcoin_payments" SET "state" = ?, "payable_id" = ?, "payable_type" = ?, "price" = ?, "reason" = ?, "created_at" = ?, "updated_at" = ?, "currency" = ?, "btc_amount_due" = ?, "btc_conversion" = ?, "id" = ?, "address" = ? WHERE "bitcoin_payments"."id" = 1[0m  [["state", "pending"], ["payable_id", 1], ["payable_type", "Widget"], ["price", 10000], ["reason", "New"], ["created_at", Sun, 21 Sep 2014 23:58:39 UTC +00:00], ["updated_at", Sun, 21 Sep 2014 23:58:39 UTC +00:00], ["currency", :cad], ["btc_amount_due", 0.11737089], ["btc_conversion", 85200], ["id", 1], ["address", "n3Y9hm8hzsrE8bzy83zHQEpLmxMLup967N"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mBitcoinPayable::BitcoinPayment Load (0.1ms)[0m  [1mSELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mBitcoinPayable::CurrencyConversion Load (0.1ms)[0m  SELECT "currency_conversions".* FROM "currency_conversions" ORDER BY "currency_conversions"."id" DESC LIMIT 1
+  [1m[36mBitcoinPayable::BitcoinPaymentTransaction Load (0.1ms)[0m  [1mSELECT "bitcoin_payment_transactions".* FROM "bitcoin_payment_transactions" WHERE "bitcoin_payment_transactions"."bitcoin_payment_id" = ?[0m  [["bitcoin_payment_id", 1]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)[0m  [["btc", 1], ["created_at", Sun, 21 Sep 2014 23:58:39 UTC +00:00], ["currency", 1.0], ["updated_at", Sun, 21 Sep 2014 23:58:39 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "bitcoin_payment_transactions" ("bitcoin_payment_id", "btc_conversion", "estimated_value") VALUES (?, ?, ?)  [["bitcoin_payment_id", 1], ["btc_conversion", 85200], ["estimated_value", 5868544]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mBitcoinPayable::BitcoinPayment Load (0.2ms)[0m  SELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."state" IN ('pending', 'partial_payment')
+  [1m[36mBitcoinPayable::BitcoinPaymentTransaction Load (0.3ms)[0m  [1mSELECT "bitcoin_payment_transactions".* FROM "bitcoin_payment_transactions" WHERE "bitcoin_payment_transactions"."bitcoin_payment_id" = ?[0m  [["bitcoin_payment_id", 1]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "bitcoin_payments" SET "state" = ?, "updated_at" = ? WHERE "bitcoin_payments"."id" = 1[0m  [["state", "partial_payment"], ["updated_at", Sun, 21 Sep 2014 23:58:39 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mBitcoinPayable::BitcoinPayment Load (0.2ms)[0m  [1mSELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mBitcoinPayable::BitcoinPaymentTransaction Load (0.1ms)[0m  SELECT "bitcoin_payment_transactions".* FROM "bitcoin_payment_transactions" WHERE "bitcoin_payment_transactions"."bitcoin_payment_id" = ?  [["bitcoin_payment_id", 1]]
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)  [["btc", 75400], ["created_at", Sun, 21 Sep 2014 23:58:39 UTC +00:00], ["currency", 0.8804169375789782], ["updated_at", Sun, 21 Sep 2014 23:58:39 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)[0m  [["btc", 56800], ["created_at", Sun, 21 Sep 2014 23:58:39 UTC +00:00], ["currency", 0.9216516414899361], ["updated_at", Sun, 21 Sep 2014 23:58:39 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)  [["btc", 56400], ["created_at", Sun, 21 Sep 2014 23:58:39 UTC +00:00], ["currency", 0.9050517392289745], ["updated_at", Sun, 21 Sep 2014 23:58:39 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "widgets" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", Sun, 21 Sep 2014 23:58:39 UTC +00:00], ["updated_at", Sun, 21 Sep 2014 23:58:39 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mBitcoinPayable::CurrencyConversion Load (0.2ms)[0m  SELECT "currency_conversions".* FROM "currency_conversions" ORDER BY "currency_conversions"."id" DESC LIMIT 1
+  [1m[36mBitcoinPayable::CurrencyConversion Load (0.1ms)[0m  [1mSELECT "currency_conversions".* FROM "currency_conversions" ORDER BY "currency_conversions"."id" DESC LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "bitcoin_payments" ("btc_amount_due", "btc_conversion", "created_at", "currency", "payable_id", "payable_type", "price", "reason", "state", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["btc_amount_due", 0.17730496], ["btc_conversion", 56400], ["created_at", Sun, 21 Sep 2014 23:58:39 UTC +00:00], ["currency", :cad], ["payable_id", 1], ["payable_type", "Widget"], ["price", 10000], ["reason", "New"], ["state", "pending"], ["updated_at", Sun, 21 Sep 2014 23:58:39 UTC +00:00]]
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "bitcoin_payments" SET "state" = ?, "payable_id" = ?, "payable_type" = ?, "price" = ?, "reason" = ?, "created_at" = ?, "updated_at" = ?, "currency" = ?, "btc_amount_due" = ?, "btc_conversion" = ?, "id" = ?, "address" = ? WHERE "bitcoin_payments"."id" = 1[0m  [["state", "pending"], ["payable_id", 1], ["payable_type", "Widget"], ["price", 10000], ["reason", "New"], ["created_at", Sun, 21 Sep 2014 23:58:39 UTC +00:00], ["updated_at", Sun, 21 Sep 2014 23:58:39 UTC +00:00], ["currency", :cad], ["btc_amount_due", 0.17730496], ["btc_conversion", 56400], ["id", 1], ["address", "n3Y9hm8hzsrE8bzy83zHQEpLmxMLup967N"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mBitcoinPayable::BitcoinPayment Load (0.1ms)[0m  [1mSELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)[0m  [["btc", 72000], ["created_at", Sun, 21 Sep 2014 23:58:39 UTC +00:00], ["currency", 0.8830097470754291], ["updated_at", Sun, 21 Sep 2014 23:58:39 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)  [["btc", 61500], ["created_at", Sun, 21 Sep 2014 23:58:39 UTC +00:00], ["currency", 0.9658450128553252], ["updated_at", Sun, 21 Sep 2014 23:58:39 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)[0m  [["btc", 96700], ["created_at", Sun, 21 Sep 2014 23:58:39 UTC +00:00], ["currency", 0.9028706562590322], ["updated_at", Sun, 21 Sep 2014 23:58:39 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "widgets" ("created_at", "updated_at") VALUES (?, ?)  [["created_at", Sun, 21 Sep 2014 23:58:39 UTC +00:00], ["updated_at", Sun, 21 Sep 2014 23:58:39 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.6ms)[0m  SAVEPOINT active_record_1
+  [1m[36mBitcoinPayable::CurrencyConversion Load (1.2ms)[0m  [1mSELECT "currency_conversions".* FROM "currency_conversions" ORDER BY "currency_conversions"."id" DESC LIMIT 1[0m
+  [1m[35mBitcoinPayable::CurrencyConversion Load (0.4ms)[0m  SELECT "currency_conversions".* FROM "currency_conversions" ORDER BY "currency_conversions"."id" DESC LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "bitcoin_payments" ("btc_amount_due", "btc_conversion", "created_at", "currency", "payable_id", "payable_type", "price", "reason", "state", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["btc_amount_due", 0.10341262], ["btc_conversion", 96700], ["created_at", Sun, 21 Sep 2014 23:58:39 UTC +00:00], ["currency", :cad], ["payable_id", 1], ["payable_type", "Widget"], ["price", 10000], ["reason", "New"], ["state", "pending"], ["updated_at", Sun, 21 Sep 2014 23:58:39 UTC +00:00]]
+  [1m[35mSQL (0.2ms)[0m  UPDATE "bitcoin_payments" SET "state" = ?, "payable_id" = ?, "payable_type" = ?, "price" = ?, "reason" = ?, "created_at" = ?, "updated_at" = ?, "currency" = ?, "btc_amount_due" = ?, "btc_conversion" = ?, "id" = ?, "address" = ? WHERE "bitcoin_payments"."id" = 1  [["state", "pending"], ["payable_id", 1], ["payable_type", "Widget"], ["price", 10000], ["reason", "New"], ["created_at", Sun, 21 Sep 2014 23:58:39 UTC +00:00], ["updated_at", Sun, 21 Sep 2014 23:58:39 UTC +00:00], ["currency", :cad], ["btc_amount_due", 0.10341262], ["btc_conversion", 96700], ["id", 1], ["address", "n3Y9hm8hzsrE8bzy83zHQEpLmxMLup967N"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mBitcoinPayable::BitcoinPayment Load (0.1ms)[0m  SELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mBitcoinPayable::CurrencyConversion Load (0.1ms)[0m  [1mSELECT "currency_conversions".* FROM "currency_conversions" ORDER BY "currency_conversions"."id" DESC LIMIT 1[0m
+  [1m[35mBitcoinPayable::BitcoinPaymentTransaction Load (0.1ms)[0m  SELECT "bitcoin_payment_transactions".* FROM "bitcoin_payment_transactions" WHERE "bitcoin_payment_transactions"."bitcoin_payment_id" = ?  [["bitcoin_payment_id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "bitcoin_payment_transactions" ("bitcoin_payment_id", "btc_conversion", "estimated_value") VALUES (?, ?, ?)  [["bitcoin_payment_id", 1], ["btc_conversion", 96700], ["estimated_value", 5170631]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mBitcoinPayable::BitcoinPayment Load (0.2ms)[0m  SELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."state" IN ('pending', 'partial_payment')
+  [1m[36mBitcoinPayable::BitcoinPaymentTransaction Load (0.2ms)[0m  [1mSELECT "bitcoin_payment_transactions".* FROM "bitcoin_payment_transactions" WHERE "bitcoin_payment_transactions"."bitcoin_payment_id" = ?[0m  [["bitcoin_payment_id", 1]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "bitcoin_payments" SET "state" = ?, "updated_at" = ? WHERE "bitcoin_payments"."id" = 1[0m  [["state", "partial_payment"], ["updated_at", Sun, 21 Sep 2014 23:58:39 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mBitcoinPayable::BitcoinPayment Load (0.2ms)[0m  [1mSELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mBitcoinPayable::BitcoinPaymentTransaction Load (0.1ms)[0m  SELECT "bitcoin_payment_transactions".* FROM "bitcoin_payment_transactions" WHERE "bitcoin_payment_transactions"."bitcoin_payment_id" = ?  [["bitcoin_payment_id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "bitcoin_payment_transactions" ("bitcoin_payment_id", "btc_conversion", "estimated_value") VALUES (?, ?, ?)  [["bitcoin_payment_id", 1], ["btc_conversion", 96700], ["estimated_value", 5170631]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mBitcoinPayable::BitcoinPayment Load (0.2ms)[0m  SELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."state" IN ('pending', 'partial_payment')
+  [1m[36mBitcoinPayable::BitcoinPaymentTransaction Load (0.2ms)[0m  [1mSELECT "bitcoin_payment_transactions".* FROM "bitcoin_payment_transactions" WHERE "bitcoin_payment_transactions"."bitcoin_payment_id" = ?[0m  [["bitcoin_payment_id", 1]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "bitcoin_payments" SET "state" = ?, "updated_at" = ? WHERE "bitcoin_payments"."id" = 1[0m  [["state", "paid_in_full"], ["updated_at", Sun, 21 Sep 2014 23:58:39 UTC +00:00]]
+  [1m[35mWidget Load (0.1ms)[0m  SELECT "widgets".* FROM "widgets" WHERE "widgets"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mBitcoinPayable::BitcoinPayment Load (0.1ms)[0m  SELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mBitcoinPayable::BitcoinPaymentTransaction Load (0.1ms)[0m  [1mSELECT "bitcoin_payment_transactions".* FROM "bitcoin_payment_transactions" WHERE "bitcoin_payment_transactions"."bitcoin_payment_id" = ?[0m  [["bitcoin_payment_id", 1]]
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)[0m  [["btc", 78000], ["created_at", Sun, 21 Sep 2014 23:58:39 UTC +00:00], ["currency", 0.9072835102019192], ["updated_at", Sun, 21 Sep 2014 23:58:39 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)  [["btc", 70300], ["created_at", Sun, 21 Sep 2014 23:58:39 UTC +00:00], ["currency", 0.9649155208855762], ["updated_at", Sun, 21 Sep 2014 23:58:39 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)[0m  [["btc", 80400], ["created_at", Sun, 21 Sep 2014 23:58:39 UTC +00:00], ["currency", 0.9314702210182557], ["updated_at", Sun, 21 Sep 2014 23:58:39 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.3ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)  [["btc", 73300], ["created_at", Sun, 21 Sep 2014 23:58:39 UTC +00:00], ["currency", 0.9471039016512816], ["updated_at", Sun, 21 Sep 2014 23:58:39 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)[0m  [["btc", 69700], ["created_at", Sun, 21 Sep 2014 23:58:39 UTC +00:00], ["currency", 0.8544542446527806], ["updated_at", Sun, 21 Sep 2014 23:58:39 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)  [["btc", 67900], ["created_at", Sun, 21 Sep 2014 23:58:39 UTC +00:00], ["currency", 0.9741821307989779], ["updated_at", Sun, 21 Sep 2014 23:58:39 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "currency_conversions"
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[36m (0.5ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (3.7ms)[0m  [1mINSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)[0m  [["btc", 90800], ["created_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00], ["currency", 0.8560324192661308], ["updated_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)  [["btc", 84800], ["created_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00], ["currency", 0.9555794052970998], ["updated_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)[0m  [["btc", 63900], ["created_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00], ["currency", 0.9483904609474993], ["updated_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "widgets" ("created_at", "updated_at") VALUES (?, ?)  [["created_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00], ["updated_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mBitcoinPayable::CurrencyConversion Load (0.2ms)[0m  [1mSELECT "currency_conversions".* FROM "currency_conversions" ORDER BY "currency_conversions"."id" DESC LIMIT 1[0m
+  [1m[35mBitcoinPayable::CurrencyConversion Load (0.1ms)[0m  SELECT "currency_conversions".* FROM "currency_conversions" ORDER BY "currency_conversions"."id" DESC LIMIT 1
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "bitcoin_payments" ("btc_amount_due", "btc_conversion", "created_at", "currency", "payable_id", "payable_type", "price", "reason", "state", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["btc_amount_due", 0.15649452], ["btc_conversion", 63900], ["created_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00], ["currency", :cad], ["payable_id", 1], ["payable_type", "Widget"], ["price", 10000], ["reason", "New"], ["state", "pending"], ["updated_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00]]
+  [1m[35mSQL (0.5ms)[0m  UPDATE "bitcoin_payments" SET "state" = ?, "payable_id" = ?, "payable_type" = ?, "price" = ?, "reason" = ?, "created_at" = ?, "updated_at" = ?, "currency" = ?, "btc_amount_due" = ?, "btc_conversion" = ?, "id" = ?, "address" = ? WHERE "bitcoin_payments"."id" = 1  [["state", "pending"], ["payable_id", 1], ["payable_type", "Widget"], ["price", 10000], ["reason", "New"], ["created_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00], ["updated_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00], ["currency", :cad], ["btc_amount_due", 0.15649452], ["btc_conversion", 63900], ["id", 1], ["address", "n3Y9hm8hzsrE8bzy83zHQEpLmxMLup967N"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mBitcoinPayable::BitcoinPayment Load (0.2ms)[0m  SELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mBitcoinPayable::BitcoinPayment Load (0.1ms)[0m  [1mSELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.3ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)[0m  [["btc", 66500], ["created_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00], ["currency", 0.8937722040955116], ["updated_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)  [["btc", 91800], ["created_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00], ["currency", 0.9331608006587067], ["updated_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)[0m  [["btc", 57400], ["created_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00], ["currency", 0.9626632846120168], ["updated_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "widgets" ("created_at", "updated_at") VALUES (?, ?)  [["created_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00], ["updated_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mBitcoinPayable::CurrencyConversion Load (0.2ms)[0m  [1mSELECT "currency_conversions".* FROM "currency_conversions" ORDER BY "currency_conversions"."id" DESC LIMIT 1[0m
+  [1m[35mBitcoinPayable::CurrencyConversion Load (0.1ms)[0m  SELECT "currency_conversions".* FROM "currency_conversions" ORDER BY "currency_conversions"."id" DESC LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "bitcoin_payments" ("btc_amount_due", "btc_conversion", "created_at", "currency", "payable_id", "payable_type", "price", "reason", "state", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["btc_amount_due", 0.17421603], ["btc_conversion", 57400], ["created_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00], ["currency", :cad], ["payable_id", 1], ["payable_type", "Widget"], ["price", 10000], ["reason", "New"], ["state", "pending"], ["updated_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00]]
+  [1m[35mSQL (0.2ms)[0m  UPDATE "bitcoin_payments" SET "state" = ?, "payable_id" = ?, "payable_type" = ?, "price" = ?, "reason" = ?, "created_at" = ?, "updated_at" = ?, "currency" = ?, "btc_amount_due" = ?, "btc_conversion" = ?, "id" = ?, "address" = ? WHERE "bitcoin_payments"."id" = 1  [["state", "pending"], ["payable_id", 1], ["payable_type", "Widget"], ["price", 10000], ["reason", "New"], ["created_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00], ["updated_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00], ["currency", :cad], ["btc_amount_due", 0.17421603], ["btc_conversion", 57400], ["id", 1], ["address", "n3Y9hm8hzsrE8bzy83zHQEpLmxMLup967N"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mBitcoinPayable::BitcoinPayment Load (0.1ms)[0m  SELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mBitcoinPayable::BitcoinPayment Load (0.2ms)[0m  [1mSELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."state" IN ('pending', 'partial_payment')[0m
+  [1m[35mBitcoinPayable::BitcoinPaymentTransaction Load (0.5ms)[0m  SELECT "bitcoin_payment_transactions".* FROM "bitcoin_payment_transactions" WHERE "bitcoin_payment_transactions"."bitcoin_payment_id" = ?  [["bitcoin_payment_id", 1]]
+  [1m[36mBitcoinPayable::BitcoinPayment Load (0.2ms)[0m  [1mSELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.4ms)[0m  rollback transaction
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)[0m  [["btc", 87700], ["created_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00], ["currency", 0.9204014857120832], ["updated_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)  [["btc", 81700], ["created_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00], ["currency", 0.9119908720837893], ["updated_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)[0m  [["btc", 98200], ["created_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00], ["currency", 0.8953536017631797], ["updated_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "widgets" ("created_at", "updated_at") VALUES (?, ?)  [["created_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00], ["updated_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mBitcoinPayable::CurrencyConversion Load (0.2ms)[0m  [1mSELECT "currency_conversions".* FROM "currency_conversions" ORDER BY "currency_conversions"."id" DESC LIMIT 1[0m
+  [1m[35mBitcoinPayable::CurrencyConversion Load (0.1ms)[0m  SELECT "currency_conversions".* FROM "currency_conversions" ORDER BY "currency_conversions"."id" DESC LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "bitcoin_payments" ("btc_amount_due", "btc_conversion", "created_at", "currency", "payable_id", "payable_type", "price", "reason", "state", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["btc_amount_due", 0.10183299], ["btc_conversion", 98200], ["created_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00], ["currency", :cad], ["payable_id", 1], ["payable_type", "Widget"], ["price", 10000], ["reason", "New"], ["state", "pending"], ["updated_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00]]
+  [1m[35mSQL (0.2ms)[0m  UPDATE "bitcoin_payments" SET "state" = ?, "payable_id" = ?, "payable_type" = ?, "price" = ?, "reason" = ?, "created_at" = ?, "updated_at" = ?, "currency" = ?, "btc_amount_due" = ?, "btc_conversion" = ?, "id" = ?, "address" = ? WHERE "bitcoin_payments"."id" = 1  [["state", "pending"], ["payable_id", 1], ["payable_type", "Widget"], ["price", 10000], ["reason", "New"], ["created_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00], ["updated_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00], ["currency", :cad], ["btc_amount_due", 0.10183299], ["btc_conversion", 98200], ["id", 1], ["address", "n3Y9hm8hzsrE8bzy83zHQEpLmxMLup967N"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mBitcoinPayable::BitcoinPayment Load (0.1ms)[0m  SELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mBitcoinPayable::CurrencyConversion Load (0.2ms)[0m  [1mSELECT "currency_conversions".* FROM "currency_conversions" ORDER BY "currency_conversions"."id" DESC LIMIT 1[0m
+  [1m[35mBitcoinPayable::BitcoinPaymentTransaction Load (0.1ms)[0m  SELECT "bitcoin_payment_transactions".* FROM "bitcoin_payment_transactions" WHERE "bitcoin_payment_transactions"."bitcoin_payment_id" = ?  [["bitcoin_payment_id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "bitcoin_payment_transactions" ("bitcoin_payment_id", "btc_conversion", "estimated_value") VALUES (?, ?, ?)  [["bitcoin_payment_id", 1], ["btc_conversion", 98200], ["estimated_value", 5091649]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mBitcoinPayable::BitcoinPayment Load (0.2ms)[0m  SELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."state" IN ('pending', 'partial_payment')
+  [1m[36mBitcoinPayable::BitcoinPaymentTransaction Load (0.2ms)[0m  [1mSELECT "bitcoin_payment_transactions".* FROM "bitcoin_payment_transactions" WHERE "bitcoin_payment_transactions"."bitcoin_payment_id" = ?[0m  [["bitcoin_payment_id", 1]]
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.6ms)[0m  [1mUPDATE "bitcoin_payments" SET "state" = ?, "updated_at" = ? WHERE "bitcoin_payments"."id" = 1[0m  [["state", "partial_payment"], ["updated_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00]]
+  [1m[35m (0.2ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mBitcoinPayable::BitcoinPayment Load (0.2ms)[0m  [1mSELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mBitcoinPayable::BitcoinPaymentTransaction Load (0.1ms)[0m  SELECT "bitcoin_payment_transactions".* FROM "bitcoin_payment_transactions" WHERE "bitcoin_payment_transactions"."bitcoin_payment_id" = ?  [["bitcoin_payment_id", 1]]
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)  [["btc", 83100], ["created_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00], ["currency", 0.9864280024298191], ["updated_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)[0m  [["btc", 61300], ["created_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00], ["currency", 0.9122828897495036], ["updated_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)  [["btc", 53700], ["created_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00], ["currency", 0.9482541467363239], ["updated_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "widgets" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00], ["updated_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mBitcoinPayable::CurrencyConversion Load (0.2ms)[0m  SELECT "currency_conversions".* FROM "currency_conversions" ORDER BY "currency_conversions"."id" DESC LIMIT 1
+  [1m[36mBitcoinPayable::CurrencyConversion Load (0.1ms)[0m  [1mSELECT "currency_conversions".* FROM "currency_conversions" ORDER BY "currency_conversions"."id" DESC LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "bitcoin_payments" ("btc_amount_due", "btc_conversion", "created_at", "currency", "payable_id", "payable_type", "price", "reason", "state", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["btc_amount_due", 0.18621974], ["btc_conversion", 53700], ["created_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00], ["currency", :cad], ["payable_id", 1], ["payable_type", "Widget"], ["price", 10000], ["reason", "New"], ["state", "pending"], ["updated_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00]]
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "bitcoin_payments" SET "state" = ?, "payable_id" = ?, "payable_type" = ?, "price" = ?, "reason" = ?, "created_at" = ?, "updated_at" = ?, "currency" = ?, "btc_amount_due" = ?, "btc_conversion" = ?, "id" = ?, "address" = ? WHERE "bitcoin_payments"."id" = 1[0m  [["state", "pending"], ["payable_id", 1], ["payable_type", "Widget"], ["price", 10000], ["reason", "New"], ["created_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00], ["updated_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00], ["currency", :cad], ["btc_amount_due", 0.18621974], ["btc_conversion", 53700], ["id", 1], ["address", "n3Y9hm8hzsrE8bzy83zHQEpLmxMLup967N"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mBitcoinPayable::BitcoinPayment Load (0.1ms)[0m  [1mSELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mBitcoinPayable::CurrencyConversion Load (0.1ms)[0m  SELECT "currency_conversions".* FROM "currency_conversions" ORDER BY "currency_conversions"."id" DESC LIMIT 1
+  [1m[36mBitcoinPayable::BitcoinPaymentTransaction Load (0.1ms)[0m  [1mSELECT "bitcoin_payment_transactions".* FROM "bitcoin_payment_transactions" WHERE "bitcoin_payment_transactions"."bitcoin_payment_id" = ?[0m  [["bitcoin_payment_id", 1]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "bitcoin_payment_transactions" ("bitcoin_payment_id", "btc_conversion", "estimated_value") VALUES (?, ?, ?)[0m  [["bitcoin_payment_id", 1], ["btc_conversion", 53700], ["estimated_value", 18621974]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mBitcoinPayable::BitcoinPayment Load (0.2ms)[0m  [1mSELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."state" IN ('pending', 'partial_payment')[0m
+  [1m[35mBitcoinPayable::BitcoinPaymentTransaction Load (0.2ms)[0m  SELECT "bitcoin_payment_transactions".* FROM "bitcoin_payment_transactions" WHERE "bitcoin_payment_transactions"."bitcoin_payment_id" = ?  [["bitcoin_payment_id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  UPDATE "bitcoin_payments" SET "state" = ?, "updated_at" = ? WHERE "bitcoin_payments"."id" = 1  [["state", "paid_in_full"], ["updated_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00]]
+  [1m[36mWidget Load (0.4ms)[0m  [1mSELECT "widgets".* FROM "widgets" WHERE "widgets"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mBitcoinPayable::BitcoinPayment Load (0.1ms)[0m  [1mSELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mBitcoinPayable::BitcoinPaymentTransaction Load (0.1ms)[0m  SELECT "bitcoin_payment_transactions".* FROM "bitcoin_payment_transactions" WHERE "bitcoin_payment_transactions"."bitcoin_payment_id" = ?  [["bitcoin_payment_id", 1]]
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)  [["btc", 86000], ["created_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00], ["currency", 0.8813532634990858], ["updated_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)[0m  [["btc", 80100], ["created_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00], ["currency", 0.9888040293957778], ["updated_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)  [["btc", 94700], ["created_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00], ["currency", 0.9404097711076229], ["updated_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "widgets" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00], ["updated_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mBitcoinPayable::CurrencyConversion Load (0.2ms)[0m  SELECT "currency_conversions".* FROM "currency_conversions" ORDER BY "currency_conversions"."id" DESC LIMIT 1
+  [1m[36mBitcoinPayable::CurrencyConversion Load (0.1ms)[0m  [1mSELECT "currency_conversions".* FROM "currency_conversions" ORDER BY "currency_conversions"."id" DESC LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "bitcoin_payments" ("btc_amount_due", "btc_conversion", "created_at", "currency", "payable_id", "payable_type", "price", "reason", "state", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["btc_amount_due", 0.10559662], ["btc_conversion", 94700], ["created_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00], ["currency", :cad], ["payable_id", 1], ["payable_type", "Widget"], ["price", 10000], ["reason", "New"], ["state", "pending"], ["updated_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00]]
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "bitcoin_payments" SET "state" = ?, "payable_id" = ?, "payable_type" = ?, "price" = ?, "reason" = ?, "created_at" = ?, "updated_at" = ?, "currency" = ?, "btc_amount_due" = ?, "btc_conversion" = ?, "id" = ?, "address" = ? WHERE "bitcoin_payments"."id" = 1[0m  [["state", "pending"], ["payable_id", 1], ["payable_type", "Widget"], ["price", 10000], ["reason", "New"], ["created_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00], ["updated_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00], ["currency", :cad], ["btc_amount_due", 0.10559662], ["btc_conversion", 94700], ["id", 1], ["address", "n3Y9hm8hzsrE8bzy83zHQEpLmxMLup967N"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mBitcoinPayable::BitcoinPayment Load (0.1ms)[0m  [1mSELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mBitcoinPayable::CurrencyConversion Load (0.2ms)[0m  SELECT "currency_conversions".* FROM "currency_conversions" ORDER BY "currency_conversions"."id" DESC LIMIT 1
+  [1m[36mBitcoinPayable::BitcoinPaymentTransaction Load (0.1ms)[0m  [1mSELECT "bitcoin_payment_transactions".* FROM "bitcoin_payment_transactions" WHERE "bitcoin_payment_transactions"."bitcoin_payment_id" = ?[0m  [["bitcoin_payment_id", 1]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)[0m  [["btc", 1], ["created_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00], ["currency", 1.0], ["updated_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "bitcoin_payment_transactions" ("bitcoin_payment_id", "btc_conversion", "estimated_value") VALUES (?, ?, ?)  [["bitcoin_payment_id", 1], ["btc_conversion", 94700], ["estimated_value", 5279831]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mBitcoinPayable::BitcoinPayment Load (0.2ms)[0m  SELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."state" IN ('pending', 'partial_payment')
+  [1m[36mBitcoinPayable::BitcoinPaymentTransaction Load (0.2ms)[0m  [1mSELECT "bitcoin_payment_transactions".* FROM "bitcoin_payment_transactions" WHERE "bitcoin_payment_transactions"."bitcoin_payment_id" = ?[0m  [["bitcoin_payment_id", 1]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "bitcoin_payments" SET "state" = ?, "updated_at" = ? WHERE "bitcoin_payments"."id" = 1[0m  [["state", "partial_payment"], ["updated_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mBitcoinPayable::BitcoinPayment Load (0.2ms)[0m  [1mSELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mBitcoinPayable::BitcoinPaymentTransaction Load (0.1ms)[0m  SELECT "bitcoin_payment_transactions".* FROM "bitcoin_payment_transactions" WHERE "bitcoin_payment_transactions"."bitcoin_payment_id" = ?  [["bitcoin_payment_id", 1]]
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)  [["btc", 63400], ["created_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00], ["currency", 0.9245354934212412], ["updated_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)[0m  [["btc", 70600], ["created_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00], ["currency", 0.9063732637460112], ["updated_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)  [["btc", 92300], ["created_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00], ["currency", 0.9256879176246863], ["updated_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "widgets" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00], ["updated_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mBitcoinPayable::CurrencyConversion Load (0.2ms)[0m  SELECT "currency_conversions".* FROM "currency_conversions" ORDER BY "currency_conversions"."id" DESC LIMIT 1
+  [1m[36mBitcoinPayable::CurrencyConversion Load (0.1ms)[0m  [1mSELECT "currency_conversions".* FROM "currency_conversions" ORDER BY "currency_conversions"."id" DESC LIMIT 1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "bitcoin_payments" ("btc_amount_due", "btc_conversion", "created_at", "currency", "payable_id", "payable_type", "price", "reason", "state", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)  [["btc_amount_due", 0.10834236], ["btc_conversion", 92300], ["created_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00], ["currency", :cad], ["payable_id", 1], ["payable_type", "Widget"], ["price", 10000], ["reason", "New"], ["state", "pending"], ["updated_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00]]
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "bitcoin_payments" SET "state" = ?, "payable_id" = ?, "payable_type" = ?, "price" = ?, "reason" = ?, "created_at" = ?, "updated_at" = ?, "currency" = ?, "btc_amount_due" = ?, "btc_conversion" = ?, "id" = ?, "address" = ? WHERE "bitcoin_payments"."id" = 1[0m  [["state", "pending"], ["payable_id", 1], ["payable_type", "Widget"], ["price", 10000], ["reason", "New"], ["created_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00], ["updated_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00], ["currency", :cad], ["btc_amount_due", 0.10834236], ["btc_conversion", 92300], ["id", 1], ["address", "n3Y9hm8hzsrE8bzy83zHQEpLmxMLup967N"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mBitcoinPayable::BitcoinPayment Load (0.1ms)[0m  [1mSELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)[0m  [["btc", 82500], ["created_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00], ["currency", 0.9734048587926631], ["updated_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)  [["btc", 54900], ["created_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00], ["currency", 0.9017208277447001], ["updated_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)[0m  [["btc", 99100], ["created_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00], ["currency", 0.9240165840157156], ["updated_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "widgets" ("created_at", "updated_at") VALUES (?, ?)  [["created_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00], ["updated_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (1.5ms)[0m  SAVEPOINT active_record_1
+  [1m[36mBitcoinPayable::CurrencyConversion Load (0.6ms)[0m  [1mSELECT "currency_conversions".* FROM "currency_conversions" ORDER BY "currency_conversions"."id" DESC LIMIT 1[0m
+  [1m[35mBitcoinPayable::CurrencyConversion Load (0.1ms)[0m  SELECT "currency_conversions".* FROM "currency_conversions" ORDER BY "currency_conversions"."id" DESC LIMIT 1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "bitcoin_payments" ("btc_amount_due", "btc_conversion", "created_at", "currency", "payable_id", "payable_type", "price", "reason", "state", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["btc_amount_due", 0.10090817], ["btc_conversion", 99100], ["created_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00], ["currency", :cad], ["payable_id", 1], ["payable_type", "Widget"], ["price", 10000], ["reason", "New"], ["state", "pending"], ["updated_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00]]
+  [1m[35mSQL (0.2ms)[0m  UPDATE "bitcoin_payments" SET "state" = ?, "payable_id" = ?, "payable_type" = ?, "price" = ?, "reason" = ?, "created_at" = ?, "updated_at" = ?, "currency" = ?, "btc_amount_due" = ?, "btc_conversion" = ?, "id" = ?, "address" = ? WHERE "bitcoin_payments"."id" = 1  [["state", "pending"], ["payable_id", 1], ["payable_type", "Widget"], ["price", 10000], ["reason", "New"], ["created_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00], ["updated_at", Sun, 21 Sep 2014 23:58:59 UTC +00:00], ["currency", :cad], ["btc_amount_due", 0.10090817], ["btc_conversion", 99100], ["id", 1], ["address", "n3Y9hm8hzsrE8bzy83zHQEpLmxMLup967N"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mBitcoinPayable::BitcoinPayment Load (0.1ms)[0m  SELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mBitcoinPayable::CurrencyConversion Load (0.1ms)[0m  [1mSELECT "currency_conversions".* FROM "currency_conversions" ORDER BY "currency_conversions"."id" DESC LIMIT 1[0m
+  [1m[35mBitcoinPayable::BitcoinPaymentTransaction Load (0.1ms)[0m  SELECT "bitcoin_payment_transactions".* FROM "bitcoin_payment_transactions" WHERE "bitcoin_payment_transactions"."bitcoin_payment_id" = ?  [["bitcoin_payment_id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "bitcoin_payment_transactions" ("bitcoin_payment_id", "btc_conversion", "estimated_value") VALUES (?, ?, ?)  [["bitcoin_payment_id", 1], ["btc_conversion", 99100], ["estimated_value", 5045408]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mBitcoinPayable::BitcoinPayment Load (0.2ms)[0m  SELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."state" IN ('pending', 'partial_payment')
+  [1m[36mBitcoinPayable::BitcoinPaymentTransaction Load (0.2ms)[0m  [1mSELECT "bitcoin_payment_transactions".* FROM "bitcoin_payment_transactions" WHERE "bitcoin_payment_transactions"."bitcoin_payment_id" = ?[0m  [["bitcoin_payment_id", 1]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mUPDATE "bitcoin_payments" SET "state" = ?, "updated_at" = ? WHERE "bitcoin_payments"."id" = 1[0m  [["state", "partial_payment"], ["updated_at", Sun, 21 Sep 2014 23:59:00 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36mBitcoinPayable::BitcoinPayment Load (0.1ms)[0m  [1mSELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mBitcoinPayable::BitcoinPaymentTransaction Load (0.1ms)[0m  SELECT "bitcoin_payment_transactions".* FROM "bitcoin_payment_transactions" WHERE "bitcoin_payment_transactions"."bitcoin_payment_id" = ?  [["bitcoin_payment_id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "bitcoin_payment_transactions" ("bitcoin_payment_id", "btc_conversion", "estimated_value") VALUES (?, ?, ?)  [["bitcoin_payment_id", 1], ["btc_conversion", 99100], ["estimated_value", 5045408]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mBitcoinPayable::BitcoinPayment Load (0.2ms)[0m  SELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."state" IN ('pending', 'partial_payment')
+  [1m[36mBitcoinPayable::BitcoinPaymentTransaction Load (0.2ms)[0m  [1mSELECT "bitcoin_payment_transactions".* FROM "bitcoin_payment_transactions" WHERE "bitcoin_payment_transactions"."bitcoin_payment_id" = ?[0m  [["bitcoin_payment_id", 1]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mUPDATE "bitcoin_payments" SET "state" = ?, "updated_at" = ? WHERE "bitcoin_payments"."id" = 1[0m  [["state", "paid_in_full"], ["updated_at", Sun, 21 Sep 2014 23:59:00 UTC +00:00]]
+  [1m[35mWidget Load (0.2ms)[0m  SELECT "widgets".* FROM "widgets" WHERE "widgets"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.2ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35mBitcoinPayable::BitcoinPayment Load (0.2ms)[0m  SELECT "bitcoin_payments".* FROM "bitcoin_payments" WHERE "bitcoin_payments"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mBitcoinPayable::BitcoinPaymentTransaction Load (0.2ms)[0m  [1mSELECT "bitcoin_payment_transactions".* FROM "bitcoin_payment_transactions" WHERE "bitcoin_payment_transactions"."bitcoin_payment_id" = ?[0m  [["bitcoin_payment_id", 1]]
+  [1m[35m (0.4ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)[0m  [["btc", 87000], ["created_at", Sun, 21 Sep 2014 23:59:00 UTC +00:00], ["currency", 0.872820135095354], ["updated_at", Sun, 21 Sep 2014 23:59:00 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)  [["btc", 51500], ["created_at", Sun, 21 Sep 2014 23:59:00 UTC +00:00], ["currency", 0.9809654352486645], ["updated_at", Sun, 21 Sep 2014 23:59:00 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)[0m  [["btc", 94400], ["created_at", Sun, 21 Sep 2014 23:59:00 UTC +00:00], ["currency", 0.9701082558498123], ["updated_at", Sun, 21 Sep 2014 23:59:00 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)  [["btc", 82400], ["created_at", Sun, 21 Sep 2014 23:59:00 UTC +00:00], ["currency", 0.8853903375899407], ["updated_at", Sun, 21 Sep 2014 23:59:00 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)[0m  [["btc", 78300], ["created_at", Sun, 21 Sep 2014 23:59:00 UTC +00:00], ["currency", 0.9487441551937695], ["updated_at", Sun, 21 Sep 2014 23:59:00 UTC +00:00]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "currency_conversions" ("btc", "created_at", "currency", "updated_at") VALUES (?, ?, ?, ?)  [["btc", 70800], ["created_at", Sun, 21 Sep 2014 23:59:00 UTC +00:00], ["currency", 0.8908360269856043], ["updated_at", Sun, 21 Sep 2014 23:59:00 UTC +00:00]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.2ms)[0m  SELECT COUNT(*) FROM "currency_conversions"
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m

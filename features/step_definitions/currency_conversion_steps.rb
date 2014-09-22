@@ -1,6 +1,6 @@
 Given /^there should be (\d+) currency_conversions?$/ do |n|
-  @currency_conversions.should_not be_nil
-  @currency_conversions.count.should eql(n.to_i)
+  expect(@currency_conversions).to_not be_nil
+  expect(@currency_conversions.count).to eq(n.to_i)
 end
 
 Given /^the currency_conversion is (\d+)$/ do |conversion_rate|
