@@ -24,7 +24,7 @@ module BitcoinPayable
                 btc_conversion: payment.btc_conversion
               )
 
-              payment.update(btc_amount_due: payment.calculate_btc_amount_due)
+              payment.update(btc_amount_due: payment.calculate_btc_amount_due, btc_conversion: BitcoinPayable::CurrencyConversion.last.btc)
             end
           end
         end
