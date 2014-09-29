@@ -8,6 +8,10 @@ Payments have 4 states:  `pending`, `partial_payment`, `paid_in_full`, `comped`
 
 No private keys needed, No bitcoind blockchain indexing on new servers, just address and payments.
 
+Donations appreciated
+
+142WJW4Zzc9iV7uFdbei8Unpe8WcLhUgmE
+
 ## Installation
 
 Add this line to your application's Gemfile:
