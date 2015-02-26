@@ -4,7 +4,11 @@ require 'bitcoin_payable/version'
 require 'bitcoin_payable/has_bitcoin_payment'
 require 'bitcoin_payable/tasks'
 require 'bitcoin_payable/bitcoin_calculator'
+
 require 'helloblock'
+require 'bitcoin_payable/adapters/base'
+require 'bitcoin_payable/adapters/hello_block_adapter'
+require 'bitcoin_payable/adapters/blockchain_info_adapter'
 
 module BitcoinPayable
   def self.config
