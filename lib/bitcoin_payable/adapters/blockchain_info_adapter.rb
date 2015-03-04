@@ -24,8 +24,8 @@ module BitcoinPayable::Adapters
     def convert_transactions(transaction, address)
       {
         txHash: transaction["hash"],
-        blockHash: "",
-        blockTime: transaction["time"],
+        blockHash: nil,  # Not supported
+        blockTime: nil,  # Not supported
         estimatedTxTime: transaction["time"],
         estimatedTxValue: transaction['out'].sum{|out| out['addr'].eql?(address) ? out["value"] : 0}
       }
