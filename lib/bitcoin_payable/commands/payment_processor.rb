@@ -12,13 +12,15 @@ module BitcoinPayable
         adapter = BitcoinPayable::Adapters::Base.fetch_adapter
 
         adapter.fetch_transactions_for_address(payment.address).each do |tx|
-          unless payment.transactions.find_by_transaction_hash(tx["txHash"])
+          tx.symbolize_keys!
+
+          unless payment.transactions.find_by_transaction_hash(tx[:txHash])
             payment.transactions.create!(
-              estimated_value: tx["estimatedTxValue"],
-              transaction_hash: tx["txHash"],
-              block_hash: tx["blockHash"],
-              block_time: (Time.at(tx["blockTime"]) if tx["blockTime"]),
-              estimated_time: (Time.at(tx["estimatedTxTime"]) if tx["estimatedTxTime"]),
+              estimated_value: tx[:estimatedTxValue],
+              transaction_hash: tx[:txHash],
+              block_hash: tx[:blockHash],
+              block_time: (Time.at(tx[:blockTime]) if tx[:blockTime]),
+              estimated_time: (Time.at(tx[:estimatedTxTime]) if tx[:estimatedTxTime]),
               btc_conversion: payment.btc_conversion
             )
 
