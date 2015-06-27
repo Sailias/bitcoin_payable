@@ -24,7 +24,7 @@ Gem::Specification.new do |spec|
 
   spec.required_rubygems_version = '>= 1.3.6'
 
-  spec.add_dependency "rails"
+  spec.add_dependency "rails", "~> 4.2.0"
   spec.add_dependency "cucumber-rails"
   spec.add_dependency "rspec-rails"
   spec.add_dependency "database_cleaner"
