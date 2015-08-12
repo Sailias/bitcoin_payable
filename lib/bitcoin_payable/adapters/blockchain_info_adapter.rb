@@ -10,11 +10,16 @@ module BitcoinPayable::Adapters
     end
 
     def fetch_transactions_for_address(address)
-      uri = URI.parse("#{@url}/rawaddr/#{address}")
+      url = "#{@url}/rawaddr/#{address}"
+      url += "?api_code=" + BitcoinPayable.config.adapter_api_key if BitcoinPayable.config.adapter_api_key
+      uri = URI.parse(url)
+
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
+      
       request = Net::HTTP::Get.new(uri.request_uri)
       response = http.request(request)
+
       hash = JSON.parse(response.body)
       hash['txs'].map{|tx| convert_transactions(tx, address)}
     end
