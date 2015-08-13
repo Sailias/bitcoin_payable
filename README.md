@@ -14,9 +14,9 @@ Donations appreciated
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Add this line to your application's Gemfile:  (I might be too lazy to update RubyGems all the time)
 
-    gem 'bitcoin_payable'
+    gem 'bitcoin_payable', git: 'https://github.com/Sailias/bitcoin_payable', branch: 'master'
 
 And then execute:
 
