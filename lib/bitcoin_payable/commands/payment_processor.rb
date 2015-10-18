@@ -35,23 +35,24 @@ module BitcoinPayable
 
           # => Check for payments after the response comes back
           check_paid(payment)
-          
+
         rescue JSON::ParserError
           puts "Error processing response from server.  Possible API issue or your Quota has been exceeded"
         end
         
       end
     end
-  end
 
-  protected
+    protected
 
-  def check_paid(payment)
-    if payment.currency_amount_paid >= payment.price
-      payment.paid
-    elsif payment.currency_amount_paid > 0
-       payment.partially_paid
+    def check_paid(payment)
+      if payment.currency_amount_paid >= payment.price
+        payment.paid
+      elsif payment.currency_amount_paid > 0
+         payment.partially_paid
+      end
     end
+
   end
 
 end
