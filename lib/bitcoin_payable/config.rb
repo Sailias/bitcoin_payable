@@ -8,5 +8,10 @@ module BitcoinPayable
     def initialize
       @currency ||= :cad
     end
+
+    def network
+      @testnet ||= true
+      @testnet ? :bitcoin_testnet : :bitcoin
+    end
   end
 end
