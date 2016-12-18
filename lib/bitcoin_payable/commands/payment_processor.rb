@@ -8,6 +8,9 @@ module BitcoinPayable
     end
 
     def perform
+      adapter = BitcoinPayable::Adapters::Base.fetch_adapter
+      current_block_height = adapter.fetch_current_block_height
+
       BitcoinPayable::BitcoinPayment.where(state: [:pending, :partial_payment]).each do |payment|
         # => Check for completed payment first, incase it's 0 and we don't need to make an API call
         # => Preserve API calls
@@ -15,8 +18,6 @@ module BitcoinPayable
 
         unless payment.paid_in_full?
           begin
-            adapter = BitcoinPayable::Adapters::Base.fetch_adapter
-
             adapter.fetch_transactions_for_address(payment.address).each do |tx|
               tx.symbolize_keys!
 
@@ -41,7 +42,7 @@ module BitcoinPayable
             puts "Error processing response from server.  Possible API issue or your Quota has been exceeded"
           end
         end
-        
+
       end
     end
 

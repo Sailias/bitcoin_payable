@@ -3,7 +3,7 @@ module BitcoinPayable::Adapters
 
     def initialize
       if BitcoinPayable.config.testnet
-        raise "Testnet not supported" 
+        raise "Testnet not supported"
       else
         @url = "https://blockchain.info"
       end
@@ -14,17 +14,28 @@ module BitcoinPayable::Adapters
       url += "?api_code=" + BitcoinPayable.config.adapter_api_key if BitcoinPayable.config.adapter_api_key
       uri = URI.parse(url)
 
-      http = Net::HTTP.new(uri.host, uri.port)
-      http.use_ssl = true
-      
-      request = Net::HTTP::Get.new(uri.request_uri)
-      response = http.request(request)
-
-      hash = JSON.parse(response.body)
+      hash = send_request(uri)
       hash['txs'].map{|tx| convert_transactions(tx, address)}
     end
 
+    def fetch_current_block_height
+      url = "#{@url}/latestblock"
+      uri = URI.parse(url)
+
+      hash = send_request(uri)
+      binding.pry
+    end
+
     private
+
+    def send_request(url)
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = true
+
+      request = Net::HTTP::Get.new(uri.request_uri)
+      response = http.request(request)
+      JSON.parse(response.body)
+    end
 
     def convert_transactions(transaction, address)
       {
