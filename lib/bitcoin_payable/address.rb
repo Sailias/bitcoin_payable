@@ -9,7 +9,7 @@ module BitcoinPayable
         raise "MASTER_SEED or MASTER_PUBLIC_KEY is required"
       end
 
-      node.to_address
+      node.to_address(network: BitcoinPayable.config.network)
     end
 
   end

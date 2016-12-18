@@ -18,5 +18,10 @@ module BitcoinPayable
       @currency ||= :cad
       @required_confirmations ||= 1
     end
+
+    def network
+      @testnet ||= true
+      @testnet ? :bitcoin_testnet : :bitcoin
+    end
   end
 end
