@@ -15,6 +15,10 @@ module BitcoinPayable::Adapters
       address_full_txs['txs'].map{|tx| convert_transactions(tx, address)}
     end
 
+    def fetch_current_block_height
+      @blockcypher.blockchain["height"]
+    end
+
     private
 
     def convert_transactions(transaction, address)

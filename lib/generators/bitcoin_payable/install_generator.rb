@@ -9,11 +9,22 @@ module BitcoinPayable
 
     desc 'Generates (but does not run) a migration to add a bitcoin payment tables.'
 
-    def create_migration_file
-      migration_template 'create_bitcoin_payments.rb', 'db/migrate/create_bitcoin_payments.rb'
-      migration_template 'create_bitcoin_payment_transactions.rb', 'db/migrate/create_bitcoin_payment_transactions.rb'
-      migration_template 'create_currency_conversions.rb', 'db/migrate/create_currency_conversions.rb'
-      migration_template 'add_btc_conversion_to_bitcoin_payments.rb', 'db/migrate/add_btc_conversion_to_bitcoin_payments.rb'
+    def copy_migrations
+      copy_migration 'create_bitcoin_payments'
+      copy_migration 'create_bitcoin_payment_transactions'
+      copy_migration 'create_currency_conversions'
+      copy_migration 'add_btc_conversion_to_bitcoin_payments'
+      copy_migration 'add_block_height_to_bitcoin_payment_transactions'
+    end
+
+    private
+
+    def copy_migration(filename)
+      if self.class.migration_exists?("db/migrate", "#{filename}")
+        say_status("skipped", "Migration #{filename}.rb already exists")
+      else
+        migration_template "#{filename}.rb", "db/migrate/#{filename}.rb"
+      end
     end
 
     def self.next_migration_number(dirname)

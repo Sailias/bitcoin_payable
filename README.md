@@ -41,6 +41,7 @@ config/initializers/bitcoin_payable.rb
     BitcoinPayable.config.master_public_key = ENV["MASTER_PUBLIC_KEY"]
     BitcoinPayable.config.testnet = true
     BitcoinPayable.config.adapter = "blockchain_info"
+    BitcoinPayable.config.required_confirmations = 1
 
 #### Node Path
 

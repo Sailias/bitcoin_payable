@@ -21,7 +21,13 @@ module BitcoinPayable
             adapter.fetch_transactions_for_address(payment.address).each do |tx|
               tx.symbolize_keys!
 
-              unless payment.transactions.find_by_transaction_hash(tx[:txHash])
+              # => Find number of confirmations for this transactions
+              num_confirmations = current_block_height - tx[:blockHeight] + 1
+
+              # => Find if we've processed this transaction before
+              found_transaction = payment.transactions.find_by_transaction_hash(tx[:txHash])
+
+              if num_confirmations >= BitcoinPayable.config.required_confirmations && !found_transaction
                 payment.transactions.create!(
                   estimated_value: tx[:estimatedTxValue],
                   transaction_hash: tx[:txHash],

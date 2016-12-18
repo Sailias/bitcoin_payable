@@ -24,11 +24,12 @@ module BitcoinPayable::Adapters
 
       hash = send_request(uri)
       binding.pry
+      hash["height"]
     end
 
     private
 
-    def send_request(url)
+    def send_request(uri)
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
 
@@ -40,6 +41,7 @@ module BitcoinPayable::Adapters
     def convert_transactions(transaction, address)
       {
         txHash: transaction["hash"],
+        blockHeight: transaction["block_height"],
         blockHash: nil,  # Not supported
         blockTime: nil,  # Not supported
         estimatedTxTime: transaction["time"],
