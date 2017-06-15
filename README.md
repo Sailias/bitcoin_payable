@@ -42,6 +42,11 @@ config/initializers/bitcoin_payable.rb
     BitcoinPayable.config.testnet = true
     BitcoinPayable.config.adapter = "blockchain_info"
 
+
+* In order to use the bitcoin network and issue real addresses, BitcoinPayable.config.testnet must be set to false *
+
+    BitcoinPayable.config.testnet = false
+
 #### Node Path
 
 The derivation path for the node that will be creating your addresses
