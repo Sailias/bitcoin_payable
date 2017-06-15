@@ -10,8 +10,7 @@ module BitcoinPayable
     end
 
     def network
-      @testnet ||= true
-      @testnet ? :bitcoin_testnet : :bitcoin
+      @testnet == false ? :bitcoin : :bitcoin_testnet
     end
   end
 end
