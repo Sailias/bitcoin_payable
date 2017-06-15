@@ -31,7 +31,7 @@ module BitcoinPayable
       end
 
       event :comp do
-        transition :pending => :comped
+        transition [:pending, :partial_payment] => :comped
       end
 
       after_transition :on => :comp, :do => :notify_payable
