@@ -22,7 +22,7 @@ module BitcoinPayable
       end
 
       def get_btc
-        uri = URI.parse("https://api.bitcoinaverage.com/all")
+        uri = URI.parse("https://apiv2.bitcoinaverage.com/indices/local/ticker/BTC#{BitcoinPayable.config.currency.to_s.upcase}")
         http = Net::HTTP.new(uri.host, uri.port)
         http.use_ssl = true
 
@@ -30,8 +30,7 @@ module BitcoinPayable
 
         response = http.request(request)
         hash = JSON.parse(response.body)
-
-        hash[BitcoinPayable.config.currency.to_s.upcase]["averages"]["24h_avg"].to_f * 100.00
+        hash["averages"]["day"].to_f * 100.00
       end
 
       def get_currency
