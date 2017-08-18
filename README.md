@@ -1,4 +1,7 @@
 # BitcoinPayable
+## Gem Updated for Rails 5.1 
+
+#### Forked from https://github.com/Sailias/bitcoin_payable
 
 A rails gem that enables any model to have bitcoin payments.
 The polymorphic table bitcoin_payments creates payments with unique addresses based on a BIP32 deterministic seed using https://github.com/wink/money-tree
@@ -8,13 +11,13 @@ Payments have 4 states:  `pending`, `partial_payment`, `paid_in_full`, `comped`
 
 No private keys needed, No bitcoind blockchain indexing on new servers, just address and payments.
 
-### Updated for Rails 5.1
+
 
 ## Installation
 
 Add this line to your application's Gemfile:  (I might be too lazy to update RubyGems all the time)
 
-    gem 'bitcoin_payable', git: 'https://github.com/Sailias/bitcoin_payable', branch: 'master'
+    gem 'bitcoin_payable', git: 'https://github.com/azeemh/bitcoin_payable', branch: 'master'
 
 And then execute:
 
