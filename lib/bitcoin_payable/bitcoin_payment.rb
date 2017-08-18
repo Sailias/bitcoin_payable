@@ -6,7 +6,7 @@ module BitcoinPayable
   class BitcoinPayment < ::ActiveRecord::Base
 
     belongs_to :payable, polymorphic: true
-    has_many :transactions, class_name: BitcoinPayable::BitcoinPaymentTransaction
+    has_many :transactions, class_name: 'BitcoinPayable::BitcoinPaymentTransaction'
 
     validates :reason, presence: true
     validates :price, presence: true
