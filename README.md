@@ -1,3 +1,5 @@
+# Updated for Rails 5.1
+
 # BitcoinPayable
 
 A rails gem that enables any model to have bitcoin payments.
@@ -7,10 +9,6 @@ and uses the (https://helloblock.io OR https://blockchain.info/) API to check fo
 Payments have 4 states:  `pending`, `partial_payment`, `paid_in_full`, `comped`
 
 No private keys needed, No bitcoind blockchain indexing on new servers, just address and payments.
-
-Donations appreciated
-
-142WJW4Zzc9iV7uFdbei8Unpe8WcLhUgmE
 
 ## Installation
 
