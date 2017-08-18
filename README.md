@@ -15,7 +15,7 @@ No private keys needed, No bitcoind blockchain indexing on new servers, just add
 
 ## Installation
 
-Add this line to your application's Gemfile:  (I might be too lazy to update RubyGems all the time)
+Add this line to your application's Gemfile:
 
     gem 'bitcoin_payable', git: 'https://github.com/azeemh/bitcoin_payable', branch: 'master'
 
