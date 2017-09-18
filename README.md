@@ -27,10 +27,6 @@ And then execute:
 
     $ bundle exec rake db:migrate
 
-Or install it yourself as:
-
-    $ gem install bitcoin_payable
-
 ## Usage
 
 ### Configuration
