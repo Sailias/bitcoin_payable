@@ -1,4 +1,4 @@
-class CreateBitcoinPayments < ActiveRecord::Migration
+class CreateBitcoinPayments < ActiveRecord::Migration[5.1]
   def change
     create_table :bitcoin_payments do |t|
       t.string   :payable_type

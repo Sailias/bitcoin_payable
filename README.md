@@ -1,4 +1,7 @@
 # BitcoinPayable
+## Gem Updated for Rails 5.1 
+
+#### Forked from https://github.com/Sailias/bitcoin_payable
 
 A rails gem that enables any model to have bitcoin payments.
 The polymorphic table bitcoin_payments creates payments with unique addresses based on a BIP32 deterministic seed using https://github.com/wink/money-tree
@@ -8,27 +11,26 @@ Payments have 4 states:  `pending`, `partial_payment`, `paid_in_full`, `comped`
 
 No private keys needed, No bitcoind blockchain indexing on new servers, just address and payments.
 
-Donations appreciated
 
-142WJW4Zzc9iV7uFdbei8Unpe8WcLhUgmE
 
 ## Installation
 
-Add this line to your application's Gemfile:  (I might be too lazy to update RubyGems all the time)
+Add this line to your application's Gemfile:
 
-    gem 'bitcoin_payable', git: 'https://github.com/Sailias/bitcoin_payable', branch: 'master'
+    gem 'bitcoin_payable', git: 'https://github.com/azeemh/bitcoin_payable', branch: 'master'
 
-And then execute:
+And then execute in terminal or shell:
 
-    $ bundle
+    bundle
 
-    $ rails g bitcoin_payable:install
+    rails g bitcoin_payable:install
 
-    $ bundle exec rake db:migrate
+    bundle exec rake db:migrate
 
-Or install it yourself as:
+or you can try installing Sailias' via rubygems:
 
-    $ gem install bitcoin_payable
+    gem install bitcoin_payable
+    
 
 ## Usage
 
@@ -36,12 +38,13 @@ Or install it yourself as:
 
 config/initializers/bitcoin_payable.rb
 
-    BitcoinPayable.config.currency = :cad
+    BitcoinPayable.config.currency = :usd
     BitcoinPayable.config.node_path = "m/0/"
     BitcoinPayable.config.master_public_key = ENV["MASTER_PUBLIC_KEY"]
     BitcoinPayable.config.testnet = true
     BitcoinPayable.config.adapter = "blockchain_info"
 
+* Use :cad for canadian dollar, etc. (sailias originally wrote this for :cad however I use :usd) 
 
 * In order to use the bitcoin network and issue real addresses, BitcoinPayable.config.testnet must be set to false *
 
