@@ -19,13 +19,18 @@ Add this line to your application's Gemfile:
 
     gem 'bitcoin_payable', git: 'https://github.com/azeemh/bitcoin_payable', branch: 'master'
 
-And then execute:
+And then execute in terminal or shell:
 
-    $ bundle
+    bundle
 
-    $ rails g bitcoin_payable:install
+    rails g bitcoin_payable:install
 
-    $ bundle exec rake db:migrate
+    bundle exec rake db:migrate
+
+or you can try installing Sailias' via rubygems:
+
+    gem install bitcoin_payable
+    
 
 ## Usage
 
