@@ -38,12 +38,13 @@ or you can try installing Sailias' via rubygems:
 
 config/initializers/bitcoin_payable.rb
 
-    BitcoinPayable.config.currency = :cad
+    BitcoinPayable.config.currency = :usd
     BitcoinPayable.config.node_path = "m/0/"
     BitcoinPayable.config.master_public_key = ENV["MASTER_PUBLIC_KEY"]
     BitcoinPayable.config.testnet = true
     BitcoinPayable.config.adapter = "blockchain_info"
 
+* Use :cad for canadian dollar, etc. (sailias originally wrote this for :cad however I use :usd) 
 
 * In order to use the bitcoin network and issue real addresses, BitcoinPayable.config.testnet must be set to false *
 
