@@ -10,7 +10,11 @@ No private keys needed, No bitcoind blockchain indexing on new servers, just add
 
 Donations appreciated
 
-142WJW4Zzc9iV7uFdbei8Unpe8WcLhUgmE
+`142WJW4Zzc9iV7uFdbei8Unpe8WcLhUgmE`
+
+## Rails 5.1
+
+[Support for Rails 5.1](https://github.com/Sailias/bitcoin_payable/tree/releases/rails-5.1)
 
 ## Installation
 
@@ -78,7 +82,7 @@ The `process_prices` rake task connects to api.bitcoinaverage.com to get the 24 
 It then updates all payments that havent received an update in the last 30 minutes with the new value owing in BTC.
 This *honors* the price of a payment for 30 minutes at a time.
 
-rake bitcoin_payable:process_prices
+`rake bitcoin_payable:process_prices`
 
 ### Processing payments
 
