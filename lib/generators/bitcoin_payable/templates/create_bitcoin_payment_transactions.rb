@@ -1,4 +1,4 @@
-class CreateBitcoinPaymentTransactions < ActiveRecord::Migration
+class CreateBitcoinPaymentTransactions < ActiveRecord::Migration[5.1]
   def change
     create_table :bitcoin_payment_transactions do |t|
       t.integer :estimated_value

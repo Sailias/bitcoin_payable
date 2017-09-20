@@ -1,4 +1,5 @@
 require 'net/http'
+
 require 'bitcoin_payable/config'
 require 'bitcoin_payable/version'
 require 'bitcoin_payable/has_bitcoin_payment'

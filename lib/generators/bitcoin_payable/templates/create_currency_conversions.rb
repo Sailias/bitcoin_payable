@@ -1,4 +1,4 @@
-class CreateCurrencyConversions < ActiveRecord::Migration
+class CreateCurrencyConversions < ActiveRecord::Migration[5.1]
   def change
     create_table :currency_conversions do |t|
       t.float "currency"

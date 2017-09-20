@@ -1,4 +1,4 @@
-class CreateBitcoinPayments < ActiveRecord::Migration
+class CreateBitcoinPayments < ActiveRecord::Migration[5.1]
   def change
     create_table :bitcoin_payments do |t|
       t.string   :payable_type
@@ -8,7 +8,7 @@ class CreateBitcoinPayments < ActiveRecord::Migration
       t.integer  :price
       t.float    :btc_amount_due, default: 0
       t.string   :address
-      t.string   :state
+      t.string   :state, default: 'pending'
       t.datetime :created_at
       t.datetime :updated_at
     end

@@ -8,15 +8,19 @@ Payments have 4 states:  `pending`, `partial_payment`, `paid_in_full`, `comped`
 
 No private keys needed, No bitcoind blockchain indexing on new servers, just address and payments.
 
-Donations appreciated
+**Donations appreciated**
 
-142WJW4Zzc9iV7uFdbei8Unpe8WcLhUgmE
+`142WJW4Zzc9iV7uFdbei8Unpe8WcLhUgmE`
+
+## Demo
+
+[bitcoin_payable_demo](https://github.com/Sailias/bitcoin_payable_demo)
 
 ## Installation
 
-Add this line to your application's Gemfile:  (I might be too lazy to update RubyGems all the time)
+Add this line to your application's Gemfile:
 
-    gem 'bitcoin_payable', git: 'https://github.com/Sailias/bitcoin_payable', branch: 'master'
+    gem 'bitcoin_payable', git: 'https://github.com/Sailias/bitcoin_payable', branch: 'releases/rails-5.1'
 
 And then execute:
 
@@ -26,9 +30,10 @@ And then execute:
 
     $ bundle exec rake db:migrate
 
-Or install it yourself as:
+    $ populate bitcoin_payable.rb (see below)
 
-    $ gem install bitcoin_payable
+    $ bundle exec rake bitcoin_payable:process_prices (see below)
+
 
 ## Usage
 
@@ -78,7 +83,7 @@ The `process_prices` rake task connects to api.bitcoinaverage.com to get the 24 
 It then updates all payments that havent received an update in the last 30 minutes with the new value owing in BTC.
 This *honors* the price of a payment for 30 minutes at a time.
 
-rake bitcoin_payable:process_prices
+`rake bitcoin_payable:process_prices`
 
 ### Processing payments
 
