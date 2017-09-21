@@ -30,7 +30,7 @@ module BitcoinPayable
                   btc_conversion: payment.btc_conversion
                 )
 
-                payment.update(btc_amount_due: payment.calculate_btc_amount_due, btc_conversion: BitcoinPayable::CurrencyConversion.last.btc)
+                payment.update_attributes(btc_amount_due: payment.calculate_btc_amount_due, btc_conversion: BitcoinPayable::CurrencyConversion.last.btc)
               end
             end
 
@@ -41,7 +41,7 @@ module BitcoinPayable
             puts "Error processing response from server.  Possible API issue or your Quota has been exceeded"
           end
         end
-        
+
       end
     end
 
