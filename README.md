@@ -46,6 +46,10 @@ config/initializers/bitcoin_payable.rb
     BitcoinPayable.config.testnet = true
     BitcoinPayable.config.adapter = "blockchain_info"
 
+    module StateMachine::Integrations::ActiveModel
+      public :around_validation
+    end
+
 
 * In order to use the bitcoin network and issue real addresses, BitcoinPayable.config.testnet must be set to false *
 
