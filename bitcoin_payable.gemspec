@@ -28,7 +28,8 @@ Gem::Specification.new do |spec|
   spec.add_dependency "cucumber-rails"
   spec.add_dependency "rspec-rails"
   spec.add_dependency "database_cleaner"
-  spec.add_dependency "state_machine"
+  spec.add_dependency "state_machines"
+  spec.add_dependency "state_machines-activerecord"
   spec.add_dependency "blockcypher-ruby"
   spec.add_dependency "money-tree"
 end
