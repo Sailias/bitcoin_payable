@@ -1,0 +1,21 @@
+language: ruby
+sudo: false
+cache: bundler
+
+rvm:
+  - 2.2.3
+  - 2.3.4
+  - 2.4.1
+  - ruby-head
+
+gemfile:
+  - Gemfile
+  - gemfiles/rails4_2.gemfile
+  - gemfiles/rails5_1.gemfile
+
+matrix:
+  allow_failures:
+    - rvm: ruby-head
+
+
+script: bundle exec cucumber
