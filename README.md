@@ -49,6 +49,7 @@ config/initializers/bitcoin_payable.rb
     BitcoinPayable.config.master_public_key = ENV["MASTER_PUBLIC_KEY"]
     BitcoinPayable.config.testnet = true
     BitcoinPayable.config.adapter = "blockchain_info"
+    BitcoinPayable.config.confirmations = 3
 
 
 * In order to use the bitcoin network and issue real addresses, BitcoinPayable.config.testnet must be set to false *
