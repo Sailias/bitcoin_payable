@@ -8,6 +8,7 @@ class CreateBitcoinPaymentTransactions < ActiveRecord::Migration[5.1]
       t.datetime :estimated_time
       t.integer :bitcoin_payment_id
       t.integer :btc_conversion
+      t.integer :confirmations
     end
 
     add_index :bitcoin_payment_transactions, :bitcoin_payment_id

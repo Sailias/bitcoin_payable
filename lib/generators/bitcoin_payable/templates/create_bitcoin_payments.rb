@@ -3,6 +3,7 @@ class CreateBitcoinPayments < ActiveRecord::Migration[5.1]
     create_table :bitcoin_payments do |t|
       t.string   :payable_type
       t.integer  :payable_id
+      t.integer  :user_id
       t.string   :currency
       t.string   :reason
       t.integer  :price

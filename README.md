@@ -34,6 +34,9 @@ And then execute:
 
     $ bundle exec rake bitcoin_payable:process_prices (see below)
 
+## Uninstall
+
+    $ rails d bitcoin_payable:install
 
 ## Usage
 

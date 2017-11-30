@@ -39,6 +39,11 @@ module BitcoinPayable
 
         uri = URI("http://openexchangerates.org/api/latest.json?app_id=#{BitcoinPayable.config.open_exchange_key}")
         response = JSON.parse(Net::HTTP.get(uri))
+
+        if response['status'] && response['status'] >= 400
+          raise "#{response['message']} #{response['description']}"
+        end
+
         response["rates"][BitcoinPayable.config.currency.to_s.upcase]
       end
     end

@@ -18,6 +18,7 @@ module BitcoinPayable
       state :pending
       state :partial_payment
       state :paid_in_full
+      state :confirmed
       state :comped
 
       event :paid do
@@ -35,6 +36,12 @@ module BitcoinPayable
       end
 
       after_transition :on => :comp, :do => :notify_payable
+
+      event :confirmed do
+        transition :paid_in_full => :confirmed
+      end
+
+      after_transition :on => :confirmed, :do => :notify_payable_confirmed
     end
 
     def currency_amount_paid
@@ -49,6 +56,10 @@ module BitcoinPayable
     def calculate_btc_amount_due
       btc_rate = BitcoinPayable::CurrencyConversion.last.btc
       BitcoinPayable::BitcoinCalculator.exchange_price currency_amount_due, btc_rate
+    end
+
+    def transactions_confirmed?
+      transactions.all? { |t| t.confirmations >= BitcoinPayable.config.confirmations }
     end
 
     private
@@ -66,6 +77,12 @@ module BitcoinPayable
     def notify_payable
       if self.payable.respond_to?(:bitcoin_payment_paid)
         self.payable.bitcoin_payment_paid
+      end
+    end
+
+    def notify_payable_confirmed
+      if self.payable.respond_to?(:bitcoin_payment_confirmed)
+        self.payable.bitcoin_payment_confirmed
       end
     end
 
