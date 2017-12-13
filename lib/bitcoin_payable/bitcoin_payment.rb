@@ -44,9 +44,12 @@ module BitcoinPayable
       after_transition :on => :confirmed, :do => :notify_payable_confirmed
     end
 
+    # This returns an amount in cents.
     def currency_amount_paid
-      # => Round to 0 decimal places so there aren't any partial cents
-      self.transactions.inject(0) { |sum, tx| sum + (BitcoinPayable::BitcoinCalculator.convert_satoshis_to_bitcoin(tx.estimated_value) * tx.btc_conversion) }.round(0)
+      dollar_value = transactions.inject(0) { |sum, tx| sum + (BitcoinPayable::BitcoinCalculator.convert_satoshis_to_bitcoin(tx.estimated_value) * tx.btc_conversion) }
+
+      # Round to 0 decimal places so there aren't any partial cents.
+      (dollar_value * 100).round(0)
     end
 
     def currency_amount_due
