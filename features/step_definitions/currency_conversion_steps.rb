@@ -6,7 +6,7 @@ end
 Given /^the currency_conversion is (\d+)$/ do |conversion_rate|
   BitcoinPayable::CurrencyConversion.create!(
     currency: 1,
-    btc: conversion_rate.to_i,
+    price: conversion_rate.to_i,
   )
   @currency_conversions = BitcoinPayable::CurrencyConversion.all
 end

@@ -7,13 +7,12 @@ module BitcoinPayable
 
     source_root File.expand_path('../templates', __FILE__)
 
-    desc 'Generates (but does not run) a migration to add a bitcoin payment tables.'
+    desc 'Generates (but does not run) a migration to add a coin payment tables.'
 
     def create_migration_file
-      migration_template 'create_bitcoin_payments.rb', 'db/migrate/create_bitcoin_payments.rb'
-      migration_template 'create_bitcoin_payment_transactions.rb', 'db/migrate/create_bitcoin_payment_transactions.rb'
+      migration_template 'create_coin_payments.rb', 'db/migrate/create_coin_payments.rb'
+      migration_template 'create_coin_payment_transactions.rb', 'db/migrate/create_coin_payment_transactions.rb'
       migration_template 'create_currency_conversions.rb', 'db/migrate/create_currency_conversions.rb'
-      migration_template 'add_btc_conversion_to_bitcoin_payments.rb', 'db/migrate/add_btc_conversion_to_bitcoin_payments.rb'
     end
 
     def self.next_migration_number(dirname)

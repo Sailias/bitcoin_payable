@@ -6,6 +6,6 @@ Given /^a saved widget$/ do
   @widget = Widget.create
 end
 
-Given /^a new bitcoin_payment$/ do
-  @bitcoin_payment = @widget.bitcoin_payments.new
+Given /^a new coin_payment$/ do
+  @coin_payment = @widget.coin_payments.new
 end
