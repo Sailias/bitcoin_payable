@@ -156,3 +156,4 @@ Migrating to AddBtcConversionToBitcoinPayments (20140917144413)
   [1m[35m (39.4ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140510023211')
   [1m[36m (36.3ms)[0m  [1mINSERT INTO "schema_migrations" (version) VALUES ('20140902213338')[0m
   [1m[35m (56.2ms)[0m  INSERT INTO "schema_migrations" (version) VALUES ('20140511021326')
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m

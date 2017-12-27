@@ -7,7 +7,7 @@ module BitcoinPayable
       :testnet, :adapter, :adapter_api_key, :confirmations
 
     def initialize
-      @currency ||= :usd
+      @currency ||= :cad
     end
 
     def network

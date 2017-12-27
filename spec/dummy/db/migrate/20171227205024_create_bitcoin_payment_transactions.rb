@@ -1,4 +1,4 @@
-class CreateBitcoinPaymentTransactions < ActiveRecord::Migration
+class CreateBitcoinPaymentTransactions < ActiveRecord::Migration[5.1]
   def change
     create_table :bitcoin_payment_transactions do |t|
       t.integer :estimated_value
@@ -8,6 +8,7 @@ class CreateBitcoinPaymentTransactions < ActiveRecord::Migration
       t.datetime :estimated_time
       t.integer :bitcoin_payment_id
       t.integer :btc_conversion
+      t.integer :confirmations, default: 0
     end
 
     add_index :bitcoin_payment_transactions, :bitcoin_payment_id
