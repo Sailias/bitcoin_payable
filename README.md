@@ -1,7 +1,7 @@
 # BitcoinPayable
 
-A rails gem that enables any model to have bitcoin payments.
-The polymorphic table bitcoin_payments creates payments with unique addresses based on a BIP32 deterministic seed using https://github.com/wink/money-tree
+A rails gem that enables any model to have crypto coin payments.
+The polymorphic table coin_payments creates payments with unique addresses based on a BIP32 deterministic seed using https://github.com/wink/money-tree
 and uses the (https://helloblock.io OR https://blockchain.info/) API to check for payments.
 
 Payments have 4 states:  `pending`, `partial_payment`, `paid_in_full`, `comped`
@@ -26,26 +26,57 @@ And then execute:
 
     $ bundle
 
-    $ rails g bitcoin_payable:install
+    $ rails g coin_payable:install
 
     $ bundle exec rake db:migrate
 
-    $ populate bitcoin_payable.rb (see below)
+    $ populate coin_payable.rb (see below)
 
-    $ bundle exec rake bitcoin_payable:process_prices (see below)
+    $ bundle exec rake coin_payable:process_prices (see below)
 
+## Uninstall
+
+    $ rails d coin_payable:install
+
+## Run Tests
+
+    gem install cucumber
+    cucumber features
 
 ## Usage
 
 ### Configuration
 
-config/initializers/bitcoin_payable.rb
+config/initializers/coin_payable.rb
 
-    BitcoinPayable.config.currency = :cad
-    BitcoinPayable.config.node_path = "m/0/"
-    BitcoinPayable.config.master_public_key = ENV["MASTER_PUBLIC_KEY"]
-    BitcoinPayable.config.testnet = true
-    BitcoinPayable.config.adapter = "blockchain_info"
+    BitcoinPayable.configure do |config|
+      config.currency = :usd
+      config.testnet = true
+
+      config.configure_btc do |btc_config|
+        btc_config.node_path = 'm/0/'
+        btc_config.master_public_key = 'tpubD6NzVbkrYhZ4X3cxCktWVsVvMDd35JbNdhzZxb1aeDCG7LfN6KbcDQsqiyJHMEQGJURRgdxGbFBBF32Brwb2LsfpE2jQfCZKwzNBBMosjfm'
+
+        # Defaults to 3 confirmations.
+        # btc_config.confirmations = 3
+      end
+
+      config.configure_eth do |eth_config|
+        # Will default to 4 if `config.testnet` is true, otherwise 1 but can be
+        # overriden.
+        #
+        # 1: Frontier, Homestead, Metropolis, the Ethereum public main network
+        # 4: Rinkeby, the public Geth Ethereum testnet
+        # See https://ethereum.stackexchange.com/a/17101/26695
+        # eth_config.chain_id = 1
+
+        # Defaults to 12 confirmations.
+        # eth_config.confirmations = 12
+
+        # NOTE: Avoid committing your mnemonic to source.
+        eth_config.mnemonic = ENV['BITCOIN_PAYABLE_ETH_MNEMONIC']
+      end
+    end
 
 
 * In order to use the bitcoin network and issue real addresses, BitcoinPayable.config.testnet must be set to false *
@@ -66,13 +97,13 @@ Testnet starts with: tpub
 ### Adding it to your model
 
     class Product < ActiveRecord::Base
-      has_bitcoin_payments
+      has_coin_payments
     end
 
 ### Creating a payment from your application
 
     def create_payment(amount_in_cents)
-      self.bitcoin_payments.create!(reason: 'sale', price: amount_in_cents)
+      self.coin_payments.create!(reason: 'sale', price: amount_in_cents, coin_type: :btc)
     end
 
 ### Update payments with the current price of BTC based on your currency
@@ -104,16 +135,16 @@ To run the payment processor:
 
 ### Notify your application when a payment is made
 
-Use the `bitcoin_payment_paid` method
+Use the `coin_payment_paid` method
 
     def Product < ActiveRecord::Base
-      has_bitcoin_payments
+      has_coin_payments
 
       def create_payment(amount_in_cents)
-        self.bitcoin_payments.create!(reason: 'sale', price: amount_in_cents)
+        self.coin_payments.create!(reason: 'sale', price: amount_in_cents, type: :btc)
       end
 
-      def bitcoin_payment_paid
+      def coin_payment_paid
         self.ship!
       end
     end
@@ -122,12 +153,12 @@ Use the `bitcoin_payment_paid` method
 
 This will bypass the payment, set the state to comped and call back to your app that the payment has been processed.
 
-`@bitcoin_payment.comp`
+`@coin_payment.comp`
 
 ### View all the transactions in the payment
 
-    bitcoin_payment = @product.bitcoin_payments.first
-    bitcoin_payment.transactions.each do |transaction|
+    coin_payment = @product.coin_payments.first
+    coin_payment.transactions.each do |transaction|
       puts transaction.block_hash
       puts transaction.block_time
 

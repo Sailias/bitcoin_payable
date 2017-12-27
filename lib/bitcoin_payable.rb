@@ -1,27 +1,17 @@
 require 'net/http'
+require 'blockcypher'
 
 require 'bitcoin_payable/config'
 require 'bitcoin_payable/version'
-require 'bitcoin_payable/has_bitcoin_payment'
+require 'bitcoin_payable/has_coin_payments'
 require 'bitcoin_payable/tasks'
-require 'bitcoin_payable/bitcoin_calculator'
-
-require 'blockcypher'
-require 'bitcoin_payable/adapters/base'
-require 'bitcoin_payable/adapters/blockcypher_adapter'
-require 'bitcoin_payable/adapters/blockchain_info_adapter'
+require 'bitcoin_payable/adapters'
+require 'bitcoin_payable/coin_payment_transaction'
+require 'bitcoin_payable/coin_payment'
+require 'bitcoin_payable/currency_conversion'
 
 module BitcoinPayable
-  def self.config
-    @@config ||= BitcoinPayable::Config.instance
-  end
 end
-
-require 'bitcoin_payable/bitcoin_payment_transaction'
-require "bitcoin_payable/address"
-require 'bitcoin_payable/bitcoin_payment'
-
-require 'bitcoin_payable/currency_conversion'
 
 ActiveSupport.on_load(:active_record) do
   include BitcoinPayable::Model
