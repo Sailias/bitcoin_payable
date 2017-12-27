@@ -8,8 +8,9 @@ module BitcoinPayable
       bitcoins / 0.00000001
     end
 
+    # NOTE: Price is in cents.
     def self.exchange_price(price, exchange_rate)
-      (price.to_f / exchange_rate.to_f).round(8)
+      ((price.to_f / 100) / exchange_rate.to_f).round(8)
     end
   end
 end
