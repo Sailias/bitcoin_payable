@@ -12,5 +12,9 @@ module BitcoinPayable
     def network
       @testnet == false ? :bitcoin : :bitcoin_testnet
     end
+
+    def adapter
+      @adapter ||= "blockchain_info"
+    end
   end
 end
