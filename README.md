@@ -26,9 +26,9 @@ Add this line to your application's Gemfile:
 
 If you would like to accept payments from multiple crypto currencies use:
 
-(Cryptocoin Payable)[https://github.com/Sailias/cryptocoin_payable]
+[Cryptocoin Payable](https://github.com/Sailias/cryptocoin_payable)
 
-Big thanks to (mhluska)[https://github.com/mhluska] for contributing to a multi-currency implementation.
+Big thanks to [mhluska](https://github.com/mhluska) for contributing to a multi-currency implementation.
 
 
 And then execute:
