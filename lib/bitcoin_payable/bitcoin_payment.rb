@@ -60,7 +60,7 @@ module BitcoinPayable
     end
 
     def populate_address
-      self.update(address: Address.create(self.id))
+      self.update_attributes(address: Address.create(self.id))
     end
 
     def notify_payable
