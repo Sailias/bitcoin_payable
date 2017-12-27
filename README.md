@@ -16,6 +16,10 @@ Donations appreciated
 
 [Support for Rails 5.1](https://github.com/Sailias/bitcoin_payable/tree/releases/rails-5.1)
 
+## Other crypto currencies
+
+[Cryptocoin Payable](https://github.com/Sailias/cryptocoin_payable)
+
 ## Installation
 
 Add this line to your application's Gemfile:  (I might be too lazy to update RubyGems all the time)
