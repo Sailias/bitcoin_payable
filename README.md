@@ -177,8 +177,3 @@ This will bypass the payment, set the state to comped and call back to your app 
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
-
-## TODO
-
-- Handle :adapter_api_key
-- Handle removed :adapter config
