@@ -22,6 +22,15 @@ Add this line to your application's Gemfile:
 
     gem 'bitcoin_payable', git: 'https://github.com/Sailias/bitcoin_payable', branch: 'releases/rails-5.1'
 
+## Other versions
+
+If you would like to accept payments from multiple crypto currencies use:
+
+(Cryptocoin Payable)[https://github.com/Sailias/cryptocoin_payable]
+
+Big thanks to (mhluska)[https://github.com/mhluska] for contributing to a multi-currency implementation.
+
+
 And then execute:
 
     $ bundle
