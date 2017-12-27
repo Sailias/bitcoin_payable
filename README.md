@@ -49,27 +49,39 @@ And then execute:
 
 config/initializers/coin_payable.rb
 
-    BitcoinPayable.config.currency = :usd
-    BitcoinPayable.config.coins = {
-      btc: {
-        node_path: "m/0/",
-        master_public_key: ENV["MASTER_PUBLIC_KEY"],
-        testnet: true,
-        adapter: 'blockchain_info',
-        confirmations: 3,
-      },
-      eth: {
-        node_path: 1,
-        testnet: true,
-        adapter: 'etherscan',
-        confirmations: 12,
-      },
-    }
+    BitcoinPayable.configure do |config|
+      config.currency = :usd
+      config.testnet = true
+
+      config.configure_btc do |btc_config|
+        btc_config.node_path = 'm/0/'
+        btc_config.master_public_key = 'tpubD6NzVbkrYhZ4X3cxCktWVsVvMDd35JbNdhzZxb1aeDCG7LfN6KbcDQsqiyJHMEQGJURRgdxGbFBBF32Brwb2LsfpE2jQfCZKwzNBBMosjfm'
+
+        # Defaults to 3 confirmations.
+        # btc_config.confirmations = 3
+      end
+
+      config.configure_eth do |eth_config|
+        # Will default to 4 if `config.testnet` is true, otherwise 1 but can be
+        # overriden.
+        #
+        # 1: Frontier, Homestead, Metropolis, the Ethereum public main network
+        # 4: Rinkeby, the public Geth Ethereum testnet
+        # See https://ethereum.stackexchange.com/a/17101/26695
+        # eth_config.chain_id = 1
+
+        # Defaults to 12 confirmations.
+        # eth_config.confirmations = 12
+
+        # NOTE: Avoid committing your mnemonic to source.
+        eth_config.mnemonic = ENV['BITCOIN_PAYABLE_ETH_MNEMONIC']
+      end
+    end
 
 
 * In order to use the bitcoin network and issue real addresses, BitcoinPayable.config.testnet must be set to false *
 
-    BitcoinPayable.config[:btc][:testnet] = false
+    BitcoinPayable.config.testnet = false
 
 #### Node Path
 
@@ -129,7 +141,7 @@ Use the `coin_payment_paid` method
       has_coin_payments
 
       def create_payment(amount_in_cents)
-        self.coin_payments.create!(reason: 'sale', price: amount_in_cents)
+        self.coin_payments.create!(reason: 'sale', price: amount_in_cents, type: :btc)
       end
 
       def coin_payment_paid

@@ -13,9 +13,7 @@ BitcoinPayable.configure do |config|
     #
     # 1: Frontier, Homestead, Metropolis, the Ethereum public main network
     # 4: Rinkeby, the public Geth Ethereum testnet
-    #
     # See https://ethereum.stackexchange.com/a/17101/26695
-    #
     # eth_config.chain_id = 1
 
     # NOTE: This should come from an env variable. Do not commit your real
