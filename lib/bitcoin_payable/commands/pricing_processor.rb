@@ -22,15 +22,13 @@ module BitcoinPayable
       end
 
       def get_btc
-        uri = URI.parse("https://apiv2.bitcoinaverage.com/indices/local/ticker/BTC#{BitcoinPayable.config.currency.to_s.upcase}")
-        http = Net::HTTP.new(uri.host, uri.port)
-        http.use_ssl = true
-
-        request = Net::HTTP::Get.new(uri.request_uri)
-
-        response = http.request(request)
-        hash = JSON.parse(response.body)
-        hash["averages"]["day"].to_f * 100.00
+        response = get_request("https://api.coinbase.com/v2/prices/spot\?currency\=#{BitcoinPayable.config.currency.to_s.upcase}")
+        json = JSON.parse(response.body)
+        json['data']['amount'].to_f
+      rescue EOFError
+        response = get_request("https://api.gemini.com/v1/pubticker/BTC#{BitcoinPayable.config.currency.to_s.upcase}")
+        json = JSON.parse(response.body)
+        json['last'].to_f
       end
 
       def get_currency
@@ -39,7 +37,22 @@ module BitcoinPayable
 
         uri = URI("http://openexchangerates.org/api/latest.json?app_id=#{BitcoinPayable.config.open_exchange_key}")
         response = JSON.parse(Net::HTTP.get(uri))
+
+        if response['status'] && response['status'] >= 400
+          raise "#{response['message']} #{response['description']}"
+        end
+
         response["rates"][BitcoinPayable.config.currency.to_s.upcase]
+      end
+
+      private
+
+      def get_request url
+        uri = URI.parse(url)
+        http = Net::HTTP.new(uri.host, uri.port)
+        http.use_ssl = uri.scheme == 'https'
+        request = Net::HTTP::Get.new(uri.request_uri)
+        http.request(request)
       end
     end
 end
