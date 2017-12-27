@@ -1,7 +1,7 @@
 # BitcoinPayable
 
 A rails gem that enables any model to have bitcoin payments.
-The polymorphic table bitcoin_payments creates payments with unique addresses based on a BIP32 deterministic seed using https://github.com/wink/money-tree
+The polymorphic table bitcoin_payments creates payments with unique addresses based on a BIP32 deterministic seed using [https://github.com/GemHQ/money-tree](https://github.com/GemHQ/money-tree)
 and uses the (https://helloblock.io OR https://blockchain.info/) API to check for payments.
 
 Payments have 4 states:  `pending`, `partial_payment`, `paid_in_full`, `comped`
