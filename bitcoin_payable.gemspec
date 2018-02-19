@@ -25,10 +25,13 @@ Gem::Specification.new do |spec|
   spec.required_rubygems_version = '>= 1.3.6'
 
   spec.add_dependency "rails"
+  spec.add_dependency 'test-unit'
+
   spec.add_dependency "cucumber-rails"
   spec.add_dependency "rspec-rails"
   spec.add_dependency "database_cleaner"
   spec.add_dependency "state_machine"
   spec.add_dependency "blockcypher-ruby"
   spec.add_dependency "money-tree"
+  spec.add_dependency "blocktrail", "0.2.4"
 end
