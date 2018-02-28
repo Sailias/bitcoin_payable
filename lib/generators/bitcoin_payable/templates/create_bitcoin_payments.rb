@@ -14,7 +14,7 @@ class CreateBitcoinPayments < ActiveRecord::Migration<%= migration_version %>
       # and should be changed for state_machines-activerecord
       # but we'll just do this little hack to continiu support for rails 3
       t.string   :state, default: :pending
-      t.integer  :btc_conversion
+
       t.datetime :created_at
       t.datetime :updated_at
     end

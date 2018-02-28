@@ -8,8 +8,6 @@ module BitcoinPayable
     belongs_to :payable, polymorphic: true
     has_many :transactions, class_name: 'BitcoinPayable::BitcoinPaymentTransaction'
 
-    attr_accessor :btc_conversion
-
     validates :reason, presence: true
     validates :price, presence: true
 

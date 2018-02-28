@@ -14,7 +14,8 @@ module BitcoinPayable
       # from paid payments with unsecure tx, with not enought confirmations
       payments_with_unsecure_tx = BitcoinPayment.joins(:transactions)
                                     .where(bitcoin_payment_transactions: {confirmations: 0..BitcoinPayable.config.confirmations})
-                                    .uniq.readonly(false)
+      payments_with_unsecure_tx.uniq.readonly(false) unless payments_with_unsecure_tx.empty?
+      
       payments_pending_or_partial = BitcoinPayable::BitcoinPayment.where(state: [:pending, :partial_payment])
       payments_to_review = (payments_with_unsecure_tx + payments_pending_or_partial).uniq{|payment| payment.id}
 
