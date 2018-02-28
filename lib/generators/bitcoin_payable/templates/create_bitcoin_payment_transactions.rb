@@ -4,8 +4,6 @@ class CreateBitcoinPaymentTransactions < ActiveRecord::Migration<%= migration_ve
       t.integer  :estimated_value
       t.string   :transaction_hash
       t.string   :block_hash
-      t.integer  :block_number
-      t.integer  :confirmations
       t.datetime :block_time
       t.datetime :estimated_time
       t.integer  :bitcoin_payment_id
