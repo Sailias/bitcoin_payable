@@ -17,19 +17,19 @@ module BitcoinPayable
 
       incoming_tx = BitcoinPaymentTransaction.format_transaction(params[:data],address)
       if incoming_tx[:confirmations] > 0
-        render text: '', template: false, status: :not_acceptable
+        render plain: '', status: :not_acceptable
         return
       end
 
       payment = BitcoinPayment.where(address: address).last!
       unless payment.transactions.find_by_transaction_hash(incoming_tx[:transaction_hash]).nil?
-        render text: '', template: false, status: :not_found
+        render plain: '', status: :not_found
         return
       end
 
       payment.transactions.create!(incoming_tx)
       payment.update_after_new_transactions   # Not secure but will be monitored
-      render text: 'ok', template: false, status: :ok
+      render plain: 'ok', template: false, status: :ok
     end
 
     # POST webhook
@@ -39,7 +39,7 @@ module BitcoinPayable
       BitcoinPayable::PricingProcessor.update_rates_for_all_pairs
       PaymentProcessor.perform
 
-      render text: 'ok', template: false, status: :ok
+      render plain: 'ok', status: :ok
     end
 
     private
