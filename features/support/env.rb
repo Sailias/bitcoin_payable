@@ -1,7 +1,7 @@
 ENV["RAILS_ENV"] ||= "test"
-require File.expand_path("../../../spec/dummy2/config/environment.rb",  __FILE__)
+require File.expand_path("../../../spec/dummy_rails5/config/environment.rb",  __FILE__)
 
-ENV["RAILS_ROOT"] ||= File.dirname(__FILE__) + "../../../spec/dummy2"
+ENV["RAILS_ROOT"] ||= File.dirname(__FILE__) + "../../../spec/dummy_rails5"
 
 require 'cucumber/rails'
 #require 'cucumber/rspec/doubles'
