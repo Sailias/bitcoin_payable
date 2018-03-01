@@ -36,8 +36,10 @@ module BitcoinPayable
     #
     # Will triger the verification of the pending payments and transactions
     def last_block
-      BitcoinPayable::PricingProcessor.update_rates_for_all_pairs
       PaymentProcessor.perform
+
+      last_rate_cheked = CurrencyConversion.pluck(:updated_at).last
+      PricingProcessor.update_rates_for_all_pairs if last_rate_cheked < 5.hours.ago
 
       render plain: 'ok', status: :ok
     end
