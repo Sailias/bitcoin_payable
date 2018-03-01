@@ -142,12 +142,12 @@ This *honors* the price of a payment for 30 minutes at a time.
 * You can run `rake bitcoin_payable:update_rates_for_all_pairs` and the gem will check every fiat and crypto that is used in your payments and conversion history and will update to the currency rate, cleaning the old rates.
 
 #### Bootstraping a new currency
-The gem will automatically create the conversion rate for a currency if it doesn't exist in the conversion rable at the time of creating a payment. You can add a payment for any currency at any time without worrying of not having the conversion created.
+The gem will automatically create the conversion rate for a currency if it doesn't exist in the conversion table at the time of creating a payment. You can add a payment for any currency at any time without worrying of not having the conversion created.
 
 ### Processing payments
 
-All payments are calculated against the dollar amount of the payment.  So a `bitcoin_payment` for $49.99 will have it's value calculated in BTC or BCH.
-It will stay at that price for 30 minutes.  When a payment is made, a transaction is created that stores the BTC or BCH in satoshis paid, and the exchange rate is was paid at.
+All payments are calculated against the currency amount set for the payment.  So a `bitcoin_payment` for $49.99 will have it's value calculated in BTC or BCH.
+It will stay at that price for 30 minutes.  When a payment is made, a transaction is created that stores the BTC or BCH in Satoshis paid, and the exchange rate is was paid at.
 This is very valuable for accounting later.  (capital gains of all payments received)
 
 If a partial payment is made, the BTC or BCH value is recalculated for the remaining *fiat money* amount with the latest exchange rate.

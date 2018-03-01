@@ -15,7 +15,7 @@ module BitcoinPayable
       payments_with_unsecure_tx = BitcoinPayment.joins(:transactions)
                                     .where(bitcoin_payment_transactions: {confirmations: 0..BitcoinPayable.config.confirmations})
       payments_with_unsecure_tx.uniq.readonly(false) unless payments_with_unsecure_tx.empty?
-      
+
       payments_pending_or_partial = BitcoinPayable::BitcoinPayment.where(state: [:pending, :partial_payment])
       payments_to_review = (payments_with_unsecure_tx + payments_pending_or_partial).uniq{|payment| payment.id}
 
@@ -28,15 +28,15 @@ module BitcoinPayable
           stored_transaction = payment.transactions.find_by_transaction_hash(incoming_tx[:transaction_hash])
           if stored_transaction
             if stored_transaction.secure?
-              @adapter.desuscribe_address_from_notifications(payment.address)
               payment.update_after_new_transactions
             else
               stored_transaction.update_attributes(incoming_tx)
             end
           else # store new transaction
             stored_transaction = payment.transactions.create!(incoming_tx)
-            payment.update_after_new_transaction if  stored_transaction.secure? || BitcoinPayable.config.zero_tx
+            payment.update_after_new_transactions if  stored_transaction.secure? || BitcoinPayable.config.zero_tx
           end
+          @adapter.desuscribe_address_from_notifications(payment.address)
         end
       end
       verify_left_behid_txs
