@@ -36,7 +36,7 @@ module BitcoinPayable
             stored_transaction = payment.transactions.create!(incoming_tx)
             payment.update_after_new_transactions if  stored_transaction.secure? || BitcoinPayable.config.zero_tx
           end
-          @adapter.desuscribe_address_from_notifications(payment.address)
+          @adapter.desuscribe_address_from_notifications(payment.address) if BitcoinPayable.config.zero_tx
         end
       end
       verify_left_behid_txs
