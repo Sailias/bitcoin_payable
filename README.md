@@ -22,9 +22,9 @@ Bitcoin Address: `142WJW4Zzc9iV7uFdbei8Unpe8WcLhUgmE`
 
 [Support for Rails 5.1](https://github.com/Sailias/bitcoin_payable/tree/releases/rails-5.1)
 
-## Rails 3.2-slate
+## Rails 3.2
 
-There is support for old rails versions, check the branches.
+[Compatible with with Rails 3](http://guides.rubyonrails.org/v3.2.21/)
 
 ## Installation
 
