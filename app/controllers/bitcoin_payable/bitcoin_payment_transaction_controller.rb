@@ -39,7 +39,9 @@ module BitcoinPayable
       PaymentProcessor.perform
 
       last_rate_cheked = CurrencyConversion.pluck(:updated_at).last
-      PricingProcessor.update_rates_for_all_pairs if last_rate_cheked < 5.hours.ago
+      if last_rate_cheked < BitcoinPayable.config.auto_calculate_rate_every
+        PricingProcessor.update_rates_for_all_pairs
+      end
 
       render plain: 'ok', status: :ok
     end

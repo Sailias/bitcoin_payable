@@ -65,8 +65,18 @@ config/initializers/bitcoin_payable.rb
 
       # webhooks
       config.allowwebhooks = true
+      config.auto_calculate_rate_every = 5.hours # Only when webhooks are enabled
       config.webhook_domain = "domain.com" # No subdomains or IPs supported
       config.webhook_port = "3000" # Let empty if it's not needed
+
+      # The rate for Bitcoin you'll be using to calculate prices
+      # :last               The last market's price
+      # :high               Today's highest price
+      # :low                Today's highest price
+      # :daily_average      The daily average price
+      # :weekly_average     The weekly average price
+      # :monthly_average    The monthly average price
+      config.rate_calculation = :last
 
       config.node_path = "m/0/"
       config.master_public_key = "your xpub master public key here"
@@ -188,9 +198,14 @@ The gem will install the routes:
 
 **This gem will subscribe all the webhooks for you so you don't need to set anything on the server offering the webhooks.**
 
-`notifytransaction` will receive and store transactions that have zero confirmations, that is, that are still in the mempool.
+#### `bitcoin/notifytransaction`
+ This webhook endpoint will receive and store transactions that have zero confirmations, that is, that are still in the mempool.
 
-`last_block` will be called every new block and will be used to process the pending payments and update the currency rate. **So if `config.allowwebhooks = true` there is no need to process the payments with `rake bitcoin_payable:process_payments` or `rake bitcoin_payable:update_rates_for_all_pairs`**.
+#### `last_block`
+This webhook will be called every new block and will be used to process the pending payments and update the currency rate.
+
+When the webhooks are enabled here is no need to process the payments with `rake bitcoin_payable:process_payments` or `rake bitcoin_payable:update_rates_for_all_pairs`. Aditionally by calling this webhook the rates will be updated ever `config.auto_calculate_rate_every`
+
 
 
 

@@ -43,7 +43,19 @@ module BitcoinPayable
 
         response = http.request(request)
         hash = JSON.parse(response.body)
-        hash["low"].to_f * 100
+
+        rate = case BitcoinPayable.config.rate_calculation
+        when :daily_average
+          hash["averages"]["day"]
+        when :weekly_average
+          hash["averages"]["week"]
+        when :monthly_average
+          hash["averages"]["month"]
+        else
+          hash[BitcoinPayable.config.rate_calculation.to_s]
+        end
+
+        rate_in_cents = rate.to_f * 100.00
       end
 
       private
