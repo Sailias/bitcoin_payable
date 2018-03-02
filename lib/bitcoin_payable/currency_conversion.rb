@@ -1,5 +1,8 @@
 module BitcoinPayable
   class CurrencyConversion < ::ActiveRecord::Base
+
+    rails3?{ attr_accessible :currency, :rate, :crypto }
+    
     validates :rate, presence: true
 
     def self.obtain(opts)
