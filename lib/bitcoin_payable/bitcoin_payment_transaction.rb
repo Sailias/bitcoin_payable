@@ -4,6 +4,10 @@ module BitcoinPayable
 
     before_save :add_block_n_conversion
 
+    rails3?{ attr_accessible :estimated_value, :transaction_hash, :block_hash,
+                    :block_time, :estimated_time, :btc_conversion,
+                    :confirmations, :block_number, :last_block, :confirmations }
+
     def self.format_transaction(transaction, recepient_address)
       adapter = BitcoinPayable::Adapters::Base.fetch_adapter
       adapter.convert_transactions(transaction, recepient_address)

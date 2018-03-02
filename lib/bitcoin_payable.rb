@@ -9,15 +9,15 @@ require 'blockcypher'
 require 'bitcoin_payable/adapters/base'
 require 'bitcoin_payable/engine'
 
+require 'bitcoin_payable/rails3_port'
+
 module BitcoinPayable
   def self.config(&block)
     @@config ||= BitcoinPayable::Config.instance
     block_given? ? block.call(@@config) : @@config
   end
 
-  def self.rails3?
-    Rails.version.start_with? '3'
-  end
+  Object.include(BitcoinPayable::Rails3support)
 end
 
 
