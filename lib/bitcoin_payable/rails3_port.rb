@@ -17,9 +17,9 @@ module BitcoinPayable
 
     if rails3?
       class ActionController::Base
-        def render(options, &block)
-          options[:text] = options.delete :plain
-          super(options, block)
+        def render(options = nil, extra_options = {}, &block)
+          options[:text] = options.delete(:plain) unless options.nil?
+          super(options, extra_options, &block)
         end
       end
     end
