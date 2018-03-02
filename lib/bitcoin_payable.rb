@@ -14,6 +14,10 @@ module BitcoinPayable
     @@config ||= BitcoinPayable::Config.instance
     block_given? ? block.call(@@config) : @@config
   end
+
+  def self.rails3?
+    Rails.version.start_with? '3'
+  end
 end
 
 
