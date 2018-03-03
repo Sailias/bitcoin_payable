@@ -60,12 +60,6 @@ config/initializers/bitcoin_payable.rb
       # set to 1,2,3,4,5 or 6
       config.confirmations = 3
 
-      # This will consider transactions in the mempool as well as transactions
-      # with less than BitcoinPayable.config.confirmations confirmations as paid
-      # Your model will be notified if the transaction finally doesn't reach
-      # the desired number of confirmations.
-      config.zero_tx = true
-
       # Webhooks
       config.allowwebhooks = true
       config.auto_calculate_rate_every = 5.hours # Only when webhooks are enabled

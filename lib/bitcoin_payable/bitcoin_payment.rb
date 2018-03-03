@@ -13,7 +13,7 @@ module BitcoinPayable
 
     before_save :populate_currency_and_amount_due
     after_create :populate_address
-    after_create :subscribe_to_notifications_in_pool, if: :webhooks_and_zero_conf
+    after_create :subscribe_to_notifications_in_pool, if: :webhooks
 
     state_machine :state, initial: :pending do
       state :pending
@@ -28,7 +28,7 @@ module BitcoinPayable
       end
 
       event :secure_payment do
-        transition[:paid_in_full] => :comfirmed
+        transition :paid_in_full => :comfirmed
       end
 
       event :partially_paid do
@@ -47,8 +47,8 @@ module BitcoinPayable
         transition [:paid_in_full, :partial_payment] => :pending
       end
 
-      after_transition :on => :paid,           :do => :notify_payable_paid, :check_if_payment_secure
-      after_transition :on => :comp,           :do => :notify_payable_paid, :notify_payable_paid_and_comfirmed
+      after_transition :on => :paid,           :do => [:notify_payable_paid, :check_if_payment_secure]
+      after_transition :on => :comp,           :do => [:notify_payable_paid, :notify_payable_paid_and_comfirmed]
       after_transition :on => :secure_payment, :do => :notify_payable_paid_and_comfirmed
       after_transition :on => :nothing_paid,   :do => :notify_payable_rollback
 
@@ -113,8 +113,8 @@ module BitcoinPayable
       end
     end
 
-    def webhooks_and_zero_conf
-      BitcoinPayable.config.zero_tx && BitcoinPayable.config.allowwebhooks
+    def webhooks
+      BitcoinPayable.config.allowwebhooks
     end
 
     def subscribe_to_notifications_in_pool

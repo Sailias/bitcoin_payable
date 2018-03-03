@@ -13,13 +13,11 @@ module BitcoinPayable::Adapters
         @client ||= Blocktrail::Client.new(coin: coin)
       end
 
-      if BitcoinPayable.config.zero_tx && BitcoinPayable.config.allowwebhooks
+      if BitcoinPayable.config.allowwebhooks
         @new_tx_webhook_id = Rails.application.class.parent_name
         @new_tx_webhook_url = webhook_url_for(:notify_transaction)
         setup_webhook(@new_tx_webhook_id, @new_tx_webhook_url)
-      end
 
-      if BitcoinPayable.config.allowwebhooks
         @new_block_webhook_id = Rails.application.class.parent_name + "-new-block"
         @new_block_webhook_url = webhook_url_for(:last_block)
         setup_webhook(@new_block_webhook_id, @new_block_webhook_url)
