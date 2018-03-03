@@ -18,7 +18,8 @@ module BitcoinPayable
     state_machine :state, initial: :pending do
       state :pending
       state :partial_payment
-      state :paid_in_full
+      state :paid_in_full     # Merchans watch out! it can be rolled back
+      state :comfirmed        # Inpossible to revert payment
       state :comped
       state :canceled
 
@@ -26,7 +27,9 @@ module BitcoinPayable
         transition [:pending, :partial_payment] => :paid_in_full
       end
 
-      after_transition :on => :paid, :do => :notify_payable_paid
+      event :secure_payment do
+        transition[:paid_in_full] => :comfirmed
+      end
 
       event :partially_paid do
         transition :pending => :partial_payment
@@ -35,7 +38,6 @@ module BitcoinPayable
       event :comp do
         transition [:pending, :partial_payment] => :comped
       end
-      after_transition :on => :comp, :do => :notify_payable_paid
 
       event :cancel do
         transition all => :canceled
@@ -44,7 +46,11 @@ module BitcoinPayable
       event :nothing_paid do
         transition [:paid_in_full, :partial_payment] => :pending
       end
-      after_transition :on => :nothing_paid, :do => :notify_payable_rollback
+
+      after_transition :on => :paid,           :do => :notify_payable_paid, :check_if_payment_secure
+      after_transition :on => :comp,           :do => :notify_payable_paid, :notify_payable_paid_and_comfirmed
+      after_transition :on => :secure_payment, :do => :notify_payable_paid_and_comfirmed
+      after_transition :on => :nothing_paid,   :do => :notify_payable_rollback
 
     end
 
@@ -91,6 +97,10 @@ module BitcoinPayable
       else
         nothing_paid
       end
+    end
+
+    def check_if_payment_secure
+      secure_payment if transactions.all?{|tx| tx.secure?}
     end
 
     def method_missing(m, *args)

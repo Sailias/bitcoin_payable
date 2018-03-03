@@ -10,7 +10,7 @@ Multicurrency support. Accept many fiat currencies.
 
 Webhooks implementation so that your app gets notified.
 
-Payments have 4 states:  `pending`, `partial_payment`, `paid_in_full`, `canceled` and `comped`
+Payments have 6 states:  `pending`, `partial_payment`, `paid_in_full`, `confirmed`, `canceled` and `comped`
 
 No private keys needed, no need to run bitcoind blockchain indexing on new servers, just address and payments.
 
@@ -56,18 +56,21 @@ config/initializers/bitcoin_payable.rb
 
       config.currency = :usd # Default currency
 
-      # This will consider payments in the mempool as paid
-      config.zero_tx = true
-
-      # A payment will be considered paid afther this confirmations
+      # A payment will be considered paid after this number of confirmations
       # set to 1,2,3,4,5 or 6
       config.confirmations = 3
 
-      # webhooks
+      # This will consider transactions in the mempool as well as transactions
+      # with less than BitcoinPayable.config.confirmations confirmations as paid
+      # Your model will be notified if the transaction finally doesn't reach
+      # the desired number of confirmations.
+      config.zero_tx = true
+
+      # Webhooks
       config.allowwebhooks = true
       config.auto_calculate_rate_every = 5.hours # Only when webhooks are enabled
-      config.webhook_domain = "domain.com" # No subdomains or IPs supported
-      config.webhook_port = "3000" # Let empty if it's not needed
+      config.webhook_domain = "domain.com"       # No subdomains or IPs supported
+      config.webhook_port = "3000"               # Let empty if it's not needed
 
       # The rate for Bitcoin you'll be using to calculate prices
       # :last               The last market's price
@@ -82,7 +85,7 @@ config/initializers/bitcoin_payable.rb
       config.master_public_key = "your xpub master public key here"
 
       config.testnet = true
-      config.adapter = 'blocktrail' # the only abailable as for version 0.8.0
+      config.adapter = 'blocktrail' # the only available as for version 0.8.0
     end
 
 
@@ -91,13 +94,14 @@ config/initializers/bitcoin_payable.rb
 
     `config.testnet = false`
 
-* If you set config.zero_tx to true, a transaction with 0 confirmations will be understood
-as secure and the payment set as paid. If the transaction doesn't reach config.confirmations
-the payment will be rolled back
+* If you set `config.zero_tx` to true, a transaction with 0 confirmations will be understood
+as paid and the payment set as `paid_in_full`. If the transaction doesn't reach config.confirmations
+the payment will be rolled back. Then a transaction reaches the desired confirmations, its payment will be
+set as `confirmed`.
 
 #### Blocktrail Adapter
 
-If you use `config.adapter = 'blocktrail'` *# the only abailable as for version 0.8.0* you'll need to sef the following enviroment variables:
+If you use `config.adapter = 'blocktrail'` *# the only abailable as for version 0.8.0* you'll need to set the following environment variables:
 
     # Basic authentification for your webhooks
     ENV['BITCOINPAYABLE_WEBHOOK_NAME']= "key"
@@ -120,6 +124,9 @@ A BIP32 MPK in "Extended Key" format.
 
 Public net starts with: xpub
 Testnet starts with: tpub
+
+*Handy trick: Create a wallet with [Electron Cash](https://www.electroncash.org) and use the
+Master Public Key you'll find by clicking Wallet > Information.*
 
 ### Adding it to your model
 
@@ -183,6 +190,10 @@ Use the `bitcoin_payment_paid` method
       end
 
       def bitcoin_payment_paid
+        self.alert_owner
+      end
+
+      def bitcoin_payment_paid_and_comfirmed
         self.ship!
       end
     end
@@ -216,7 +227,7 @@ This will give your user an instant experience. This is particular secure if use
 
 
 ## Notify your application when a payment is Rolled Back
-A transaction won't be considered solid or secure and the payment won't be set as paid until a transaction reaches `config.confirmations`. If you decided to set `config.zero_tx=true` your model will be notified as payment received even if the transaction doesn't have any confirmation. If for a reason such a double spend the transaction that made the payment to be set as paid doesn't reach the desired level of security `config.confirmations` your model will be notified and the payment set as `:pending`.
+A transaction won't be considered solid or secure and the payment won't be set as `:confirmed` until a transaction reaches `config.confirmations`. If you decided to set `config.zero_tx=true` your model will be notified as payment received even if the transaction doesn't have any confirmation. If for a reason such a double spend the transaction that made the payment to be set as paid doesn't reach the desired level of security `config.confirmations` your model will be notified and the payment set as `:paid_in_full`.
 
 Use the `bitcoin_payment_rollback` method in your model
 
