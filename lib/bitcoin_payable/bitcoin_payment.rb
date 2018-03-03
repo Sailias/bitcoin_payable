@@ -26,7 +26,7 @@ module BitcoinPayable
         transition [:pending, :partial_payment] => :paid_in_full
       end
 
-      after_transition :on => :paid, :do => :notify_payable
+      after_transition :on => :paid, :do => :notify_payable_paid
 
       event :partially_paid do
         transition :pending => :partial_payment
@@ -35,7 +35,7 @@ module BitcoinPayable
       event :comp do
         transition [:pending, :partial_payment] => :comped
       end
-      after_transition :on => :comp, :do => :notify_payable
+      after_transition :on => :comp, :do => :notify_payable_paid
 
       event :cancel do
         transition all => :canceled
@@ -44,7 +44,7 @@ module BitcoinPayable
       event :nothing_paid do
         transition [:paid_in_full, :partial_payment] => :pending
       end
-      after_transition :on => :nothing_paid, :do => :notify_rollback_payable
+      after_transition :on => :nothing_paid, :do => :notify_payable_rollback
 
     end
 
@@ -82,17 +82,6 @@ module BitcoinPayable
       update_attributes(address: Address.create(self.id))
     end
 
-    def notify_payable
-      if self.payable.respond_to?(:bitcoin_payment_paid)
-        self.payable.bitcoin_payment_paid
-      end
-    end
-
-    def subscribe_to_notifications_in_pool
-      adapter = BitcoinPayable::Adapters::Base.fetch_adapter
-      adapter.subscribe_notify_transaction_in_mempool(address)
-    end
-
     def check_if_paid
       fiat_paid = currency_amount_paid
       if fiat_paid >= price
@@ -104,14 +93,24 @@ module BitcoinPayable
       end
     end
 
-    def notify_rollback_payable
-      if self.payable.respond_to?(:bitcoin_payment_rollback)
-        self.payable.bitcoin_payment_rollback
+    def method_missing(m, *args)
+      method = m.to_s
+      if method.start_with?('notify_payable_')
+        attribute = method[15..-1]
+        payable.try("bitcoin_payment_#{attribute}")
+      else
+        super
       end
     end
 
     def webhooks_and_zero_conf
       BitcoinPayable.config.zero_tx && BitcoinPayable.config.allowwebhooks
     end
+
+    def subscribe_to_notifications_in_pool
+      adapter = BitcoinPayable::Adapters::Base.fetch_adapter
+      adapter.subscribe_notify_transaction_in_mempool(address)
+    end
+
   end
 end
