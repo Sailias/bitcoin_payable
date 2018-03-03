@@ -13,11 +13,7 @@ module BitcoinPayable
 
     rails3?{ attr_accessible :reason, :price, :address, :btc_amount_due,
                     :btc_conversion, :currency, :payable_type }
-<<<<<<< HEAD
-
-=======
                     
->>>>>>> adding a bit of monketpatching and injecting a method into the Object instance to support rails 3 easily
     before_save :populate_currency_and_amount_due
     after_create :populate_address
     after_create :subscribe_tx_notifications, if: :webhooks_enabled
