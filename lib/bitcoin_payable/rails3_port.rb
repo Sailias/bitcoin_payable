@@ -19,7 +19,7 @@ module BitcoinPayable
       class ActionController::Base
         def render(options = nil, extra_options = {}, &block)
           options[:text] = options.delete(:plain) unless options.nil?
-          super(options, extra_options, &block)
+          super
         end
       end
     end
