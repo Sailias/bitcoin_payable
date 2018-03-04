@@ -11,6 +11,9 @@ module BitcoinPayable
     validates :reason, presence: true
     validates :price, presence: true
 
+    rails3?{ attr_accessible :reason, :price, :address, :btc_amount_due,
+                    :btc_conversion, :currency, :payable_type }
+
     before_save :populate_currency_and_amount_due
     after_create :populate_address
     after_create :subscribe_tx_notifications, if: :webhooks_enabled
@@ -47,8 +50,10 @@ module BitcoinPayable
         transition [:paid_in_full, :partial_payment] => :pending
       end
 
-      after_transition :on => :paid,           :do => [:notify_payable_paid, :check_if_payment_secure]
-      after_transition :on => :comp,           :do => [:notify_payable_paid, :notify_payable_paid_and_comfirmed]
+      after_transition :on => :paid,           :do => :notify_payable_paid
+      after_transition :on => :paid,           :do => :check_if_payment_secure
+      after_transition :on => :comp,           :do => :notify_payable_paid
+      after_transition :on => :comp,           :do => :notify_payable_paid
       after_transition :on => :secure_payment, :do => :notify_payable_paid_and_comfirmed
       after_transition :on => :secure_payment, :do => :desubscribe_tx_notifications if BitcoinPayable.config.allowwebhooks
       after_transition :on => :nothing_paid,   :do => :notify_payable_rollback
@@ -108,7 +113,9 @@ module BitcoinPayable
       method = m.to_s
       if method.start_with?('notify_payable_')
         attribute = method[15..-1]
-        payable.try("bitcoin_payment_#{attribute}")
+        if payable.respond_to?("bitcoin_payment_#{attribute}")
+          payable.send("bitcoin_payment_#{attribute}")
+        end
 
       elsif method.end_with?('_tx_notifications')
         sub_or_desub = method[0..-26]

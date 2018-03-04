@@ -51,13 +51,12 @@ Or install it yourself as:
 config/initializers/bitcoin_payable.rb
 
     BitcoinPayable.config do |config|
-      # :bch for Bitcoin Cash and :BTC for Bitcoin
-      config.crypto = :bch
 
-      config.currency = :usd # Default currency
+      config.crypto = :bch      # :bch for Bitcoin Cash and :btc for Bitcoin
+      config.currency = :usd    # Default currency
 
-      # A payment will be considered paid after this number of confirmations
-      # set to 1,2,3,4,5 or 6
+      # A payment will be set to :confirmed after this number of confirmations
+      # set it to 0,1,2,3,4,5 or 6
       config.confirmations = 3
 
       # Webhooks
@@ -84,18 +83,13 @@ config/initializers/bitcoin_payable.rb
 
 
 
-* In order to use the bitcoin network and issue real addresses, BitcoinPayable.config.testnet must be set to false *
+* In order to use the bitcoin network and issue real addresses, `BitcoinPayable.config.testnet` must be set to false.
 
     `config.testnet = false`
 
-* If you set `config.zero_tx` to true, a transaction with 0 confirmations will be understood
-as paid and the payment set as `paid_in_full`. If the transaction doesn't reach config.confirmations
-the payment will be rolled back. Then a transaction reaches the desired confirmations, its payment will be
-set as `confirmed`.
-
 #### Blocktrail Adapter
 
-If you use `config.adapter = 'blocktrail'` *# the only abailable as for version 0.8.0* you'll need to set the following environment variables:
+If you use `config.adapter = 'blocktrail'` * the only abailable as for version 0.8.0* you'll need to set the following environment variables:
 
     # Basic authentification for your webhooks
     ENV['BITCOINPAYABLE_WEBHOOK_NAME']= "key"
@@ -131,7 +125,7 @@ Master Public Key you'll find by clicking Wallet > Information.*
 ### Creating a payment from your application
 
     def create_payment(amount_in_cents)
-      self.bitcoin_payments.create!(reason: 'sale', price: amount_in_cents, currency: :usd)
+      self.bitcoin_payments.create!(reason: 'sale', price: amount_in_cents, currency: :cad)
     end
 
 * if `:currency` is not set, the default currency set at `config.currency` will be picked
@@ -139,20 +133,20 @@ Master Public Key you'll find by clicking Wallet > Information.*
 
 ### Update payments with the current price of BTC or BCH based on your currency
 
-BitcoinPayable also supports local currency conversions and BTC or BCH exchange rates.
+BitcoinPayable also supports any currency conversions for BTC or BCH exchange rates.
 
-The `process_prices` rake task connects to api.bitcoinaverage.com to get the 24 hour weighted average of BTC or BCH for your specified currency.
+The `process_prices` rake task connects to api.bitcoinaverage.com to get the 24 hour weighted average of BTC or BCH for the specified currency of the payment.
 It then updates all payments that haven't received an update in the last 30 minutes with the new value owing in BTC or BCH.
 This *honors* the price of a payment for 30 minutes at a time.
 
 * Update the exchange rate of the crypto and fiat set to default `rake bitcoin_payable:process_prices`
 
 * Update the BCH/USD rate `rake bitcoin_payable:process_prices["BCH","USD"]`
-* Update the BTC/EUR rate `rake bitcoin_payable:process_prices["BCH","USD"]`
+* Update the BTC/EUR rate `rake bitcoin_payable:process_prices["BCH","EUR"]`
 
-* You can run `rake bitcoin_payable:update_rates_for_all_pairs` and the gem will check every fiat and crypto that is used in your payments and conversion history and will update to the currency rate, cleaning the old rates.
+* You can run `rake bitcoin_payable:update_rates_for_all_pairs` and the gem will check every fiat and crypto that is used in your payments and conversion history and will update to the currency rate, cleaning the old rates that are older than one month.
 
-#### Bootstraping a new currency
+##### Bootstraping a new currency
 The gem will automatically create the conversion rate for a currency if it doesn't exist in the conversion table at the time of creating a payment. You can add a payment for any currency at any time without worrying of not having the conversion created.
 
 ### Processing payments
@@ -166,11 +160,13 @@ This means that if someone pays 0.01 for a 0.5 payment, that 0.01 is converted i
 remaining amount is calculated in dollars and the remaining amount in BTC or BCH is issued.  (If BTC or BCH bombs, that value could be greater than 0.5 now)
 
 This prevents people from gaming the payments by paying very little BTC or BCH in hopes the price will rise.
-Payments are not recalculated based on the current value of BTC or BCH, but in dollars.
+Payments are not recalculated based on the current value of BTC or BCH, but in the fiat currency for the particular payment.
 
 To run the payment processor:
 
 `rake bitcoin_payable:process_payments`
+
+*(This task will also update the fiat due for pending payments that haven't been updated in more than 30 minutes)*
 
 ### Notify your application when a payment is made
 
@@ -192,25 +188,34 @@ Use the `bitcoin_payment_paid` method
       end
     end
 
+#### `bitcoin_payment_paid`
+This method will be called whenever a payment is received without taking into consideration the number of confirmations from the transactions for this payment. If `config.allowwebhooks` is set to true, this method will be called almost instantly as transactions with zero confirmations will also set the payment as paid. If you need to absolutely know the payment is secure, use `bitcoin_payment_paid_and_comfirmed`. At the moment of calling this method, the payment will have the state `paid_in_full`.
+
+#### `bitcoin_payment_paid_and_comfirmed`
+This method will me called then all the transactions associated with a payment have reached the confirmations set in `config.confirmations`. At the moment of calling this method, the payment will have the state `confirmed`.
+
 ## Webhooks
 
-If you set `config.allowwebhooks = true` this gem will enable two webhook addresses in your app.
+If you set `config.allowwebhooks = true` this gem will enable two webhooks routes in your Rails app.
 You'll need to specify `config.webhook_port` and `config.webhook_domain`.
 
 The gem will install the routes:
-* bitcoin/notifytransaction *Only if config.zero_tx is set to true*
-* bitcoin/lastblock
+* `bitcoin/notifytransaction`
+* `bitcoin/lastblock`
 
-**This gem will subscribe all the webhooks for you so you don't need to set anything on the server offering the webhooks.**
+**This gem will manage all the webhooks suscriptions for you so you don't need to set anything on the server offering the webhooks.**
 
 #### `bitcoin/notifytransaction`
  This webhook endpoint will receive and store transactions that have zero confirmations, that is, that are still in the mempool.
 
 #### `last_block`
-This webhook will be called every new block and will be used to process the pending payments and update the currency rate.
+This webhook will be called every new block and will be used to process the pending payments and update the rates for Bitcoin or Bitcoin Cash.
 
-When the webhooks are enabled here is no need to process the payments with `rake bitcoin_payable:process_payments` or `rake bitcoin_payable:update_rates_for_all_pairs`. Aditionally by calling this webhook the rates will be updated ever `config.auto_calculate_rate_every`
+When the webhooks are enabled here is no need to process the payments with `rake bitcoin_payable:process_payments` as it'll be triggerd by the webhook `last_block` every 10 minutes.
 
+Additionally `last_block` will trigger `rake bitcoin_payable:update_rates_for_all_pairs` every `config.auto_calculate_rate_every` set during the configuration.
+
+So if webhooks are enabled this particular end point will automate every needed action without you having to set Cron jobs or any other external solution.
 
 
 
