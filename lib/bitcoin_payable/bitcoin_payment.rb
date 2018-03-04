@@ -11,9 +11,6 @@ module BitcoinPayable
     validates :reason, presence: true
     validates :price, presence: true
 
-    rails3?{ attr_accessible :reason, :price, :address, :btc_amount_due,
-                    :btc_conversion, :currency, :payable_type }
-
     before_save :populate_currency_and_amount_due
     after_create :populate_address
     after_create :subscribe_tx_notifications, if: :webhooks_enabled
