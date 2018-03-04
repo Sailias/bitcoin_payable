@@ -13,7 +13,7 @@ module BitcoinPayable
 
     before_save :populate_currency_and_amount_due
     after_create :populate_address
-    after_create :subscribe_to_notifications_in_pool, if: :webhooks
+    after_create :subscribe_tx_notifications, if: :webhooks_enabled
 
     state_machine :state, initial: :pending do
       state :pending
@@ -50,6 +50,7 @@ module BitcoinPayable
       after_transition :on => :paid,           :do => [:notify_payable_paid, :check_if_payment_secure]
       after_transition :on => :comp,           :do => [:notify_payable_paid, :notify_payable_paid_and_comfirmed]
       after_transition :on => :secure_payment, :do => :notify_payable_paid_and_comfirmed
+      after_transition :on => :secure_payment, :do => :desubscribe_tx_notifications if BitcoinPayable.config.allowwebhooks
       after_transition :on => :nothing_paid,   :do => :notify_payable_rollback
 
     end
@@ -108,18 +109,18 @@ module BitcoinPayable
       if method.start_with?('notify_payable_')
         attribute = method[15..-1]
         payable.try("bitcoin_payment_#{attribute}")
+
+      elsif method.end_with?('_tx_notifications')
+        sub_or_desub = method[0..-26]
+        adapter = BitcoinPayable::Adapters::Base.fetch_adapter
+        adapter.send(method, address)
       else
         super
       end
     end
 
-    def webhooks
+    def webhooks_enabled
       BitcoinPayable.config.allowwebhooks
-    end
-
-    def subscribe_to_notifications_in_pool
-      adapter = BitcoinPayable::Adapters::Base.fetch_adapter
-      adapter.subscribe_notify_transaction_in_mempool(address)
     end
 
   end

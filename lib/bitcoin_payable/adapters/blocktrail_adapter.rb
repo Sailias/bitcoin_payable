@@ -57,11 +57,11 @@ module BitcoinPayable::Adapters
       @client.block_latest['height']
     end
 
-    def subscribe_notify_transaction_in_mempool(address)
+    def subscribe_tx_notifications(address)
       @client.subscribe_address_transactions(@new_tx_webhook_id, address, 0)
     end
 
-    def desuscribe_address_from_notifications(address)
+    def desubscribe_tx_notifications(address)
       begin
         @client.unsubscribe_address_transactions(@new_tx_webhook_id,address)
       rescue Blocktrail::Exceptions::ObjectNotFound => e

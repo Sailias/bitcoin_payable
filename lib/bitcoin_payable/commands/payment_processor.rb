@@ -36,7 +36,6 @@ module BitcoinPayable
             stored_transaction = payment.transactions.create!(incoming_tx)
             payment.update_after_new_transactions
           end
-          @adapter.desuscribe_address_from_notifications(payment.address)
         end
       end
       verify_left_behid_txs
