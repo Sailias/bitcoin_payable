@@ -51,11 +51,9 @@ module BitcoinPayable
       end
 
       after_transition :on => :paid,           :do => :notify_payable_paid
-      after_transition :on => :paid,           :do => :check_if_payment_secure
-      after_transition :on => :comp,           :do => :notify_payable_paid
-      after_transition :on => :comp,           :do => :notify_payable_paid
       after_transition :on => :secure_payment, :do => :notify_payable_paid_and_comfirmed
       after_transition :on => :secure_payment, :do => :desubscribe_tx_notifications if BitcoinPayable.config.allowwebhooks
+      after_transition :on => :comp,           :do => [:notify_payable_paid_and_comfirmed, :notify_payable_paid]
       after_transition :on => :nothing_paid,   :do => :notify_payable_rollback
 
     end
@@ -98,6 +96,7 @@ module BitcoinPayable
       fiat_paid = currency_amount_paid
       if fiat_paid >= price
         paid
+        check_if_payment_secure
       elsif fiat_paid > 0
         partially_paid
       else
