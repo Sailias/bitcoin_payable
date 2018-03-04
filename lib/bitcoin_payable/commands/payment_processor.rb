@@ -16,8 +16,8 @@ module BitcoinPayable
                                     .where(bitcoin_payment_transactions: {confirmations: 0..BitcoinPayable.config.confirmations})
                                     .uniq.readonly(false)
 
-      payments_pending_or_partial = BitcoinPayable::BitcoinPayment.where(state: [:pending, :partial_payment])
-      payments_to_review = (payments_with_unsecure_tx + payments_pending_or_partial).uniq{|payment| payment.id}
+      not_confirmed_payments = BitcoinPayable::BitcoinPayment.where(state: [:pending, :partial_payment, :paid_in_full])
+      payments_to_review = (payments_with_unsecure_tx + not_confirmed_payments).uniq{|payment| payment.id}
 
       payments_to_review.each do |payment|
         transactions = @adapter.fetch_transactions_for_address(payment.address)
