@@ -40,6 +40,7 @@ module BitcoinPayable::Adapters
     end
 
     def convert_transactions(transaction, address)
+      transaction = transaction[:data] if transaction.has_key?(:data)
       {
         confirmations:      transaction['confirmations'],
         transaction_hash:   transaction['hash'],
@@ -81,6 +82,11 @@ module BitcoinPayable::Adapters
         puts "Notification for each block seems already subscribed: #{e}"
         @@each_block_subscribed = true
       end
+    end
+
+    def extract_address_from_incoming_tx(params)
+        raise "Incorrect request" unless params[:event_type] == "address-transactions"
+        address = params[:addresses].keys.last
     end
 
     private

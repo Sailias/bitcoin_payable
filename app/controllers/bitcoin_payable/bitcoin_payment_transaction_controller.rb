@@ -12,10 +12,10 @@ module BitcoinPayable
     # Only 0 confirmations as someone could post a tx woth 1000 confirmations
     # and make the app belive it's a secure transaction
     def notify_transaction
-      return unless params[:event_type] == "address-transactions"
-      address = params[:addresses].keys.last
+      adapter = BitcoinPayable::Adapters::Base.fetch_adapter
+      address = adapter.extract_address_from_incoming_tx(params)
 
-      incoming_tx = BitcoinPaymentTransaction.format_transaction(params[:data],address)
+      incoming_tx = BitcoinPaymentTransaction.format_transaction(params,address)
       if incoming_tx[:confirmations] > 0
         render plain: '', template:false, status: :not_acceptable
         return
