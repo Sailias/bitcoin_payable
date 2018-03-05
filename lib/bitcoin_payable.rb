@@ -11,8 +11,9 @@ require 'bitcoin_payable/adapters/blockcypher_adapter'
 require 'bitcoin_payable/adapters/blockchain_info_adapter'
 
 module BitcoinPayable
-  def self.config
+  def self.config(&block)
     @@config ||= BitcoinPayable::Config.instance
+    block_given? ? block.call(@@config) : @@config
   end
 end
 
