@@ -1,4 +1,4 @@
-class CreateCurrencyConversions < ActiveRecord::Migration
+class CreateCurrencyConversions < ActiveRecord::Migration<%= migration_version %>
   def change
     create_table :currency_conversions do |t|
       t.float "currency"
