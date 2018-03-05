@@ -1,6 +1,6 @@
 require 'blockcypher'
 module BitcoinPayable::Adapters
-  class BlockcypherAdapter
+  class BlockcypherAdapter < Base
 
     def initialize
       if BitcoinPayable.config.testnet
@@ -8,6 +8,7 @@ module BitcoinPayable::Adapters
       else
         @blockcypher = BlockCypher::Api.new
       end
+      super
     end
 
     def fetch_transactions_for_address(address)

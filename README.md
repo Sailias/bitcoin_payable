@@ -44,17 +44,42 @@ Or install it yourself as:
 
 config/initializers/bitcoin_payable.rb
 
-    BitcoinPayable.config.currency = :cad
-    BitcoinPayable.config.node_path = "m/0/"
-    BitcoinPayable.config.master_public_key = ENV["MASTER_PUBLIC_KEY"]
-    BitcoinPayable.config.testnet = true
-    BitcoinPayable.config.adapter = "blockchain_info"
+  BitcoinPayable.config do |config|
+
+    config.currency = :usd    # Default currency
+
+    # Webhooks
+    # Only available for blocktrail adapter
+    config.allowwebhooks = true
+    config.auto_calculate_rate_every = 5.hours # Only when webhooks are enabled
+    config.webhook_domain = "domain.com"       # No subdomains or IPs supported
+    config.webhook_port = "3000"               # Let empty if it's not needed
+
+    config.node_path = "m/0/"
+    config.master_public_key = "your xpub master public key here"
+
+    config.testnet = true
+    config.adapter = 'blocktrail' # Use blocktrail, blockchain_info or blockcypher
+  end
 
 
 * In order to use the bitcoin network and issue real addresses, BitcoinPayable.config.testnet must be set to false *
 
     BitcoinPayable.config.testnet = false
 
+#### Blocktrail Adapter
+
+If you use `config.adapter = 'blocktrail'` * The only one supporting webhooks* you'll need to set the following environment variables:
+
+    # Basic authentification for your webhooks
+    ENV['BITCOINPAYABLE_WEBHOOK_NAME']= "key"
+    ENV['BITCOINPAYABLE_WEBHOOK_PASS']= "key"
+
+    # API keys provided by Blocktrail.com
+    ENV['BLOCKTRAIL_API_KEY']= "key"
+    ENV['BLOCKTRAIL_API_SECRET']= "secret"
+
+You can obtain your API keys at https://www.blocktrail.com/dev/login
 #### Node Path
 
 The derivation path for the node that will be creating your addresses

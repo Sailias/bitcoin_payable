@@ -31,4 +31,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency "state_machine"
   spec.add_dependency "blockcypher-ruby"
   spec.add_dependency "money-tree"
+  spec.add_dependency "blocktrail"
 end

@@ -6,13 +6,14 @@ module BitcoinPayable
   class BitcoinPayment < ::ActiveRecord::Base
 
     belongs_to :payable, polymorphic: true
-    has_many :transactions, class_name: BitcoinPayable::BitcoinPaymentTransaction
+    has_many :transactions, class_name: "BitcoinPayable::BitcoinPaymentTransaction"
 
     validates :reason, presence: true
     validates :price, presence: true
 
     before_create :populate_currency_and_amount_due
     after_create :populate_address
+    after_create :subscribe_tx_notifications, if: :webhooks_enabled
 
     state_machine :state, initial: :pending do
       state :pending
@@ -25,6 +26,7 @@ module BitcoinPayable
       end
 
       after_transition :on => :paid, :do => :notify_payable
+      after_transition :on => :paid, :do => :desubscribe_tx_notifications if BitcoinPayable.config.allowwebhooks
 
       event :partially_paid do
         transition :pending => :partial_payment
@@ -51,6 +53,23 @@ module BitcoinPayable
       BitcoinPayable::BitcoinCalculator.exchange_price currency_amount_due, btc_rate
     end
 
+    def update_after_new_transactions
+      update_attributes(btc_amount_due: calculate_btc_amount_due,
+                        btc_conversion: BitcoinPayable::CurrencyConversion.last.btc)
+      check_if_paid
+    end
+
+    def check_if_paid
+      fiat_paid = currency_amount_paid
+      if fiat_paid >= price
+        paid
+      elsif fiat_paid > 0
+        partially_paid
+      else
+        nothing_paid
+      end
+    end
+
     private
 
     def populate_currency_and_amount_due
@@ -67,6 +86,20 @@ module BitcoinPayable
       if self.payable.respond_to?(:bitcoin_payment_paid)
         self.payable.bitcoin_payment_paid
       end
+    end
+
+    def method_missing(m, *args)
+      method = m.to_s
+      if method.end_with?('_tx_notifications')
+        adapter = BitcoinPayable::Adapters::Base.fetch_adapter
+        adapter.send(method, address)
+      else
+        super
+      end
+    end
+
+    def webhooks_enabled
+      BitcoinPayable.config.allowwebhooks
     end
 
   end
