@@ -7,14 +7,20 @@ require 'bitcoin_payable/bitcoin_calculator'
 
 require 'blockcypher'
 require 'bitcoin_payable/adapters/base'
-require 'bitcoin_payable/adapters/blockcypher_adapter'
-require 'bitcoin_payable/adapters/blockchain_info_adapter'
+require 'bitcoin_payable/engine'
+
+require 'bitcoin_payable/rails3_port'
 
 module BitcoinPayable
-  def self.config
+  def self.config(&block)
     @@config ||= BitcoinPayable::Config.instance
+    block_given? ? block.call(@@config) : @@config
   end
+
+  Object.include(BitcoinPayable::Rails3support)
 end
+
+
 
 require 'bitcoin_payable/bitcoin_payment_transaction'
 require "bitcoin_payable/address"
