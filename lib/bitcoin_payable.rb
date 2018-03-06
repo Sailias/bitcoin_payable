@@ -5,14 +5,13 @@ require 'bitcoin_payable/has_bitcoin_payment'
 require 'bitcoin_payable/tasks'
 require 'bitcoin_payable/bitcoin_calculator'
 
-require 'blockcypher'
 require 'bitcoin_payable/adapters/base'
-require 'bitcoin_payable/adapters/blockcypher_adapter'
-require 'bitcoin_payable/adapters/blockchain_info_adapter'
+require 'bitcoin_payable/engine'
 
 module BitcoinPayable
-  def self.config
+  def self.config(&block)
     @@config ||= BitcoinPayable::Config.instance
+    block_given? ? block.call(@@config) : @@config
   end
 end
 

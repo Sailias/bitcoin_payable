@@ -1,12 +1,13 @@
 module BitcoinPayable::Adapters
-  class BlockchainInfoAdapter
+  class BlockchainInfoAdapter < Base
 
     def initialize
       if BitcoinPayable.config.testnet
-        raise "Testnet not supported" 
+        raise "Testnet not supported"
       else
         @url = "https://blockchain.info"
       end
+      super
     end
 
     def fetch_transactions_for_address(address)
@@ -16,7 +17,7 @@ module BitcoinPayable::Adapters
 
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
-      
+
       request = Net::HTTP::Get.new(uri.request_uri)
       response = http.request(request)
 
