@@ -37,16 +37,6 @@ module BitcoinPayable
       end
     end
 
-    protected
-
-    def check_paid(payment)
-      if payment.currency_amount_paid >= payment.price
-        payment.paid
-      elsif payment.currency_amount_paid > 0
-         payment.partially_paid
-      end
-    end
-
   end
 
 end
