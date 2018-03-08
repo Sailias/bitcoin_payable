@@ -13,7 +13,7 @@ module BitcoinPayable
 
     before_create :populate_currency_and_amount_due
     after_create :populate_address
-    after_create :subscribe_tx_notifications, if: :webhooks_enabled
+    after_create :subscribe_to_address_push_notifications, if: :webhooks_enabled
 
     aasm :column => 'state' do
       state :pending, :initial => true
@@ -22,7 +22,7 @@ module BitcoinPayable
       event :paid do
         after do
           notify_payable
-          desubscribe_tx_notifications
+          # desubscribe_tx_notifications
         end
         transitions :from => [:pending, :partial_payment], :to => :paid_in_full
       end
@@ -38,7 +38,6 @@ module BitcoinPayable
         transitions :from => [:pending, :partial_payment], :to => :comped
       end
 
-
     end
 
     def currency_amount_paid
@@ -53,21 +52,6 @@ module BitcoinPayable
     def calculate_btc_amount_due
       btc_rate = BitcoinPayable::CurrencyConversion.last.btc
       BitcoinPayable::BitcoinCalculator.exchange_price currency_amount_due, btc_rate
-    end
-
-    def update_after_new_transactions
-      update_attributes(btc_amount_due: calculate_btc_amount_due,
-                        btc_conversion: BitcoinPayable::CurrencyConversion.last.btc)
-      check_if_paid
-    end
-
-    def check_if_paid
-      fiat_paid = currency_amount_paid
-      if fiat_paid >= price
-        paid!
-      elsif fiat_paid > 0
-        partially_paid!
-      end
     end
 
     private
@@ -88,14 +72,10 @@ module BitcoinPayable
       end
     end
 
-    def method_missing(m, *args)
-      method = m.to_s
-      if method.end_with?('_tx_notifications')
-        adapter = BitcoinPayable::Adapters::Base.fetch_adapter
-        adapter.send(method, address)
-      else
-        super
-      end
+    # Subscribe to a push notification that will alert us via a webhook when a transaction is received for this address
+    def subscribe_to_address_push_notifications
+      adapter = BitcoinPayable::Adapters::Base.fetch_adapter
+      adapter.subscribe_to_address_push_notifications(self)
     end
 
     def webhooks_enabled

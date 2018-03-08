@@ -7,7 +7,6 @@ module BitcoinPayable::Adapters
       else
         @url = "https://blockchain.info"
       end
-      super
     end
 
     def fetch_transactions_for_address(address)
@@ -35,7 +34,6 @@ module BitcoinPayable::Adapters
         estimatedTxTime: transaction["time"],
         estimatedTxValue: transaction['out'].sum{|out| out['addr'].eql?(address) ? out["value"] : 0}
       }
-
     end
 
   end
