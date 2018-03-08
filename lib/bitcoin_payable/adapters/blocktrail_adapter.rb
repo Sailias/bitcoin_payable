@@ -9,17 +9,17 @@ module BitcoinPayable::Adapters
 
     # Create a Blocktrail subscription for this address
     def subscribe_to_address_push_notifications(payment)
-      # Subscribe to the address
-      @client.subscribe_address_transactions(
-        payment.id, 
-        payment.address, 
-        BitcoinPayable.config.confirmations
-      )
-
       # Update the webhook to tell Blocktrail where to post to when a transaction is received
       @client.setup_webhook(
         webhook_url, 
         payment.id
+      )
+
+      # Subscribe to the address to the webhook
+      @client.subscribe_address_transactions(
+        payment.id, 
+        payment.address, 
+        BitcoinPayable.config.confirmations
       )
     end
 
@@ -54,6 +54,7 @@ module BitcoinPayable::Adapters
         :controller => "bitcoin_payable/bitcoin_payment_transaction",
         :action => "notify_transaction",
         :host => BitcoinPayable.config.webhook_domain,
+        :subdomain => BitcoinPayable.config.webhook_subdomain,
         :port => BitcoinPayable.config.webhook_port
       )
     end

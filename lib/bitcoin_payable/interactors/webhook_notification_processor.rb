@@ -5,7 +5,6 @@ module BitcoinPayable::Interactors
     def call
       adapter = BitcoinPayable::Adapters::Base.fetch_adapter
       
-      puts context.params.inspect
       address = context.params[:addresses].keys.last
       bitcoin_payment = BitcoinPayable::BitcoinPayment.find_by(address: address)
 
