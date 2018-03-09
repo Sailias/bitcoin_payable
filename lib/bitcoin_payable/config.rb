@@ -3,14 +3,29 @@ require 'singleton'
 module BitcoinPayable
   class Config
     include Singleton
-    attr_accessor :master_public_key, :node_path, :currency, :open_exchange_key,
-                  :testnet, :adapter, :adapter_api_key, :allowwebhooks, 
-                  :auto_calculate_rate_every, :confirmations,
-                  :webhook_subdomain, :webhook_domain, :webhook_port
+    attr_accessor(
+      # Core
+      :master_public_key, 
+      :node_path, 
+      :currency, 
+      :adapter, 
+      :adapter_api_key, 
+      :testnet, 
+      :confirmations,
+
+      # Pricing
+      :open_exchange_key,
+
+      # Webhooks
+      :allowwebhooks, 
+      :webhook_subdomain, 
+      :webhook_domain, 
+      :webhook_port
+    )
 
     def initialize
       @currency ||= :cad
-      @confirmations ||= 3
+      @confirmations ||= 6
     end
 
     def network

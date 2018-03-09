@@ -51,7 +51,6 @@ config/initializers/bitcoin_payable.rb
     # Webhooks
     # Only available for blocktrail adapter
     config.allowwebhooks = true
-    config.auto_calculate_rate_every = 5.hours # Only when webhooks are enabled
     config.webhook_domain = "domain.com"       # No subdomains or IPs supported
     config.webhook_port = "3000"               # Let empty if it's not needed
 
