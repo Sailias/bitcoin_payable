@@ -48,17 +48,18 @@ config/initializers/bitcoin_payable.rb
 
     config.currency = :usd    # Default currency
 
-    # Webhooks
-    # Only available for blocktrail adapter
-    config.allowwebhooks = true
-    config.webhook_domain = "domain.com"       # No subdomains or IPs supported
-    config.webhook_port = "3000"               # Let empty if it's not needed
-
     config.node_path = "m/0/"
     config.master_public_key = "your xpub master public key here"
 
     config.testnet = true
     config.adapter = 'blocktrail' # Use blocktrail, blockchain_info or blockcypher
+
+    # Webhooks
+    # Only available for blocktrail adapter
+    config.allowwebhooks = true
+    config.webhook_domain = "domain.com"       
+    config.webhook_subdomain = "mysubdomain"
+    config.webhook_port = "3000"               # Let empty if it's not needed
   end
 
 
@@ -79,6 +80,7 @@ If you use `config.adapter = 'blocktrail'` * The only one supporting webhooks* y
     ENV['BLOCKTRAIL_API_SECRET']= "secret"
 
 You can obtain your API keys at https://www.blocktrail.com/dev/login
+
 #### Node Path
 
 The derivation path for the node that will be creating your addresses
@@ -128,6 +130,8 @@ Payments are not recalculated based on the current value of BTC, but in dollars.
 To run the payment processor:
 
 `rake bitcoin_payable:process_payments`
+
+Do no run the payment processor if you have webhooks set up as new transactions will be processed automatically by the webhook.
 
 ### Notify your application when a payment is made
 
