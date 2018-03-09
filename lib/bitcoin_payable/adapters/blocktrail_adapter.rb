@@ -4,7 +4,12 @@ module BitcoinPayable::Adapters
   class BlocktrailAdapter < Base
     
     def initialize
-      @client ||= Blocktrail::Client.new(testnet: BitcoinPayable.config.testnet)
+      if BitcoinPayable.config.testnet
+        @client ||= Blocktrail::Client.new(testnet: true)
+      else
+        @client ||= Blocktrail::Client.new
+      end
+      super
     end
 
     def fetch_transactions_for_address(address)
@@ -15,6 +20,19 @@ module BitcoinPayable::Adapters
           address
         )
       end
+    end
+
+    def convert_transactions(transaction, address)
+      tx_data = transaction["data"]
+
+      {
+        txHash: tx_data["hash"],
+        blockHash: tx_data["block_hash"],
+        blockTime: tx_data["block_time"],
+        confirmations: tx_data["confirmations"],
+        estimatedTxTime: DateTime.parse(tx_data["first_seen_at"]).to_time.to_i,
+        estimatedTxValue: tx_data["estimated_value"]
+      }
     end
 
     # Create a Blocktrail subscription for this address
@@ -40,19 +58,6 @@ module BitcoinPayable::Adapters
       rescue Blocktrail::Exceptions::ObjectNotFound => e
         puts "Blocktrail subscription for address #{address} not found: #{e}"
       end
-    end
-
-    def convert_transactions(transaction, address)
-      tx_data = transaction["data"]
-
-      {
-        txHash: tx_data["hash"],
-        blockHash: tx_data["block_hash"],
-        blockTime: tx_data["block_time"],
-        confirmations: tx_data["confirmations"],
-        estimatedTxTime: DateTime.parse(tx_data["first_seen_at"]).to_time.to_i,
-        estimatedTxValue: tx_data["estimated_value"]
-      }
     end
 
     private
