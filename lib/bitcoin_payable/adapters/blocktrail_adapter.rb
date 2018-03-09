@@ -7,6 +7,16 @@ module BitcoinPayable::Adapters
       @client ||= Blocktrail::Client.new(testnet: BitcoinPayable.config.testnet)
     end
 
+    def fetch_transactions_for_address(address)
+      transactions = @client.address_transactions(address)
+      transactions["data"].map do |tx|
+        convert_transactions(
+          {"data": tx}, 
+          address
+        )
+      end
+    end
+
     # Create a Blocktrail subscription for this address
     def subscribe_to_address_push_notifications(payment)
       # Update the webhook to tell Blocktrail where to post to when a transaction is received
