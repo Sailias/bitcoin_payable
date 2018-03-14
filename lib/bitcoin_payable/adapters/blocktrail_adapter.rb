@@ -38,10 +38,7 @@ module BitcoinPayable::Adapters
     # Create a Blocktrail subscription for this address
     def subscribe_to_address_push_notifications(payment)
       # Update the webhook to tell Blocktrail where to post to when a transaction is received
-      @client.setup_webhook(
-        webhook_url,
-        Rails.application.class.parent_name
-      )
+      setup_webhook
 
       # Subscribe to the address to the webhook
       @client.subscribe_address_transactions(
@@ -64,6 +61,14 @@ module BitcoinPayable::Adapters
     end
 
     private
+
+    def setup_webhook
+      begin
+        @client.setup_webhook webhook_url, Rails.application.class.parent_name
+      rescue Blocktrail::Exceptions::EndpointSpecificError
+        @client.update_webhook Rails.application.class.parent_name, webhook_url
+      end
+    end
 
     def webhook_url
       Rails.application.routes.url_for(
