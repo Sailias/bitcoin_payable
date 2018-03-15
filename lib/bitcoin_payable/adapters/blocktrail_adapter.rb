@@ -39,7 +39,7 @@ module BitcoinPayable::Adapters
     def subscribe_to_address_push_notifications(payment)
       # Update the webhook to tell Blocktrail where to post to when a transaction is received
       @client.setup_webhook(
-        webhook_url, 
+        webhook_url(payment), 
         payment.id
       )
 
@@ -62,15 +62,14 @@ module BitcoinPayable::Adapters
 
     private
 
-    def webhook_url
+    def webhook_url(payment)
       Rails.application.routes.url_for(
-        :user => ENV['BITCOINPAYABLE_WEBHOOK_NAME'],
-        :password => ENV['BITCOINPAYABLE_WEBHOOK_PASS'],
-        :controller => "bitcoin_payable/bitcoin_payment_transaction",
-        :action => "notify_transaction",
-        :host => BitcoinPayable.config.webhook_domain,
-        :subdomain => BitcoinPayable.config.webhook_subdomain,
-        :port => BitcoinPayable.config.webhook_port
+        user: ENV['BITCOIN_PAYABLE_WEBHOOK_USER'],
+        password: ENV['BITCOIN_PAYABLE_WEBHOOK_PASS'],
+        controller: "bitcoin_payable/bitcoin_payment_transaction",
+        action: "notify_transaction",
+        bitcoin_payment_id: payment.id,
+        host: BitcoinPayable.config.webhook_domain
       )
     end
 

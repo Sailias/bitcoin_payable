@@ -4,7 +4,7 @@ module BitcoinPayable
   class BitcoinPaymentTransactionController < ActionController::Base
 
     http_basic_authenticate_with(
-      name: ENV['BITCOIN_PAYABLE_WEBHOOK_NAME'],
+      name: ENV['BITCOIN_PAYABLE_WEBHOOK_USER'],
       password: ENV['BITCOIN_PAYABLE_WEBHOOK_PASS']
     )
 
