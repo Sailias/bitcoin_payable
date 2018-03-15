@@ -2,7 +2,7 @@ require 'blocktrail'
 
 module BitcoinPayable::Adapters
   class BlocktrailAdapter < Base
-    
+
     def initialize
       if BitcoinPayable.config.testnet
         @client ||= Blocktrail::Client.new(testnet: true)
@@ -16,7 +16,7 @@ module BitcoinPayable::Adapters
       transactions = @client.address_transactions(address)
       transactions["data"].map do |tx|
         convert_transactions(
-          {"data": tx}, 
+          {"data": tx},
           address
         )
       end
@@ -38,15 +38,12 @@ module BitcoinPayable::Adapters
     # Create a Blocktrail subscription for this address
     def subscribe_to_address_push_notifications(payment)
       # Update the webhook to tell Blocktrail where to post to when a transaction is received
-      @client.setup_webhook(
-        webhook_url, 
-        payment.id
-      )
+      setup_webhook(payment)
 
       # Subscribe to the address to the webhook
       @client.subscribe_address_transactions(
-        payment.id, 
-        payment.address, 
+        webhook_id(payment),
+        payment.address,
         BitcoinPayable.config.confirmations
       )
     end
@@ -54,13 +51,27 @@ module BitcoinPayable::Adapters
     # Unsubscribe from the Blocktrail subscription for this address
     def unsubscribe_to_address_push_notifications(payment)
       begin
-        @client.unsubscribe_address_transactions(payment.id, payment.address)
+        @client.delete_webhook webhook_id(payment)
       rescue Blocktrail::Exceptions::ObjectNotFound => e
-        puts "Blocktrail subscription for address #{address} not found: #{e}"
+        puts "Blocktrail subscription webhook #{webhook_id(payment)} not found: #{e}"
       end
     end
 
     private
+
+    def setup_webhook(payment)
+      begin
+        @client.setup_webhook(
+          webhook_url,
+          webhook_id(payment),
+        )
+      rescue Blocktrail::Exceptions::EndpointSpecificError
+        @client.update_webhook(
+          webhook_id(payment),
+          webhook_url
+        )
+      end
+    end
 
     def webhook_url
       Rails.application.routes.url_for(
@@ -74,5 +85,8 @@ module BitcoinPayable::Adapters
       )
     end
 
+    def webhook_id(payment)
+      "#{Rails.application.class.parent_name}-Payment-#{payment.id}"
+    end
   end
 end

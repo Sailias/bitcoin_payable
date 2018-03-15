@@ -3,13 +3,11 @@ module BitcoinPayable::Interactors
     include Interactor
 
     def call
-      adapter = BitcoinPayable::Adapters::Base.fetch_adapter
-      
       address = context.params[:addresses].keys.last
       bitcoin_payment = BitcoinPayable::BitcoinPayment.find_by(address: address)
 
       if bitcoin_payment
-        transaction = adapter.convert_transactions(context.params, address)
+        transaction = BitcoinPayable::BitcoinPaymentTransaction.format_transaction(context.params, address)
         BitcoinPayable::Interactors::TransactionProcessor::Organizer.call(
           bitcoin_payment: bitcoin_payment,
           transaction: transaction
