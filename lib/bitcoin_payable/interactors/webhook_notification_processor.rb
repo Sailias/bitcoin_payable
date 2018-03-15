@@ -5,7 +5,7 @@ module BitcoinPayable::Interactors
     def call
       adapter = BitcoinPayable::Adapters::Base.fetch_adapter
 
-      bitcoin_payment = BitcoinPayable::BitcoinPayment.find(params[:bitcoin_payment_id])
+      bitcoin_payment = BitcoinPayable::BitcoinPayment.find(context.params[:bitcoin_payment_id])
       address = context.params[:addresses].keys.last
       # bitcoin_payment = BitcoinPayable::BitcoinPayment.find_by(address: address)
 
