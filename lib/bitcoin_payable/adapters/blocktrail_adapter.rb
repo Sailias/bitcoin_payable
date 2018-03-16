@@ -16,7 +16,7 @@ module BitcoinPayable::Adapters
       transactions = @client.address_transactions(address)
       transactions["data"].map do |tx|
         convert_transactions(
-          {"data": tx}, 
+          {"data" => tx}, 
           address
         )
       end
