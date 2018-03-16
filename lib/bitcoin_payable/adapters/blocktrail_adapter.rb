@@ -28,9 +28,9 @@ module BitcoinPayable::Adapters
       {
         txHash: tx_data["hash"],
         blockHash: tx_data["block_hash"],
-        blockTime: DateTime.parse(tx_data["block_time"]).to_time.to_i,
+        blockTime: DateTime.parse(tx_data["block_time"]).to_time.to_i if tx_data["block_time"],
         confirmations: tx_data["confirmations"],
-        estimatedTxTime: DateTime.parse(tx_data["first_seen_at"]).to_time.to_i,
+        estimatedTxTime: DateTime.parse(tx_data["first_seen_at"]).to_time.to_i if tx_data["first_seen_at"],
         estimatedTxValue: tx_data["estimated_value"]
       }
     end
