@@ -10,7 +10,6 @@ module BitcoinPayable
 
     def notify_transaction
       BitcoinPayable::Interactors::WebhookNotificationProcessor.call(params: params)
-      render text: 'ok', status: :ok
     end
   end
 end
