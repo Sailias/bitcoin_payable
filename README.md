@@ -45,6 +45,7 @@ Or install it yourself as:
 
 ### Configuration
 
+```
 config/initializers/bitcoin_payable.rb
 
   BitcoinPayable.config do |config|
@@ -62,7 +63,7 @@ config/initializers/bitcoin_payable.rb
     config.allowwebhooks = true
     config.webhook_domain = "subdomain.domain.com:port"
   end
-
+```
 
 * In order to use the bitcoin network and issue real addresses, BitcoinPayable.config.testnet must be set to false *
 
