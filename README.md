@@ -45,9 +45,9 @@ Or install it yourself as:
 
 ### Configuration
 
-```
-config/initializers/bitcoin_payable.rb
+`config/initializers/bitcoin_payable.rb`
 
+```
   BitcoinPayable.config do |config|
 
     config.currency = :usd    # Default currency
