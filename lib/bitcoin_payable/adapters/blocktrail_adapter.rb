@@ -53,11 +53,9 @@ module BitcoinPayable::Adapters
 
     # Unsubscribe from the Blocktrail subscription for this address
     def unsubscribe_to_address_push_notifications(payment)
-      begin
-        @client.unsubscribe_address_transactions(payment.id, payment.address)
-      rescue Blocktrail::Exceptions::ObjectNotFound => e
-        puts "Blocktrail subscription for address #{address} not found: #{e}"
-      end
+      @client.unsubscribe_address_transactions(payment.id, payment.address)
+    rescue Blocktrail::Exceptions::ObjectNotFound => e
+      puts "Blocktrail subscription for address #{address} not found: #{e}"
     end
 
     private

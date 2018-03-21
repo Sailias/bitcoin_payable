@@ -2,13 +2,13 @@ module BitcoinPayable::Adapters
   class Base
 
     def self.fetch_adapter
-      unless BitcoinPayable.config.adapter.blank?
+      if BitcoinPayable.config.adapter.blank?
+        raise "Please specify an adapter"
+      else
         api = BitcoinPayable.config.adapter
         adapter_class = api.camelize + 'Adapter'
         adapter_class = BitcoinPayable::Adapters.const_get(adapter_class)
         adapter = adapter_class.new
-      else
-        raise "Please specify an adapter"
       end
     end
 
