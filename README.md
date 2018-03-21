@@ -33,7 +33,7 @@ And then execute:
 
     $ bundle
 
-    $ rails g bitcoin_payable:install
+    $ rails g bitcoin_payable:install --skip
 
     $ bundle exec rake db:migrate
 
@@ -57,6 +57,9 @@ BitcoinPayable.config do |config|
 
   config.testnet = true
   config.adapter = 'blocktrail' # Use blocktrail, blockchain_info or blockcypher
+
+  # Confirmations (defaults to 6)
+  config.confirmations = 6 
 
   # Webhooks
   # Only available for blocktrail adapter
@@ -139,17 +142,33 @@ Do no run the payment processor if you have webhooks set up as new transactions 
 
 Use the `bitcoin_payment_paid` method
 
-    def Product < ActiveRecord::Base
-      has_bitcoin_payments
+```
+def Product < ActiveRecord::Base
+  has_bitcoin_payments
 
-      def create_payment(amount_in_cents)
-        self.bitcoin_payments.create!(reason: 'sale', price: amount_in_cents)
-      end
+  def create_payment(amount_in_cents)
+    self.bitcoin_payments.create!(reason: 'sale', price: amount_in_cents)
+  end
 
-      def bitcoin_payment_paid
-        self.ship!
-      end
-    end
+  def bitcoin_payment_paid
+    self.ship!
+  end
+end
+```
+
+
+Use the `bitcoin_payment_status_changed` method
+
+```
+def bitcoin_payment_status_changed(from_state, to_state)
+  if to_state == "confirmed"
+    self.ship!
+  elsif to_state == "paid_in_full"
+    self.notify_payment_received(self)
+  end
+end
+```
+
 
 ### Comp a payment
 

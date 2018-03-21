@@ -24,7 +24,8 @@ module BitcoinPayable::Adapters
         blockHash: transaction["block_hash"],
         blockTime: DateTime.iso8601(transaction["confirmed"]),
         estimatedTxTime: DateTime.iso8601(transaction["received"]),
-        estimatedTxValue: transaction['outputs'].sum{|out| out['addresses'].join.eql?(address) ? out["value"] : 0}
+        estimatedTxValue: transaction['outputs'].sum{|out| out['addresses'].join.eql?(address) ? out["value"] : 0},
+        confirmations: transaction["confirmations"]
       }
 
     end

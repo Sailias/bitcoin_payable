@@ -5,9 +5,6 @@ module BitcoinPayable
         new.perform
       end
 
-      def initialize
-      end
-
       def perform
         # => Store three previous price ranges
         # => get_currency TODO: enable this again
