@@ -14,6 +14,9 @@ Donations appreciated
 
 ## Rails 5.1
 
+Master now supports multiple Rails versions.
+
+*No longer maintained*
 [Support for Rails 5.1](https://github.com/Sailias/bitcoin_payable/tree/releases/rails-5.1)
 
 ## Other crypto currencies
