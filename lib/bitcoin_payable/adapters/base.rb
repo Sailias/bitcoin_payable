@@ -2,13 +2,13 @@ module BitcoinPayable::Adapters
   class Base
 
     def self.fetch_adapter
-      case BitcoinPayable.config.adapter
-      when "blockchain_info"
-        BitcoinPayable::Adapters::BlockchainInfoAdapter.new
-      when "blockcypher"
-        BitcoinPayable::Adapters::BlockcypherAdapter.new
-      else
+      if BitcoinPayable.config.adapter.blank?
         raise "Please specify an adapter"
+      else
+        api = BitcoinPayable.config.adapter
+        adapter_class = api.camelize + 'Adapter'
+        adapter_class = BitcoinPayable::Adapters.const_get(adapter_class)
+        adapter = adapter_class.new
       end
     end
 

@@ -1,40 +1,43 @@
 #require 'bitcoin-addrgen'
 require 'money-tree'
-require 'state_machine'
+require 'aasm'
 
 module BitcoinPayable
   class BitcoinPayment < ::ActiveRecord::Base
-
+    include AASM
     belongs_to :payable, polymorphic: true
-    has_many :transactions, class_name: BitcoinPayable::BitcoinPaymentTransaction
+    has_many :transactions, class_name: "BitcoinPayable::BitcoinPaymentTransaction"
 
     validates :reason, presence: true
     validates :price, presence: true
 
     before_create :populate_currency_and_amount_due
     after_create :populate_address
+    after_create :subscribe_to_address_push_notifications, if: :webhooks_enabled
 
-    state_machine :state, initial: :pending do
-      state :pending
-      state :partial_payment
-      state :paid_in_full
-      state :comped
+    aasm :column => 'state' do
+      state :pending, :initial => true
+      state :partial_payment, :paid_in_full, :comped
 
       event :paid do
-        transition [:pending, :partial_payment] => :paid_in_full
+        after do
+          notify_payable
+          # desubscribe_tx_notifications
+        end
+        transitions :from => [:pending, :partial_payment], :to => :paid_in_full
       end
 
-      after_transition :on => :paid, :do => :notify_payable
-
       event :partially_paid do
-        transition :pending => :partial_payment
+        transitions :from => :pending, :to => :partial_payment
       end
 
       event :comp do
-        transition [:pending, :partial_payment] => :comped
+        after do
+          notify_payable
+        end
+        transitions :from => [:pending, :partial_payment], :to => :comped
       end
 
-      after_transition :on => :comp, :do => :notify_payable
     end
 
     def currency_amount_paid
@@ -67,6 +70,16 @@ module BitcoinPayable
       if self.payable.respond_to?(:bitcoin_payment_paid)
         self.payable.bitcoin_payment_paid
       end
+    end
+
+    # Subscribe to a push notification that will alert us via a webhook when a transaction is received for this address
+    def subscribe_to_address_push_notifications
+      adapter = BitcoinPayable::Adapters::Base.fetch_adapter
+      adapter.subscribe_to_address_push_notifications(self)
+    end
+
+    def webhooks_enabled
+      BitcoinPayable.config.allowwebhooks
     end
 
   end

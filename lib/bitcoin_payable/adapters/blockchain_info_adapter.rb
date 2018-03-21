@@ -1,9 +1,9 @@
 module BitcoinPayable::Adapters
-  class BlockchainInfoAdapter
+  class BlockchainInfoAdapter < Base
 
     def initialize
       if BitcoinPayable.config.testnet
-        raise "Testnet not supported" 
+        raise "Testnet not supported"
       else
         @url = "https://blockchain.info"
       end
@@ -16,7 +16,7 @@ module BitcoinPayable::Adapters
 
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
-      
+
       request = Net::HTTP::Get.new(uri.request_uri)
       response = http.request(request)
 
@@ -34,7 +34,6 @@ module BitcoinPayable::Adapters
         estimatedTxTime: transaction["time"],
         estimatedTxValue: transaction['out'].sum{|out| out['addr'].eql?(address) ? out["value"] : 0}
       }
-
     end
 
   end
