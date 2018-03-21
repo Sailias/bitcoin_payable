@@ -48,21 +48,21 @@ Or install it yourself as:
 `config/initializers/bitcoin_payable.rb`
 
 ```
-  BitcoinPayable.config do |config|
+BitcoinPayable.config do |config|
 
-    config.currency = :usd    # Default currency
+  config.currency = :usd    # Default currency
 
-    config.node_path = "m/0/"
-    config.master_public_key = "your xpub master public key here"
+  config.node_path = "m/0/"
+  config.master_public_key = "your xpub master public key here"
 
-    config.testnet = true
-    config.adapter = 'blocktrail' # Use blocktrail, blockchain_info or blockcypher
+  config.testnet = true
+  config.adapter = 'blocktrail' # Use blocktrail, blockchain_info or blockcypher
 
-    # Webhooks
-    # Only available for blocktrail adapter
-    config.allowwebhooks = true
-    config.webhook_domain = "subdomain.domain.com:port"
-  end
+  # Webhooks
+  # Only available for blocktrail adapter
+  config.allowwebhooks = true
+  config.webhook_domain = "subdomain.domain.com:port"
+end
 ```
 
 * In order to use the bitcoin network and issue real addresses, BitcoinPayable.config.testnet must be set to false *
