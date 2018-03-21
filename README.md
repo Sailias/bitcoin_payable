@@ -57,9 +57,7 @@ config/initializers/bitcoin_payable.rb
     # Webhooks
     # Only available for blocktrail adapter
     config.allowwebhooks = true
-    config.webhook_domain = "domain.com"       
-    config.webhook_subdomain = "mysubdomain"
-    config.webhook_port = "3000"               # Let empty if it's not needed
+    config.webhook_domain = "subdomain.domain.com:port"
   end
 
 
@@ -72,8 +70,8 @@ config/initializers/bitcoin_payable.rb
 If you use `config.adapter = 'blocktrail'` * The only one supporting webhooks* you'll need to set the following environment variables:
 
     # Basic authentification for your webhooks
-    ENV['BITCOINPAYABLE_WEBHOOK_NAME']= "key"
-    ENV['BITCOINPAYABLE_WEBHOOK_PASS']= "key"
+    ENV['BITCOIN_PAYABLE_WEBHOOK_USER']= "username"
+    ENV['BITCOIN_PAYABLE_WEBHOOK_PASS']= "password"
 
     # API keys provided by Blocktrail.com
     ENV['BLOCKTRAIL_API_KEY']= "key"
