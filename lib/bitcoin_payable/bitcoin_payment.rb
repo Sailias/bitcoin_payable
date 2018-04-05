@@ -17,7 +17,13 @@ module BitcoinPayable
 
     aasm :column => 'state' do
       state :pending, :initial => true
-      state :partial_payment, :paid_in_full, :comped
+      state :partial_payment, :paid_in_full, :comped, :confirmed
+
+      after_all_transitions :notify_status_changed
+
+      event :confirm do
+        transitions :from => [:pending, :paid_in_full], :to => :confirmed
+      end
 
       event :paid do
         after do
@@ -64,6 +70,12 @@ module BitcoinPayable
 
     def populate_address
       self.update(address: Address.create(self.id))
+    end
+
+    def notify_status_changed
+      if self.payable.respond_to?(:bitcoin_payment_status_changed)
+        self.payable.bitcoin_payment_status_changed(aasm.from_state, aasm.to_state)
+      end
     end
 
     def notify_payable
