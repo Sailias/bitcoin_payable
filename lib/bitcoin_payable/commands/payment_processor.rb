@@ -10,7 +10,6 @@ module BitcoinPayable
           adapter = BitcoinPayable::Adapters::Base.fetch_adapter
 
           adapter.fetch_transactions_for_address(payment.address).each do |tx|
-            puts tx.inspect
             next if tx.nil?
 
             BitcoinPayable::Interactors::TransactionProcessor::Organizer.call(

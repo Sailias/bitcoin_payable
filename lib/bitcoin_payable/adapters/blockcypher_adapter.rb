@@ -27,7 +27,6 @@ module BitcoinPayable::Adapters
         estimatedTxValue: transaction['outputs'].sum{|out| out['addresses'].join.eql?(address) ? out["value"] : 0},
         confirmations: transaction["confirmations"]
       }
-
     end
   end
 end
