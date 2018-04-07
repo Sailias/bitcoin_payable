@@ -59,7 +59,16 @@ BitcoinPayable.config do |config|
   config.adapter = 'blocktrail' # Use blocktrail, blockchain_info or blockcypher
 
   # Confirmations (defaults to 6)
-  config.confirmations = 6 
+  config.confirmations = 6
+
+  # The rate for Bitcoin you'll be using to calculate prices (default to :last)
+  # :last               The last market's price
+  # :high               Today's highest price
+  # :low                Today's highest price
+  # :daily_average      The daily average price
+  # :weekly_average     The weekly average price
+  # :monthly_average    The monthly average price
+  config.rate_calculation = :last
 
   # Webhooks
   # Only available for blocktrail adapter
