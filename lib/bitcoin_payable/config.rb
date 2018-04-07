@@ -5,27 +5,29 @@ module BitcoinPayable
     include Singleton
     attr_accessor(
       # Core
-      :master_public_key, 
-      :node_path, 
-      :currency, 
-      :adapter, 
-      :adapter_api_key, 
-      :testnet, 
+      :master_public_key,
+      :node_path,
+      :currency,
+      :adapter,
+      :adapter_api_key,
+      :testnet,
       :confirmations,
+      :crypto,
 
       # Pricing
       :open_exchange_key,
 
       # Webhooks
-      :allowwebhooks, 
-      :webhook_subdomain, 
-      :webhook_domain, 
+      :allowwebhooks,
+      :webhook_subdomain,
+      :webhook_domain,
       :webhook_port
     )
 
     def initialize
       @currency ||= :cad
       @confirmations ||= 6
+      @crypto ||= :btc
     end
 
     def network

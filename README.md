@@ -52,6 +52,10 @@ BitcoinPayable.config do |config|
 
   config.currency = :usd    # Default currency
 
+  # Bitcoin or Bitcoin Bitcoin Cash
+  # Blockcypher and Blockchain.info still to add BCH support
+  config.crypto = :btc # or :bch   
+
   config.node_path = "m/0/"
   config.master_public_key = "your xpub master public key here"
 
@@ -59,7 +63,7 @@ BitcoinPayable.config do |config|
   config.adapter = 'blocktrail' # Use blocktrail, blockchain_info or blockcypher
 
   # Confirmations (defaults to 6)
-  config.confirmations = 6 
+  config.confirmations = 6
 
   # Webhooks
   # Only available for blocktrail adapter
