@@ -52,6 +52,10 @@ BitcoinPayable.config do |config|
 
   config.currency = :usd    # Default currency
 
+  # Bitcoin or Bitcoin Bitcoin Cash
+  # Blockcypher and Blockchain.info still to add BCH support
+  config.crypto = :btc # or :bch   
+
   config.node_path = "m/0/"
   config.master_public_key = "your xpub master public key here"
 

@@ -2,6 +2,7 @@ require 'blockcypher'
 module BitcoinPayable::Adapters
   class BlockcypherAdapter < Base
 
+    # TODO: Support Bitcoin Cash when it's ready at Blockcypher
     def initialize
       if BitcoinPayable.config.testnet
         @blockcypher = BlockCypher::Api.new(network: BlockCypher::TEST_NET_3)
