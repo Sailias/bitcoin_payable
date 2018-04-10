@@ -12,6 +12,10 @@ module BitcoinPayable
           end
         end
 
+        def clean_up_rates(days_old=5)
+          BitcoinPayable::CurrencyConversion.where('created_at < ?',days_old.to_i.days.ago).delete_all
+        end
+
         private
         def known_currencies_in_app
           fiats_in_payments = BitcoinPayable::BitcoinPayment.pluck(:currency)
