@@ -8,6 +8,8 @@ Payments have 5 states:  `pending`, `partial_payment`, `paid_in_full`, `confirme
 
 No private keys needed, No bitcoind blockchain indexing on new servers, just address and payments.
 
+Support for multiple fiat currencies: `USD` `EUR` `GBP` `AUD` `BRL` `CAD` `CZK` `IDR` `ILS` `JPY` `MXN` `MYR` `NZD` `PLN` `RUB` `SEK` `SGD` `TRY`
+
 Donations appreciated
 
 `142WJW4Zzc9iV7uFdbei8Unpe8WcLhUgmE`
@@ -60,6 +62,7 @@ BitcoinPayable.config do |config|
 
   # Confirmations (defaults to 6)
   config.confirmations = 6
+<<<<<<< HEAD
 
   # The rate for Bitcoin you'll be using to calculate prices
   # Optional setting. Default to :daily_average
@@ -70,6 +73,8 @@ BitcoinPayable.config do |config|
   # :weekly_average     The weekly average price
   # :monthly_average    The monthly average price
   config.rate_calculation = :daily_average
+=======
+>>>>>>> readme changes
 
   # Webhooks
   # Only available for blocktrail adapter
@@ -116,8 +121,10 @@ Testnet starts with: tpub
 ### Creating a payment from your application
 
     def create_payment(amount_in_cents)
-      self.bitcoin_payments.create!(reason: 'sale', price: amount_in_cents)
+      self.bitcoin_payments.create!(reason: 'sale', price: amount_in_cents, currency: :eur)
     end
+
+If `currency` is not provided the default fiat currency will be used. You can use a new fiat and the gem will automatically obtain the exchange rate before creating the payment.
 
 ### Update payments with the current price of BTC based on your currency
 
@@ -128,6 +135,8 @@ It then updates all payments that havent received an update in the last 30 minut
 This *honors* the price of a payment for 30 minutes at a time.
 
 `rake bitcoin_payable:process_prices`
+
+The gem will update the prices for all the fiat pairs.
 
 ### Processing payments
 
