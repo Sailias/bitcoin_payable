@@ -111,19 +111,24 @@ Testnet starts with: tpub
       self.bitcoin_payments.create!(reason: 'sale', price: amount_in_cents, currency: :eur)
     end
 
-If `currency` is not provided the default fiat currency will be used. You can use a new fiat and the gem will automatically obtain the exchange rate before creating the payment.
+If `currency` is not provided the default fiat currency will be used. You can create a Bitcoin payment for a new—supported—fiat currency and BitcoinPayable will automatically create obtain the exchange rate before creating the payment.
 
 ### Update payments with the current price of BTC based on your currency
 
-BitcoinPayable also supports local currency conversions and BTC exchange rates.
+BitcoinPayable also supports multiple fiat currencies conversions and BTC exchange rates.
 
 The `process_prices` rake task connects to api.bitcoinaverage.com to get the 24 hour weighted average of BTC for your specified currency.
-It then updates all payments that havent received an update in the last 30 minutes with the new value owing in BTC.
+It then updates all payments that haven't received an update in the last 30 minutes with the new value owing in BTC.
 This *honors* the price of a payment for 30 minutes at a time.
 
 `rake bitcoin_payable:process_prices`
 
-The gem will update the prices for all the fiat pairs.
+BitcoinPayable will update the prices for all the fiat pairs.
+
+#### Clean up old rates
+You will be able to clean up old rates with:
+
+`rake bitcoin_payable:clean_old_rates` or `rake bitcoin_payable:clean_old_rates[days_old]`
 
 ### Processing payments
 
