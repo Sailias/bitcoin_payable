@@ -27,7 +27,7 @@ module BitcoinPayable
     def initialize
       @currency ||= :cad
       @confirmations ||= 6
-      @rate_calculation = :last
+      @rate_calculation ||= :daily_average
     end
 
     def network

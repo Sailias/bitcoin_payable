@@ -29,7 +29,7 @@ module BitcoinPayable
         hash = JSON.parse(response.body)
 
         rate = case BitcoinPayable.config.rate_calculation
-        when nil, :daily_average # Defauilt
+        when :daily_average 
           hash["averages"]["day"]
         when :weekly_average
           hash["averages"]["week"]
