@@ -19,7 +19,8 @@ module BitcoinPayable
       end
 
       def get_btc
-        uri = URI.parse("https://apiv2.bitcoinaverage.com/indices/local/ticker/BTC#{BitcoinPayable.config.currency.to_s.upcase}")
+        uri = URI.parse("https://apiv2.bitcoinaverage.com/indices/local/ticker/"\
+                        "#{BitcoinPayable.config.crypto.to_s.upcase}#{BitcoinPayable.config.currency.to_s.upcase}")
         http = Net::HTTP.new(uri.host, uri.port)
         http.use_ssl = true
 
