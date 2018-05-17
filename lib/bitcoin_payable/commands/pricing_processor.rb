@@ -28,19 +28,16 @@ module BitcoinPayable
         response = http.request(request)
         hash = JSON.parse(response.body)
 
-        rate = case BitcoinPayable.config.rate_calculation
-        when :daily_average 
-          hash["averages"]["day"]
-        when :weekly_average
-          hash["averages"]["week"]
-        when :monthly_average
-          hash["averages"]["month"]
-        when :last
-          hash["last"]
-        else
-          raise "Rate calculation not supported"
-        end
+        prices = {
+          last: hash["last"],
+          high: hash["high"],
+          low: hash["low"],
+          daily_average: hash["averages"]["day"],
+          weekly_average: hash["averages"]["week"],
+          monthly_average: hash["averages"]["month"]
+        }
 
+        rate = prices[BitcoinPayable.config.rate_calculation] || prices[:daily_average]
         rate.to_f * 100.00
       end
 
