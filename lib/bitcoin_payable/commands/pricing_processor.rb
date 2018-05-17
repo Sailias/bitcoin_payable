@@ -35,8 +35,10 @@ module BitcoinPayable
           hash["averages"]["week"]
         when :monthly_average
           hash["averages"]["month"]
+        when :last
+          hash["last"]
         else
-          hash[BitcoinPayable.config.rate_calculation.to_s]
+          raise "Rate calculation not supported"
         end
 
         rate.to_f * 100.00
