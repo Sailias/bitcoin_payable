@@ -16,6 +16,7 @@ module BitcoinPayable
 
       # Pricing
       :open_exchange_key,
+      :rate_calculation,
 
       # Webhooks
       :allowwebhooks,
@@ -27,7 +28,9 @@ module BitcoinPayable
     def initialize
       @currency ||= :cad
       @confirmations ||= 6
+
       @crypto ||= :btc
+      @rate_calculation ||= :daily_average
     end
 
     def network

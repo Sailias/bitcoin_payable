@@ -28,7 +28,18 @@ module BitcoinPayable
 
         response = http.request(request)
         hash = JSON.parse(response.body)
-        hash["averages"]["day"].to_f * 100.00
+
+        prices = {
+          last: hash["last"],
+          high: hash["high"],
+          low: hash["low"],
+          daily_average: hash["averages"]["day"],
+          weekly_average: hash["averages"]["week"],
+          monthly_average: hash["averages"]["month"]
+        }
+
+        rate = prices[BitcoinPayable.config.rate_calculation] || prices[:daily_average]
+        rate.to_f * 100.00
       end
 
       def get_currency
