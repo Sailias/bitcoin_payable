@@ -1,6 +1,8 @@
 module BitcoinPayable::Adapters
   class BlockchainInfoAdapter < Base
 
+    # TODO: Support Bitcoin Cash when it's ready at Blockcypher
+    
     def initialize
       if BitcoinPayable.config.testnet
         raise "Testnet not supported"
