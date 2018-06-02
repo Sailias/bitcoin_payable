@@ -1,5 +1,7 @@
 # BitcoinPayable
 
+Support Bitcoin and Bitcoin Cash in your Ruby on Rails application!
+
 A rails gem that enables any model to have bitcoin payments.
 The polymorphic table bitcoin_payments creates payments with unique addresses based on a BIP32 deterministic seed using https://github.com/wink/money-tree
 and uses the (https://helloblock.io OR https://blockchain.info/) API to check for payments.
@@ -13,6 +15,7 @@ Support for multiple fiat currencies: `USD` `EUR` `GBP` `AUD` `BRL` `CAD` `CZK` 
 Donations appreciated
 
 `142WJW4Zzc9iV7uFdbei8Unpe8WcLhUgmE`
+`bitcoincash:qqsnzsxsytmp45t6ndyaz5etj0x9vvacvqmphswqa8`
 
 ## Rails 5.1
 
@@ -54,6 +57,10 @@ BitcoinPayable.config do |config|
 
   config.currency = :usd    # Default currency
 
+  # Bitcoin or Bitcoin Bitcoin Cash
+  # Blockcypher and Blockchain.info still to add BCH support
+  config.crypto = :btc # or :bch   
+
   config.node_path = "m/0/"
   config.master_public_key = "your xpub master public key here"
 
@@ -62,7 +69,7 @@ BitcoinPayable.config do |config|
 
   # Confirmations (defaults to 6)
   config.confirmations = 6
-
+  
   # The rate for Bitcoin you'll be using to calculate prices
   # Optional setting. Default to :daily_average
   # :last               The last market's price
