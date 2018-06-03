@@ -12,6 +12,7 @@ module BitcoinPayable
       :adapter_api_key,
       :testnet,
       :confirmations,
+      :crypto,
 
       # Pricing
       :open_exchange_key,
@@ -27,6 +28,8 @@ module BitcoinPayable
     def initialize
       @currency ||= :cad
       @confirmations ||= 6
+
+      @crypto ||= :btc
       @rate_calculation ||= :daily_average
     end
 

@@ -1,5 +1,7 @@
 # BitcoinPayable
 
+Support Bitcoin and Bitcoin Cash in your Ruby on Rails application!
+
 A rails gem that enables any model to have bitcoin payments.
 The polymorphic table bitcoin_payments creates payments with unique addresses based on a BIP32 deterministic seed using https://github.com/wink/money-tree
 and uses the (https://helloblock.io OR https://blockchain.info/) API to check for payments.
@@ -8,9 +10,12 @@ Payments have 5 states:  `pending`, `partial_payment`, `paid_in_full`, `confirme
 
 No private keys needed, No bitcoind blockchain indexing on new servers, just address and payments.
 
+Support for multiple fiat currencies: `USD` `EUR` `GBP` `AUD` `BRL` `CAD` `CZK` `IDR` `ILS` `JPY` `MXN` `MYR` `NZD` `PLN` `RUB` `SEK` `SGD` `TRY`
+
 Donations appreciated
 
 `142WJW4Zzc9iV7uFdbei8Unpe8WcLhUgmE`
+`bitcoincash:qqsnzsxsytmp45t6ndyaz5etj0x9vvacvqmphswqa8`
 
 ## Rails 5.1
 
@@ -52,6 +57,10 @@ BitcoinPayable.config do |config|
 
   config.currency = :usd    # Default currency
 
+  # Bitcoin or Bitcoin Bitcoin Cash
+  # Blockcypher and Blockchain.info still to add BCH support
+  config.crypto = :btc # or :bch   
+
   config.node_path = "m/0/"
   config.master_public_key = "your xpub master public key here"
 
@@ -60,7 +69,7 @@ BitcoinPayable.config do |config|
 
   # Confirmations (defaults to 6)
   config.confirmations = 6
-
+  
   # The rate for Bitcoin you'll be using to calculate prices
   # Optional setting. Default to :daily_average
   # :last               The last market's price
@@ -116,18 +125,27 @@ Testnet starts with: tpub
 ### Creating a payment from your application
 
     def create_payment(amount_in_cents)
-      self.bitcoin_payments.create!(reason: 'sale', price: amount_in_cents)
+      self.bitcoin_payments.create!(reason: 'sale', price: amount_in_cents, currency: :eur)
     end
+
+If `currency` is not provided the default fiat currency will be used. You can create a Bitcoin payment for a new—supported—fiat currency and BitcoinPayable will automatically create obtain the exchange rate before creating the payment.
 
 ### Update payments with the current price of BTC based on your currency
 
-BitcoinPayable also supports local currency conversions and BTC exchange rates.
+BitcoinPayable also supports multiple fiat currencies conversions and BTC exchange rates.
 
 The `process_prices` rake task connects to api.bitcoinaverage.com to get the 24 hour weighted average of BTC for your specified currency.
-It then updates all payments that havent received an update in the last 30 minutes with the new value owing in BTC.
+It then updates all payments that haven't received an update in the last 30 minutes with the new value owing in BTC.
 This *honors* the price of a payment for 30 minutes at a time.
 
 `rake bitcoin_payable:process_prices`
+
+BitcoinPayable will update the prices for all the fiat pairs.
+
+#### Clean up old rates
+You will be able to clean up old rates with:
+
+`rake bitcoin_payable:clean_old_rates` or `rake bitcoin_payable:clean_old_rates[days_old]`
 
 ### Processing payments
 
