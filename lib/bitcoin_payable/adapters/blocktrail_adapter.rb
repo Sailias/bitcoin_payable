@@ -2,7 +2,7 @@ require 'blocktrail'
 
 module BitcoinPayable::Adapters
   class BlocktrailAdapter < Base
-    
+
     def initialize
       if BitcoinPayable.config.testnet
         @client ||= Blocktrail::Client.new(testnet: true)
@@ -16,7 +16,7 @@ module BitcoinPayable::Adapters
       transactions = @client.address_transactions(address)
       transactions["data"].map do |tx|
         convert_transactions(
-          {"data" => tx}, 
+          {"data" => tx},
           address
         )
       end
@@ -39,23 +39,29 @@ module BitcoinPayable::Adapters
     def subscribe_to_address_push_notifications(payment)
       # Update the webhook to tell Blocktrail where to post to when a transaction is received
       @client.setup_webhook(
-        webhook_url(payment), 
+        webhook_url(payment),
         payment.id
       )
 
       # Subscribe to the address to the webhook
       @client.subscribe_address_transactions(
-        payment.id, 
-        payment.address, 
+        payment.id,
+        payment.address,
         BitcoinPayable.config.confirmations
       )
     end
 
-    # Unsubscribe from the Blocktrail subscription for this address
+    # # Unsubscribe from the Blocktrail subscription for this address
+    # def unsubscribe_to_address_push_notifications(payment)
+    #   @client.unsubscribe_address_transactions(payment.id.to_s, payment.address)
+    # rescue Blocktrail::Exceptions::ObjectNotFound => e
+    #   puts "Blocktrail subscription for address #{address} not found: #{e}"
+    # end
+
     def unsubscribe_to_address_push_notifications(payment)
-      @client.unsubscribe_address_transactions(payment.id, payment.address)
-    rescue Blocktrail::Exceptions::ObjectNotFound => e
-      puts "Blocktrail subscription for address #{address} not found: #{e}"
+        @client.delete_webhook(payment.id)
+      rescue Blocktrail::Exceptions::EndpointSpecificError => e
+        puts "Blocktrail webhook '#{payment.id}' not found: #{e}"
     end
 
     private
