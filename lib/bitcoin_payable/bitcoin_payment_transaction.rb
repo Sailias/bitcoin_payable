@@ -9,5 +9,10 @@ module BitcoinPayable
       adapter = BitcoinPayable::Adapters::Base.fetch_adapter
       self.btc_conversion ||= bitcoin_payment.btc_conversion
     end
+
+    def secure?
+      return true if self.confirmations >= BitcoinPayable.config.confirmations 
+      return false
+    end
   end
 end
