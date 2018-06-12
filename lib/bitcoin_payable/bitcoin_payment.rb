@@ -60,6 +60,11 @@ module BitcoinPayable
       BitcoinPayable::BitcoinCalculator.exchange_price currency_amount_due, btc_rate
     end
 
+    def secure?
+      return true if transactions.all?{|tx| tx.secure?}
+      return false
+    end
+
     private
 
     def populate_currency_and_amount_due
