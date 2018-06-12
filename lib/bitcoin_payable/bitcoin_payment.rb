@@ -22,13 +22,15 @@ module BitcoinPayable
       after_all_transitions :notify_status_changed
 
       event :confirm do
+        after do
+          unsubscribe_address_push_notifications if webhooks_enabled
+        end
         transitions :from => [:pending, :paid_in_full], :to => :confirmed
       end
 
       event :paid do
         after do
           notify_payable
-          # desubscribe_tx_notifications
         end
         transitions :from => [:pending, :partial_payment], :to => :paid_in_full
       end
@@ -93,6 +95,11 @@ module BitcoinPayable
     def subscribe_to_address_push_notifications
       adapter = BitcoinPayable::Adapters::Base.fetch_adapter
       adapter.subscribe_to_address_push_notifications(self)
+    end
+
+    def unsubscribe_address_push_notifications
+      adapter = BitcoinPayable::Adapters::Base.fetch_adapter
+      adapter.unsubscribe_to_address_push_notifications(self)
     end
 
     def webhooks_enabled
