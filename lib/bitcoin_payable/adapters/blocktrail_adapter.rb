@@ -4,10 +4,12 @@ module BitcoinPayable::Adapters
   class BlocktrailAdapter < Base
 
     def initialize
+      coin = :bcc if BitcoinPayable.config.crypto == :bch # Blocktrail uses BCC tciker
+
       if BitcoinPayable.config.testnet
-        @client ||= Blocktrail::Client.new(testnet: true)
+        @client ||= Blocktrail::Client.new(testnet: true, coin: coin.to_s)
       else
-        @client ||= Blocktrail::Client.new
+        @client ||= Blocktrail::Client.new(coin: coin.to_s)
       end
       super
     end
