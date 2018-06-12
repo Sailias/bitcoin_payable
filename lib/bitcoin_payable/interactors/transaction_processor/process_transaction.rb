@@ -4,10 +4,10 @@ module BitcoinPayable::Interactors::TransactionProcessor
 
     def call
       context.bitcoin_payment_transaction = context.bitcoin_payment.transactions.find_by_transaction_hash(context.transaction[:txHash])
-      
+
       if context.bitcoin_payment_transaction
         # We have this transaction, update it's number of confirmations
-        context.bitcoin_payment_transaction.update(confirmations: context.transaction[:confirmations])
+        context.bitcoin_payment_transaction.update_attributes(confirmations: context.transaction[:confirmations])
       else
         # We have never seen this transaction, let's create it
         context.bitcoin_payment_transaction = context.bitcoin_payment.transactions.create!(
