@@ -93,7 +93,7 @@ end
 
 #### Blocktrail Adapter
 
-If you use `config.adapter = 'blocktrail'` * The only one supporting webhooks* you'll need to set the following environment variables:
+If you use `config.adapter = 'blocktrail'` *(The only one supporting webhooks)* you'll need to set the following environment variables:
 
     # Basic authentification for your webhooks
     ENV['BITCOIN_PAYABLE_WEBHOOK_USER']= "username"
@@ -103,7 +103,9 @@ If you use `config.adapter = 'blocktrail'` * The only one supporting webhooks* y
     ENV['BLOCKTRAIL_API_KEY']= "key"
     ENV['BLOCKTRAIL_API_SECRET']= "secret"
 
-You can obtain your API keys at https://www.blocktrail.com/dev/login
+Please bear in mind [Blocktrail.com](http://blocktrail.com) was acquired by [Bitmain](http://bitmain.com) and the service has ben entirely moved to [BTC.com](http://btc.com).
+
+You can obtain your API keys at https://dev.btc.com
 
 #### Node Path
 
