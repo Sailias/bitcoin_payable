@@ -25,7 +25,7 @@ module BitcoinPayable
         after do
           unsubscribe_address_push_notifications if webhooks_enabled
         end
-        transitions :from => [:pending, :paid_in_full], :to => :confirmed
+        transitions :from => [:pending, :paid_in_full, :partial_payment], :to => :confirmed
       end
 
       event :paid do
