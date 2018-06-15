@@ -39,7 +39,7 @@ module BitcoinPayable
           .where(state: ['pending', 'partial_payment'])
           .where(currency: @currency)
           .where("updated_at < ? OR btc_amount_due = 0", 30.minutes.ago).each do |bp|
-            bp.update_atributes!(btc_amount_due: bp.calculate_btc_amount_due, btc_conversion: rate.btc)
+            bp.update_attributes!(btc_amount_due: bp.calculate_btc_amount_due, btc_conversion: rate.btc)
           end
       end
 
