@@ -22,7 +22,7 @@ module BitcoinPayable
       after_all_transitions :notify_status_changed
 
       event :confirm do
-        transitions :from => [:pending, :paid_in_full], :to => :confirmed
+        transitions :from => [:pending, :paid_in_full, :partial_payment], :to => :confirmed
       end
 
       event :paid do
