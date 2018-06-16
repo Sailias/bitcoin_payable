@@ -22,7 +22,7 @@ module BitcoinPayable
       :allowwebhooks,
       :webhook_subdomain,
       :webhook_domain,
-      :webhook_port
+      :webhook_protocol
     )
 
     def initialize

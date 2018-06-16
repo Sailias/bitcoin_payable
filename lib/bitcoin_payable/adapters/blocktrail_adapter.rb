@@ -75,7 +75,8 @@ module BitcoinPayable::Adapters
         controller: "bitcoin_payable/bitcoin_payment_transaction",
         action: "notify_transaction",
         bitcoin_payment_id: payment.id,
-        host: BitcoinPayable.config.webhook_domain
+        host: BitcoinPayable.config.webhook_domain,
+        protocol: BitcoinPayable.config.webhook_protocol.presence || 'http'
       )
     end
 
