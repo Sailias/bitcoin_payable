@@ -46,6 +46,10 @@ module BitcoinPayable
 
     end
 
+    def confirmed?
+      self.transactions.all?{|tx| tx.confirmed?}
+    end
+
     def currency_amount_paid
       # => Round to 0 decimal places so there aren't any partial cents
       self.transactions.inject(0) { |sum, tx| sum + (BitcoinPayable::BitcoinCalculator.convert_satoshis_to_bitcoin(tx.estimated_value) * tx.btc_conversion) }.round(0)

@@ -15,19 +15,19 @@ module BitcoinPayable::Interactors::TransactionProcessor
     private
 
     def handle_paid_in_full
-      if context.bitcoin_payment_transaction.confirmations >= BitcoinPayable.config.confirmations
+      if context.bitcoin_payment.confirmed?
         # This payment is already paid in full, we should check the confirmation count
         context.bitcoin_payment.confirm!
 
       elsif !context.bitcoin_payment.paid_in_full?
         # This payment has not been marked as paid yet, let's mark it
-        context.bitcoin_payment.paid! 
+        context.bitcoin_payment.paid!
       end
     end
 
     def handle_partial_paid
       unless context.bitcoin_payment.partial_payment?
-        context.bitcoin_payment.partially_paid! 
+        context.bitcoin_payment.partially_paid!
       end
     end
 
