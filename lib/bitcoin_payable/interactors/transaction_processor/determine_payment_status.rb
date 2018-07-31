@@ -5,7 +5,7 @@ module BitcoinPayable::Interactors::TransactionProcessor
     def call
       fiat_paid = context.bitcoin_payment.currency_amount_paid
       
-      if fiat_paid >= context.bitcoin_payment.price
+      if fiat_paid >= (context.bitcoin_payment.price - BitcoinPayable.config.payment_variance)
         handle_paid_in_full unless context.bitcoin_payment.confirmed?
       elsif fiat_paid > 0
         handle_partial_paid

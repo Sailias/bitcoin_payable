@@ -12,6 +12,7 @@ module BitcoinPayable
       :adapter_api_key, 
       :testnet, 
       :confirmations,
+      :payment_variance,
 
       # Pricing
       :open_exchange_key,
@@ -26,6 +27,12 @@ module BitcoinPayable
     def initialize
       @currency ||= :cad
       @confirmations ||= 6
+
+      # Allow a number of cents difference between price and payment amount
+      # to account for payments very close to the price.
+      # Even though we honour the price for 30 minutes,
+      # there will still be payments made close to the time limit that are very close to the amount due.
+      @payment_variance ||= 0
     end
 
     def network
