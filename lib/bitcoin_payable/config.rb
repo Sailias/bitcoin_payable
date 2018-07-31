@@ -5,29 +5,31 @@ module BitcoinPayable
     include Singleton
     attr_accessor(
       # Core
-      :master_public_key, 
-      :node_path, 
-      :currency, 
-      :adapter, 
-      :adapter_api_key, 
-      :testnet, 
+      :master_public_key,
+      :node_path,
+      :currency,
+      :adapter,
+      :adapter_api_key,
+      :testnet,
       :confirmations,
       :payment_variance,
 
       # Pricing
       :open_exchange_key,
+      :rate_calculation,
 
       # Webhooks
-      :allowwebhooks, 
-      :webhook_subdomain, 
-      :webhook_domain, 
+      :allowwebhooks,
+      :webhook_subdomain,
+      :webhook_domain,
       :webhook_port
     )
 
     def initialize
       @currency ||= :cad
       @confirmations ||= 6
-
+      @rate_calculation ||= :daily_average
+      
       # Allow a number of cents difference between price and payment amount
       # to account for payments very close to the price.
       # Even though we honour the price for 30 minutes,
