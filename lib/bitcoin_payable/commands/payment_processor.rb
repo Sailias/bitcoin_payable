@@ -19,6 +19,12 @@ module BitcoinPayable
                 transaction: tx
               )
             end
+
+            # Determine the status of this payment even if there are no transactions
+            # Could be comped or discounted
+            BitcoinPayable::Interactors::BitcoinPaymentProcessor::DeterminePaymentStatus.call(
+              bitcoin_payment: payment
+            )
           rescue JSON::ParserError
             puts "Error processing response from server.  Possible API issue or your Quota has been exceeded"
           end

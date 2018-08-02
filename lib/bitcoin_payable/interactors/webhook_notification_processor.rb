@@ -10,9 +10,14 @@ module BitcoinPayable::Interactors
 
       if bitcoin_payment && bitcoin_payment.address == address
         transaction = adapter.convert_transactions(context.params, address)
+        
         BitcoinPayable::Interactors::TransactionProcessor::Organizer.call(
           bitcoin_payment: bitcoin_payment,
           transaction: transaction
+        )
+
+        BitcoinPayable::Interactors::BitcoinPaymentProcessor::DeterminePaymentStatus.call(
+          bitcoin_payment: bitcoin_payment
         )
       end
     end

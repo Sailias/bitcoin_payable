@@ -1,4 +1,4 @@
-module BitcoinPayable::Interactors::TransactionProcessor
+module BitcoinPayable::Interactors::BitcoinPaymentProcessor
   class DeterminePaymentStatus
     include Interactor
 

@@ -4,8 +4,7 @@ module BitcoinPayable::Interactors::TransactionProcessor
 
     organize [
       BitcoinPayable::Interactors::TransactionProcessor::ProcessTransaction,
-      BitcoinPayable::Interactors::TransactionProcessor::UpdatePaymentAmounts,
-      BitcoinPayable::Interactors::TransactionProcessor::DeterminePaymentStatus
+      BitcoinPayable::Interactors::TransactionProcessor::UpdatePaymentAmounts
     ]
   end
 end
