@@ -1,3 +1,3 @@
 module BitcoinPayable
-  VERSION = "0.7.16"
+  VERSION = "0.7.17"
 end
