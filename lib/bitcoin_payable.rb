@@ -18,8 +18,8 @@ require 'bitcoin_payable/adapters/blocktrail_adapter'
 require 'bitcoin_payable/interactors/webhook_notification_processor'
 require 'bitcoin_payable/interactors/transaction_processor/process_transaction'
 require 'bitcoin_payable/interactors/transaction_processor/update_payment_amounts'
-require 'bitcoin_payable/interactors/transaction_processor/determine_payment_status'
 require 'bitcoin_payable/interactors/transaction_processor/organizer'
+require 'bitcoin_payable/interactors/bitcoin_payment_processor/determine_payment_status'
 
 module BitcoinPayable
   def self.config(&block)
