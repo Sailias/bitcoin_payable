@@ -46,7 +46,7 @@ module BitcoinPayable
 
     end
 
-    def confirmed?
+    def all_transactions_confirmed?
       self.transactions.all?{|tx| tx.confirmed?}
     end
 

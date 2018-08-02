@@ -15,7 +15,7 @@ module BitcoinPayable::Interactors::BitcoinPaymentProcessor
     private
 
     def handle_paid_in_full
-      if context.bitcoin_payment.confirmed?
+      if context.bitcoin_payment.all_transactions_confirmed?
         # This payment is already paid in full, we should check the confirmation count
         context.bitcoin_payment.confirm!
 
