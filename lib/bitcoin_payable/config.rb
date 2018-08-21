@@ -13,6 +13,7 @@ module BitcoinPayable
       :testnet,
       :confirmations,
       :payment_variance,
+      :processing_days,
 
       # Pricing
       :open_exchange_key,
@@ -35,6 +36,9 @@ module BitcoinPayable
       # Even though we honour the price for 30 minutes,
       # there will still be payments made close to the time limit that are very close to the amount due.
       @payment_variance ||= 0
+
+      # Only process payments once for the last X number of days
+      @processing_days ||= 30
     end
 
     def network

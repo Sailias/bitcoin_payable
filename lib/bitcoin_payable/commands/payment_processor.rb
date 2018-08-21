@@ -7,7 +7,7 @@ module BitcoinPayable
     def perform
       BitcoinPayable::BitcoinPayment.
         where(state: [:pending, :partial_payment, :paid_in_full]).
-        where("created_at > ?", 30.days.ago).each do |payment|
+        where("created_at > ?", (BitcoinPayable.config.processing_days.to_i).days.ago).each do |payment|
           begin
             adapter = BitcoinPayable::Adapters::Base.fetch_adapter
 
