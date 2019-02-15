@@ -8,10 +8,6 @@ Payments have 5 states:  `pending`, `partial_payment`, `paid_in_full`, `confirme
 
 No private keys needed, No bitcoind blockchain indexing on new servers, just address and payments.
 
-Donations appreciated
-
-`142WJW4Zzc9iV7uFdbei8Unpe8WcLhUgmE`
-
 ## Rails 5.1
 
 Master now supports multiple Rails versions.
