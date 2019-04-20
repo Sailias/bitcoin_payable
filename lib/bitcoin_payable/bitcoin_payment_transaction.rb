@@ -11,7 +11,7 @@ module BitcoinPayable
     end
 
     def confirmed?
-      self.confirmations >= BitcoinPayable.config.confirmations 
+      self.confirmations.to_i >= BitcoinPayable.config.confirmations 
     end
   end
 end
