@@ -20,6 +20,7 @@ require 'bitcoin_payable/interactors/transaction_processor/process_transaction'
 require 'bitcoin_payable/interactors/transaction_processor/update_payment_amounts'
 require 'bitcoin_payable/interactors/transaction_processor/organizer'
 require 'bitcoin_payable/interactors/bitcoin_payment_processor/determine_payment_status'
+require 'bitcoin_payable/interactors/bitcoin_payment_processor/process_transactions_for_payment'
 
 module BitcoinPayable
   def self.config(&block)
