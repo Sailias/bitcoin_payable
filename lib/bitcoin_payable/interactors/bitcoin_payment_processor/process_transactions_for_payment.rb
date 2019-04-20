@@ -8,7 +8,7 @@ module BitcoinPayable::Interactors::BitcoinPaymentProcessor
         next if tx.nil?
 
         BitcoinPayable::Interactors::TransactionProcessor::Organizer.call(
-          bitcoin_payment: payment,
+          bitcoin_payment: context.payment,
           transaction: tx
         )
       end
@@ -16,7 +16,7 @@ module BitcoinPayable::Interactors::BitcoinPaymentProcessor
       # Determine the status of this payment even if there are no transactions
       # Could be comped or discounted
       BitcoinPayable::Interactors::BitcoinPaymentProcessor::DeterminePaymentStatus.call(
-        bitcoin_payment: payment
+        bitcoin_payment: context.payment
       )
     end
 
