@@ -12,6 +12,11 @@ module BitcoinPayable
             BitcoinPayable::Interactors::BitcoinPaymentProcessor::ProcessTransactionsForPayment.call(
               payment: payment
             )
+
+            # Cloudflare limits requests to 1200 req / 5 minutes
+            # or 4 requests / 1 second
+            # So we will sleep for 200ms after each request
+            sleep(0.2)
           rescue JSON::ParserError
             puts "Error processing response from server.  Possible API issue or your Quota has been exceeded"
           end
