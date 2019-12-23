@@ -12,6 +12,7 @@ module BitcoinPayable::Adapters
 
     def fetch_transactions_for_address(address)
       url = "#{@url}/v3/address/#{address}/tx"
+      url += "?api_key=" + BitcoinPayable.config.adapter_api_key if BitcoinPayable.config.adapter_api_key
       uri = URI.parse(url)
 
       http = Net::HTTP.new(uri.host, uri.port)
