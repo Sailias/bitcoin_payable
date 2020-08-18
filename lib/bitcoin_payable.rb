@@ -14,6 +14,7 @@ require 'bitcoin_payable/adapters/blockchain_info_adapter'
 require 'bitcoin_payable/adapters/blockcypher_adapter'
 require 'bitcoin_payable/adapters/blocktrail_adapter'
 require 'bitcoin_payable/adapters/btc_com_adapter'
+require 'bitcoin_payable/adapters/bitcoind'
 
 # Require all the interactor files
 require 'bitcoin_payable/interactors/webhook_notification_processor'

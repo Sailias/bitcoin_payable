@@ -14,6 +14,7 @@ module BitcoinPayable
       :confirmations,
       :payment_variance,
       :processing_days,
+      :adapter_url,
 
       # Pricing
       :open_exchange_key,
@@ -30,7 +31,7 @@ module BitcoinPayable
       @currency ||= :cad
       @confirmations ||= 6
       @rate_calculation ||= :daily_average
-      
+
       # Allow a number of cents difference between price and payment amount
       # to account for payments very close to the price.
       # Even though we honour the price for 30 minutes,
