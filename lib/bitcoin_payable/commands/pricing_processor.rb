@@ -24,6 +24,7 @@ module BitcoinPayable
         http.use_ssl = true
 
         request = Net::HTTP::Get.new(uri.request_uri)
+        request["x-ba-key"] = BitcoinPayable.config.bitcoinaverage_key
 
         response = http.request(request)
         hash = JSON.parse(response.body)

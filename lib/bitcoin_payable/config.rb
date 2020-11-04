@@ -17,6 +17,7 @@ module BitcoinPayable
       :adapter_url,
 
       # Pricing
+      :bitcoinaverage_key,
       :open_exchange_key,
       :rate_calculation,
 
