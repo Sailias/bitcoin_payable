@@ -2,3 +2,4 @@ spec/dummy/log/*
 *.gem
 /Gemfile.lock
 .DS_Store
+.idea

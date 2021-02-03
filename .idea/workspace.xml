@@ -2,7 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="06b10161-5cd1-4d9a-8f1d-7513bfb5e30f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/lib/bitcoin_payable/has_bitcoin_payment.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/bitcoin_payable/has_bitcoin_payment.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/bitcoin_payable.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,7 +144,7 @@
       <option name="presentableId" value="Default" />
       <updated>1612324593483</updated>
       <workItem from="1612324597331" duration="34000" />
-      <workItem from="1612324644585" duration="898000" />
+      <workItem from="1612324644585" duration="972000" />
     </task>
     <servers />
   </component>
