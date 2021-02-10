@@ -20,10 +20,10 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler"
   spec.add_development_dependency "rake"
-  spec.add_development_dependency 'sqlite3'
-  spec.add_development_dependency "cucumber-rails"
-  spec.add_development_dependency "rspec-rails"
-  spec.add_development_dependency "database_cleaner"
+  # spec.add_development_dependency 'sqlite3'
+  # spec.add_development_dependency "cucumber-rails"
+  # spec.add_development_dependency "rspec-rails"
+  # spec.add_development_dependency "database_cleaner"
 
   spec.required_rubygems_version = '>= 1.3.6'
 
