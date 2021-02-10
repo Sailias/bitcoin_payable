@@ -15,6 +15,7 @@ module BitcoinPayable
       :payment_variance,
       :processing_days,
       :adapter_url,
+      :request_delay,
 
       # Pricing
       :bitcoinaverage_key,
@@ -32,6 +33,7 @@ module BitcoinPayable
       @currency ||= :cad
       @confirmations ||= 6
       @rate_calculation ||= :daily_average
+      @request_delay ||= 0.5
 
       # Allow a number of cents difference between price and payment amount
       # to account for payments very close to the price.
