@@ -15,8 +15,8 @@ module BitcoinPayable
               payment: payment
             )
           rescue JSON::ParserError
-            # Back off on error
-            sleep_amount = sleep_amount * 5
+            # Back off for 60 seconds as most APIs throttle in request/min window
+            sleep_amount = 60
 
             puts "Error processing response from server.  Possible API issue or your Quota has been exceeded"
           end
