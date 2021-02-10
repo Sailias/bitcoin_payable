@@ -11,6 +11,7 @@ module BitcoinPayable
           sleep_amount = BitcoinPayable.config.request_delay.to_f
 
           begin
+            puts "Checking address: #{ payment.address }"
             BitcoinPayable::Interactors::BitcoinPaymentProcessor::ProcessTransactionsForPayment.call(
               payment: payment
             )
