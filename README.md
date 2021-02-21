@@ -61,7 +61,7 @@ BitcoinPayable.config do |config|
   # Optional setting. Default to :daily_average
   # :last               The last market's price
   # :high               Today's highest price
-  # :low                Today's highest price
+  # :low                Today's lowest price
   # :daily_average      The daily average price
   # :weekly_average     The weekly average price
   # :monthly_average    The monthly average price
